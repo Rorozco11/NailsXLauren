@@ -5,6 +5,10 @@ module.exports = {
     extend: {
       fontFamily: {
         abeezee: ['Abeezee', 'sans-serif'],
+        imperial: ['Imperial Script', 'cursive'],
+      },
+      colors: {
+        customMaroon: '#b35780'
       }
     },
   },
