@@ -7,67 +7,60 @@
     <link href="./output.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abeezee&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Arima:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arima:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-     
-    <!-- #region Header -->
-
-    <div class="flex flex-col m-[1.5rem] gap-5">
-        <!-- Top Row -->
-        <div class="flex justify-between">
-            <div class="text-5xl text-red-500">Logo</div>
-            <button class="btn-bookNow" onclick="window.location.href='booknow.html'">BOOK NOW</button>
-        </div>
-
-        <!-- Center Links -->
-        <div class="flex w-full">
-            <div class="flex justify-center gap-8 flex-grow">
-                <a href="index.html" class="transform hover:scale-110 transition-transform duration-200 cursor-pointer">
-                    <div>Home</div>
-                </a>
-                <a href="services.html" class="transform hover:scale-110 transition-transform duration-200 cursor-pointer">
-                    <div>Services</div>
-                </a>
-                <a href="" class="transform hover:scale-110 transition-transform duration-200 cursor-pointer">
-                    <div>About</div>
-                </a>
-            </div>
-        </div>
+    <!-- #region Logo -->
+    <div class="flex m-[1.5rem] justify-start">
+        <div class="text-5xl text-red-500">Logo</div>
     </div>
-    <!-- #endregion Header -->  
+    <!-- #endregion Logo -->
 
-    <!-- #region About -->
+    <!-- #region Book Now -->
     <div class="flex justify-center flex-grow">
         <div>
-            <p class='text-customMaroon font-arima font-semibold lg:text-7xl mt-14 mb-8'> About </p>
+            <p class='text-customMaroon font-arima font-semibold text-7xl mt-5 mb-8'> Book Now </p>
         </div>
     </div>
+    <!-- #endregion Book Now -->
 
-    <!-- Add circular image -->
-    <div class="flex justify-center mb-8">
-        <div class="w-64 h-64 rounded-full overflow-hidden">
-            <img 
-                src="/public/images/laurenphoto.jpeg" 
-                alt="About section image" 
-                class="w-full h-full object-cover"
-            >
-        </div>
-    </div>
+    <!-- #region Form -->
+    <div class="flex justify-center mt-10">
+        <form class="flex flex-col w-[400px] gap-4">
+            <!-- Name Input -->
+            <div class="flex flex-col gap-2">
+                <label class="text-black text-lg">Name</label>
+                <input type="text" 
+                    class="border-2 border-black rounded-sm p-2 h-[40px]">
+            </div>
 
-    <div class="flex justify-center">
-        <div class="max-w-3xl px-4">
-            <p class="text-center font-arima text-lg leading-relaxed">
-                This website combines a pink and blue color palette with floral patterns to highlight its spa's interior style. It includes a blog section featuring beauty tips and service-related content, enhancing the brand's presence and engagement. This website combines a pink and blue color palette with floral patterns to highlight its spa's interior style. It includes a blog section featuring beauty tips and service-related content, enhancing the brand's presence and engagement. This website combines a pink and blue color palette with floral patterns to highlight its spa's interior style. It includes a blog section featuring beauty tips and service-related content, enhancing the brand's presence and engagement.
-            </p>
-        </div>
+            <!-- Phone Number Input -->
+            <div class="flex flex-col gap-2">
+                <label class="text-black text-lg">Phone Number</label>
+                <input type="tel" 
+                    class="border-2 border-black rounded-sm p-2 h-[40px]">
+            </div>
+
+            <!-- Message Input -->
+            <div class="flex flex-col gap-2">
+                <label class="text-black text-lg">Message</label>
+                <textarea 
+                    class="border-2 border-black rounded-sm p-2 h-[120px] resize-none"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" 
+                class="bg-[#A25B7C] text-white rounded-lg py-3 mt-4 text-lg hover:bg-[#8A4B69] transition-colors duration-300">
+                Submit
+            </button>
+        </form>
     </div>
-    <!-- #endregion About -->   
+    <!-- #endregion Form -->    
+
 
      <!-- #region Footer-->
-
-     <div class="flex justify-between items-center  mb-[3rem] mt-[3rem]">
+     <div class="flex justify-between items-center  mb-[3rem] mt-[2rem]">
         <!-- #region Social Media Icons on Left -->
         <div class="flex ml-[2rem] gap-5">
             <!-- Instagram Button -->
@@ -159,9 +152,15 @@
     </div>
 
 
-
-
     <!-- #endregion Footer-->
+
+
+
+
+
+
+
+
 
 </body>
 
