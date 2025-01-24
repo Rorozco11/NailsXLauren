@@ -7,27 +7,26 @@
     <link href="./output.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Abeezee&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Arima:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-
-    <!-- Book Now Button -->
-
+    <!--#region Header -->
     <div class="flex flex-col m-[1.5rem] gap-5">
-        <!-- Top Row -->
+
         <div class="flex justify-between">
             <div class="text-5xl text-red-500">Logo</div>
             <button class="btn-bookNow">BOOK NOW</button>
         </div>
 
-        <!-- Center Links -->
+        <!--#region Center Links -->
         <div class="flex w-full">
             <div class="flex justify-center gap-8 flex-grow">
-                <a href="" class="transform hover:scale-110 transition-transform duration-200 cursor-pointer">
+                <a href="index.html" class="transform hover:scale-110 transition-transform duration-200 cursor-pointer">
                     <div>Home</div>
                 </a>
-                <a href="services.html" class="transform hover:scale-110 transition-transform duration-200 cursor-pointer">
+                <a href="" class="transform hover:scale-110 transition-transform duration-200 cursor-pointer">
                     <div>Services</div>
                 </a>
                 <a href="about.html" class="transform hover:scale-110 transition-transform duration-200 cursor-pointer">
@@ -35,22 +34,94 @@
                 </a>
             </div>
         </div>
+        <!--#endregion Center Links -->
     </div>
 
-    <!-- Center Links -->
     <div class="flex justify-center flex-grow">
         <div>
-            <p class='text-customMaroon font-imperial lg:text-7xl mt-14 mb-8'> Nails X Lauren </p>
+            <p class='text-customMaroon font-arima font-bold text-7xl mt-14 mb-8'> Services </p>
+        </div>
+    </div>
+    <!--#endregion Header -->
+
+    <!--#region Services -->    
+    <div class="flex justify-center items-center w-full mt-14">
+        <div class="flex lg:gap-[12rem]">
+            <!-- Gel X Tips Column -->
+            <div class="flex flex-col items-center">
+                <p class="text-customMaroon text-4xl font-arima">Gel X Tips</p>
+                <p class="text-4xl mt-[3rem] font-arima">$100</p>
+            </div>
+
+            <!-- Fill Column -->
+            <div class="flex flex-col justify-center items-center">
+                <p class="text-customMaroon text-4xl font-arima">Fill</p>
+                <p class="text-4xl mt-[3rem] font-arima">$100</p>
+            </div>
+
+            <!-- Natural Column -->
+            <div class="flex flex-col items-center">
+                <p class="text-customMaroon text-4xl font-arima">Natural</p>
+                <p class="text-4xl mt-[3rem] font-arima">$100</p>
+            </div>
         </div>
     </div>
 
+    <!--#region Add Ons -->
+    <div class="flex flex-grow justify-center items-center ">
+        <div>
+            <p class='text-blue-500 font-arima font-bold mt-[10rem] text-5xl mt-14 '> Add Ons </p>
+        </div>
 
-    <div class="relative mt-5">
-        <img src="/public/images/CoverImage.png" alt="Cover" class="w-full h-[65vh] object-cover z-10">
-        <div class="absolute inset-x-0 bottom-3 flex justify-center items-center">
-            <button class="btn-bookNowCenter z-20"> BOOK NOW </button>
+    </div>
+
+    <div class="border-2 border-blue-500 bg-gray-50 mt-[2rem] mb-[3rem] p-[.5rem] rounded-lg mx-auto max-w-fit">
+        <!-- First Row (2 items) -->
+        <div class="flex justify-center items-center w-full mt-14">
+            <div class="flex gap-[12rem]">
+                <!-- French Tip Column -->
+                <div class="flex flex-col justify-center items-center">
+                    <p class="text-blue-500 text-4xl font-arima">French Tip</p>
+                    <p class="text-4xl mt-[3rem] font-arima">$100</p>
+                </div>
+
+                <!-- Chrome Column -->
+                <div class="flex flex-col justify-center items-center">
+                    <p class="text-blue-500 text-4xl font-arima">Chrome</p>
+                    <p class="text-4xl mt-[3rem] font-arima">$100</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Row (3 items) -->
+        <div class="flex justify-center items-center w-full  mt-14">
+            <div class="flex gap-[12rem]">
+                <!-- Cateye Column -->
+                <div class="flex flex-col justify-center items-center">
+                    <p class="text-blue-500 text-4xl font-arima">Cateye</p>
+                    <p class="text-4xl mt-[3rem] font-arima">$100</p>
+                </div>
+
+                <!-- Gems Column -->
+                <div class="flex flex-col justify-center items-center">
+                    <p class="text-blue-500 text-4xl font-arima">Gems</p>
+                    <p class="text-4xl mt-[3rem] font-arima">$100</p>
+                </div>
+
+                <!-- 3D Column -->
+                <div class="flex flex-col justify-center items-center">
+                    <p class="text-blue-500 text-4xl font-arima">3D</p>
+                    <p class="text-4xl mt-[3rem] font-arima">$100</p>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!--#endregion Add Ons -->  
+
+
+
+    <!--#endregion Services --> 
 
     <!-- #region Footer-->
 
@@ -149,16 +220,6 @@
 
 
     <!-- #endregion Footer-->
-
-
-
-
-
-
-
-
-
-
 
 </body>
 

@@ -6,6 +6,7 @@ module.exports = {
       fontFamily: {
         abeezee: ['Abeezee', 'sans-serif'],
         imperial: ['Imperial Script', 'cursive'],
+        arima: ['Arima', 'sans-serif'],
       },
       colors: {
         customMaroon: '#b35780'
