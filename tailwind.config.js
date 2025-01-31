@@ -18,7 +18,7 @@ module.exports = {
       addComponents({
       
         '.btn-bookNow': {
-          padding: '12px 24px',
+          padding: '12px 48px',
           fontSize: '1rem',
           fontFamily: 'abeezee',
           fontWeight: '0',
@@ -54,7 +54,7 @@ module.exports = {
 
 
         '.btn-bookNowCenter': {
-          padding: '12px 24px',
+          padding: '12px 48px',
           fontSize: '1rem',
           fontFamily: 'abeezee',
           fontWeight: '0',
