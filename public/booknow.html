@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Abeezee&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Arima:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="bg-black">
@@ -19,6 +20,7 @@
             <a href="index.html" class="text-white hover:text-gray-300 hover:underline">Home</a>
             <a href="services.html" class="text-white   hover:text-gray-300 hover:underline">Services</a>
             <a href="about.html" class="text-white hover:text-gray-300 hover:underline">About</a>
+
         </div>
     </div>
 
@@ -33,33 +35,56 @@
 
     <!-- #region Form -->
     <div class="flex justify-center mt-10">
-        <form class="flex flex-col w-[400px] gap-4" id="contactForm" onsubmit="sendEmail(event)">
+        <form class="flex flex-col w-[400px] gap-4" id="contactForm" method="POST" action="/booknow">
             <!-- Name Input -->
             <div class="flex flex-col gap-2">
-                <label class="text-white text-lg">Name</label>
-                <input type="text" id="name" name="name" required class="border-2 border-white rounded-sm p-2 h-[40px]">
+                <label class="text-white text-lg">
+                    Name <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="fullName" name="fullName" required 
+                    class="border-2 border-white rounded-sm p-2 h-[40px]" 
+                    placeholder="John Doe">
             </div>
+            
+
 
             <!-- Phone Number Input -->
             <div class="flex flex-col gap-2">
-                <label class="text-white text-lg">Phone Number</label>
-                <input type="tel" id="phone" name="phone" required class="border-2 border-white rounded-sm p-2 h-[40px]">
+                <label class="text-white text-lg">Phone Number <span class="text-red-500">*</span></label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required
+                    class="border-2 border-white rounded-sm p-2 h-[40px]" placeholder="111-111-1111"
+                    >
+            </div>
+
+            <!-- Email Input -->
+            <div class="flex flex-col gap-2">
+                <label class="text-white text-lg">Email <span class="text-red-500">*</span></label>
+                <input type="tel" id="email" name="email" required class="border-2 border-white rounded-sm p-2 h-[40px]"
+                    placeholder="Johndoe@gmail.com">
             </div>
 
             <!-- Message Input -->
             <div class="flex flex-col gap-2">
                 <label class="text-white text-lg">Message</label>
-                <textarea id="message" name="message" required class="border-2 border-white rounded-sm p-2 h-[120px] resize-none"></textarea>
+                <textarea id="message" name="message" class="border-2 border-white rounded-sm p-2 h-[120px] resize-none"
+                    placeholder="What do you want done?"></textarea>
+            </div>
+
+            <!-- Status Message -->
+            <div id="statusMessage" class="hidden text-center p-3 rounded-lg mt-2">
             </div>
 
             <!-- Submit Button -->
-            <button type="submit"
+            <button type="submit" id="submit"
                 class="bg-[#A25B7C] text-white rounded-lg py-3 mt-4 text-lg hover:bg-[#8A4B69] transition-colors duration-300">
                 Submit
             </button>
         </form>
     </div>
     <!-- #endregion Form -->
+
+
+    <script src="Scripts/form.js"></script>
 
 
     <!-- #region Footer -->
