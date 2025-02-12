@@ -56,8 +56,8 @@ document.getElementById('contactForm').addEventListener('submit', async (event) 
         } else {
             Swal.fire({
                 icon: "error",
-                title: "Failed to Register Email",
-                text: "There was an error sending the email.",
+                title: "Failed to Register",
+                text: "There was an error.",
             });
             console.error('Error:', response2.statusText);
         }

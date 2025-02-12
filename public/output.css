@@ -686,6 +686,10 @@ video {
   margin-left: 2rem;
 }
 
+.mr-2 {
+  margin-right: 0.5rem;
+}
+
 .mr-\[2rem\] {
   margin-right: 2rem;
 }
@@ -1097,6 +1101,43 @@ video {
 }
 
 @media (min-width: 1024px) {
+  .lg\:left-1\/2 {
+    left: 50%;
+  }
+
+  .lg\:m-\[1rem\] {
+    margin: 1rem;
+  }
+
+  .lg\:mt-8 {
+    margin-top: 2rem;
+  }
+
+  .lg\:mb-8 {
+    margin-bottom: 2rem;
+  }
+
+  .lg\:h-full {
+    height: 100%;
+  }
+
+  .lg\:w-28 {
+    width: 7rem;
+  }
+
+  .lg\:w-full {
+    width: 100%;
+  }
+
+  .lg\:-translate-x-1\/2 {
+    --tw-translate-x: -50%;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .lg\:transform {
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
   .lg\:gap-\[12rem\] {
     gap: 12rem;
   }
