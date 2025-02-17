@@ -31,15 +31,21 @@ document.getElementById('contactForm').addEventListener('submit', async (event) 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Origin': 'https://nailsxlauren.beauty'
             },
+            credentials: 'include',
             body: JSON.stringify(userData),
         });
 
         const response2 = await fetch('https://miniwebapi.onrender.com/api/Book', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Origin': 'https://nailsxlauren.beauty'
             },
+            credentials: 'include',
             body: JSON.stringify(userData)
         });
 
