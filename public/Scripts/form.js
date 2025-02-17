@@ -26,69 +26,59 @@ document.getElementById('contactForm').addEventListener('submit', async (event) 
     };
 
     try {
-        // Send data to the API
-        const response = await fetch('https://miniwebapi.onrender.com/api/User', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Origin': 'https://nailsxlauren.beauty'
-            },
-            credentials: 'include',
-            body: JSON.stringify(userData),
-        });
-
-        const response2 = await fetch('https://miniwebapi.onrender.com/api/Book', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Origin': 'https://nailsxlauren.beauty'
-            },
-            credentials: 'include',
-            body: JSON.stringify(userData)
-        });
-
-        if (response2.ok) {
-            const emailResult = await response2.json();
-            Swal.fire({
-                icon: "success",
-                title: "Sent!",
-                text: "NailsXLauren has been notified!",
-                showConfirmButton: false,
-                timer: 3000
+        // Send User data to the API
+        try {
+            const response = await fetch('https://miniwebapi.onrender.com/api/User', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Origin': 'https://nailsxlauren.beauty'
+                },
+                body: JSON.stringify(userData),
             });
-            console.log('Server response:', emailResult);
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Failed to Register",
-                text: "There was an error.",
-            });
-            console.error('Error:', response2.statusText);
+            console.log('User API Response:', response.status);
+        } catch (userError) {
+            console.error('User API Error:', userError);
         }
 
-        // if (response.ok) {
-        //     const result = await response.json();
-        //     Swal.fire({
-        //         icon: "success",
-        //         title: "User Sent to API!",
-        //         text: "User successfully registered in the system.",
-        //         showConfirmButton: false,
-        //         timer: 3000
-        //     });
-        //     console.log('Server response:', result);
-        // } else {
-        //     Swal.fire({
-        //         icon: "error",
-        //         title: "Failed to Register User",
-        //         text: "There was an issue registering the user.",
-        //     });
-        //     console.error('Error:', response.statusText);
-        // }
+        // Send Book data to the API
+        try {
+            const response2 = await fetch('https://miniwebapi.onrender.com/api/Book', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Origin': 'https://nailsxlauren.beauty'
+                },
+                body: JSON.stringify(userData)
+            });
+            console.log('Book API Response:', response2.status);
+
+            if (response2.ok) {
+                const emailResult = await response2.json();
+                Swal.fire({
+                    icon: "success",
+                    title: "Sent!",
+                    text: "NailsXLauren has been notified!",
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                console.log('Server response:', emailResult);
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Failed to Register",
+                    text: "There was an error.",
+                });
+                console.error('Error:', response2.statusText);
+            }
+        } catch (bookError) {
+            console.error('Book API Error:', bookError);
+        }
 
     } catch (error) {
-        console.error('Network error:', error);
+        console.error('Overall Network error:', error);
     }
 });
 //#endregion collecting data end
