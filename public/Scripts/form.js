@@ -27,7 +27,7 @@ document.getElementById('contactForm').addEventListener('submit', async (event) 
 
     try {
         // Send data to the API
-        const response = await fetch('http://localhost:5000/api/User', { // Adjust the URL to match your API
+        const response = await fetch('https://miniwebapi.onrender.com/api/User', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,10 +35,10 @@ document.getElementById('contactForm').addEventListener('submit', async (event) 
             body: JSON.stringify(userData),
         });
 
-        const response2 = await fetch("http://localhost:5000/api/Book", {
-            method: "POST",
+        const response2 = await fetch('https://miniwebapi.onrender.com/api/Book', {
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(userData)
         });
