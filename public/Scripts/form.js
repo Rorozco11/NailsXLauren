@@ -37,21 +37,21 @@ document.getElementById('contactForm').addEventListener('submit', async (event) 
     };
 
     try {
-        // Send User data to the API
-        try {
-            const response = await fetch('https://miniwebapi.onrender.com/api/User', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Origin': 'https://nailsxlauren.beauty'
-                },
-                body: JSON.stringify(userData),
-            });
-            console.log('User API Response:', response.status);
-        } catch (userError) {
-            console.error('User API Error:', userError);
-        }
+        // // Send User data to the API
+        // try {
+        //     const response = await fetch('https://miniwebapi.onrender.com/api/User', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //             'Accept': 'application/json',
+        //             'Origin': 'https://nailsxlauren.beauty'
+        //         },
+        //         body: JSON.stringify(userData),
+        //     });
+        //     console.log('User API Response:', response.status);
+        // } catch (userError) {
+        //     console.error('User API Error:', userError);
+        // }
 
         // Send Book data to the API
         try {
