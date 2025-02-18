@@ -921,8 +921,8 @@ video {
   width: 3.5rem;
 }
 
-.w-\[400px\] {
-  width: 400px;
+.w-\[300px\] {
+  width: 300px;
 }
 
 .w-full {
@@ -960,6 +960,12 @@ video {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .resize-none {
@@ -1373,6 +1379,10 @@ video {
 
   .md\:w-28 {
     width: 7rem;
+  }
+
+  .md\:w-\[400px\] {
+    width: 400px;
   }
 
   .md\:-translate-x-1\/2 {
