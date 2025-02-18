@@ -11,36 +11,47 @@ function navigateToForm() {
 document.getElementById('contactForm').addEventListener('submit', async (event) => {
     event.preventDefault(); // Prevent default form submission behavior
 
-    // Collect form data
-    const fullName = document.getElementById('fullName').value;
-    const phoneNumber = document.getElementById('phoneNumber').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+    // Collect and sanitize form data
+    const fullName = document.getElementById('fullName').value.trim();
+    const phoneNumber = document.getElementById('phoneNumber').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
 
-    // Prepare the data payload
+    // Basic email validation
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!emailRegex.test(email)) {
+        Swal.fire({
+            icon: "error",
+            title: "Invalid Email",
+            text: "Please enter a valid email address",
+        });
+        return;
+    }
+
+    // Prepare the sanitized data payload
     const userData = {
-        fullName: fullName,
-        phoneNumber: phoneNumber,
-        email: email,
-        message: message
+        fullName: fullName.replace(/['"]/g, ''), // Remove quotes
+        phoneNumber: phoneNumber.replace(/['"]/g, ''),
+        email: email.replace(/['"]/g, ''),
+        message: message.replace(/['"]/g, '')
     };
 
     try {
-        // // Send User data to the API
-        // try {
-        //     const response = await fetch('https://miniwebapi.onrender.com/api/User', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //             'Accept': 'application/json',
-        //             'Origin': 'https://nailsxlauren.beauty'
-        //         },
-        //         body: JSON.stringify(userData),
-        //     });
-        //     console.log('User API Response:', response.status);
-        // } catch (userError) {
-        //     console.error('User API Error:', userError);
-        // }
+        // Send User data to the API
+        try {
+            const response = await fetch('https://miniwebapi.onrender.com/api/User', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Origin': 'https://nailsxlauren.beauty'
+                },
+                body: JSON.stringify(userData),
+            });
+            console.log('User API Response:', response.status);
+        } catch (userError) {
+            console.error('User API Error:', userError);
+        }
 
         // Send Book data to the API
         try {
