@@ -79,7 +79,7 @@ document.getElementById('contactForm').addEventListener('submit', async (event) 
             } else {
                 Swal.fire({
                     icon: "error",
-                    title: "Failed to Register",
+                    title: "Failed to book",
                     text: "There was an error.",
                 });
                 console.error('Error:', response2.statusText);
