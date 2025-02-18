@@ -921,8 +921,8 @@ video {
   width: 3.5rem;
 }
 
-.w-\[300px\] {
-  width: 300px;
+.w-\[363px\] {
+  width: 363px;
 }
 
 .w-full {
@@ -1325,14 +1325,6 @@ video {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
-.hover\:w-28:hover {
-  width: 7rem;
-}
-
-.hover\:rounded-3xl:hover {
-  border-radius: 1.5rem;
-}
-
 .hover\:bg-\[\#8A4B69\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(138 75 105 / var(--tw-bg-opacity, 1));
@@ -1423,5 +1415,13 @@ video {
   .lg\:text-7xl {
     font-size: 4.5rem;
     line-height: 1;
+  }
+
+  .lg\:hover\:w-28:hover {
+    width: 7rem;
+  }
+
+  .lg\:hover\:rounded-3xl:hover {
+    border-radius: 1.5rem;
   }
 }
