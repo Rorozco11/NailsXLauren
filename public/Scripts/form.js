@@ -37,21 +37,17 @@ document.getElementById('contactForm').addEventListener('submit', async (event) 
     };
 
     try {
-        // // Send User data to the API
-        // try {
-        //     const response = await fetch('https://miniwebapi.onrender.com/api/User', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //             'Accept': 'application/json',
-        //             'Origin': 'https://nailsxlauren.beauty'
-        //         },
-        //         body: JSON.stringify(userData),
-        //     });
-        //     console.log('User API Response:', response.status);
-        // } catch (userError) {
-        //     console.error('User API Error:', userError);
-        // }
+        // Show loading spinner
+        Swal.fire({
+            title: 'Sending request...',
+            text: 'Please wait',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            showConfirmButton: false,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        });
 
         // Send Book data to the API
         try {
@@ -64,8 +60,7 @@ document.getElementById('contactForm').addEventListener('submit', async (event) 
                 },
                 body: JSON.stringify(userData)
             });
-            console.log('Book API Response:', response2.status);
-
+            
             if (response2.ok) {
                 const emailResult = await response2.json();
                 Swal.fire({
@@ -86,10 +81,22 @@ document.getElementById('contactForm').addEventListener('submit', async (event) 
             }
         } catch (bookError) {
             console.error('Book API Error:', bookError);
+            // Show error alert if request fails
+            Swal.fire({
+                icon: "error",
+                title: "Error",
+                text: "There was a problem sending your request. Please try again.",
+            });
         }
 
     } catch (error) {
         console.error('Overall Network error:', error);
+        // Show error alert if request fails
+        Swal.fire({
+            icon: "error",
+            title: "Error",
+            text: "There was a problem sending your request. Please try again.",
+        });
     }
 });
 //#endregion collecting data end
