@@ -66,7 +66,7 @@ document.getElementById('contactForm').addEventListener('submit', async (event) 
                 Swal.fire({
                     icon: "success",
                     title: "Sent!",
-                    text: "NailsXLauren has been notified!",
+                    text: "NailXLauren has been notified!",
                     showConfirmButton: false,
                     timer: 3000
                 });
