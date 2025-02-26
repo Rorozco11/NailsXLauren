@@ -17,9 +17,9 @@ document.getElementById('contactForm').addEventListener('submit', async (event) 
     const email = document.getElementById('email').value.trim();
     const message = document.getElementById('message').value.trim();
 
-    // Basic email validation
+    // Basic email validation - only if email is provided
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    if (!emailRegex.test(email)) {
+    if (email && !emailRegex.test(email)) {
         Swal.fire({
             icon: "error",
             title: "Invalid Email",
