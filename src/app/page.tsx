@@ -12,7 +12,7 @@ export default function Home() {
       <div className="relative mt-5 flex justify-between items-center">
         {/* Left Image */}
         <Image 
-          src="/Images/FrenchTip2.jpeg" 
+          src="/Images/actualLogo.jpeg"
           alt="Cover" 
           width={400}
           height={400}
