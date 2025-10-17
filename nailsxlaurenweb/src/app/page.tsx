@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+
 export default function Home() {
   return (
     <>
@@ -11,9 +12,9 @@ export default function Home() {
 
       <div className="relative mt-5 flex justify-between items-center">
         {/* Left Image */}
-        <Image 
-          src="/Images/certIcon.png"
-          alt="Nails X Lauren Logo" 
+        <Image
+          src='/Images/actualLogo.jpeg'
+          alt="Testing" 
           width={400}
           height={400}
           className="hidden md:block w-1/4 h-[400px] object-contain"
@@ -22,7 +23,7 @@ export default function Home() {
         {/* Center Image */}
         <div className="relative w-full md:w-2/4">
           <Image 
-            src="/Images/HomePage1.jpeg" 
+            src="/Images/actualLogo.jpeg" 
             alt="Beautiful nail art showcase" 
             width={600}
             height={400}
@@ -35,7 +36,7 @@ export default function Home() {
 
         {/* Right Image */}
         <Image 
-          src="/Images/HomePage3.jpeg" 
+          src="/Images/actualLogo.jpeg" 
           alt="Nails X Lauren Logo" 
           width={400}
           height={400}
