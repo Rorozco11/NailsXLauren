@@ -12,8 +12,8 @@ export default function Home() {
       <div className="relative mt-5 flex justify-between items-center">
         {/* Left Image */}
         <Image 
-          src="/Images/actualLogo.jpeg"
-          alt="Cover" 
+          src="/images/actualLogo.jpeg"
+          alt="Nails X Lauren Logo" 
           width={400}
           height={400}
           className="hidden md:block w-1/4 h-[400px] object-contain"
@@ -22,8 +22,8 @@ export default function Home() {
         {/* Center Image */}
         <div className="relative w-full md:w-2/4">
           <Image 
-            src="/Images/HomePage1.jpeg" 
-            alt="Cover" 
+            src="/images/HomePage1.jpeg" 
+            alt="Beautiful nail art showcase" 
             width={600}
             height={400}
             className="w-full h-[400px] object-contain z-10"
@@ -35,8 +35,8 @@ export default function Home() {
 
         {/* Right Image */}
         <Image 
-          src="/Images/HomePage3.jpeg" 
-          alt="Cover" 
+          src="/images/HomePage3.jpeg" 
+          alt="Nails X Lauren Logo" 
           width={400}
           height={400}
           className="hidden md:block w-1/4 h-[400px] object-contain"

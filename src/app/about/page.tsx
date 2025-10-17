@@ -11,7 +11,7 @@ export default function About() {
       <div className="flex justify-center mb-8">
         <div className="w-64 h-64 rounded-full overflow-hidden">
           <Image 
-            src="/Images/laurenphoto.jpeg" 
+            src="/images/laurenphoto.jpeg" 
             alt="About section image" 
             width={256}
             height={256}
