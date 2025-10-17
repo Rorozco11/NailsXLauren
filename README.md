@@ -13,7 +13,7 @@ A modern, responsive website for Nails X Lauren built with Next.js, React, and T
 
 ## Pages
 
-- **Home** (`/`) - Main landing page with hero images and call-to-action
+- **Home** (`/`) - Main landing page with hero Images and call-to-action
 - **Services** (`/services`) - Price list and service offerings
 - **About** (`/about`) - Information about the business
 - **Book Now** (`/booknow`) - Contact form for booking appointments
@@ -69,7 +69,7 @@ src/
 └── globals.css         # Global styles and Tailwind imports
 
 public/
-└── images/             # Static images and assets
+└── Images/             # Static Images and assets
 ```
 
 ## Customization

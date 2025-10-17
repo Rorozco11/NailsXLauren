@@ -14,7 +14,7 @@ export default function Header() {
   return (
     <div className="flex justify-between m-[1rem] items-center">
       <Image 
-        src="/images/actualLogo.jpeg" 
+        src="/Images/actualLogo.jpeg" 
         alt="Logo"
         width={112}
         height={112}

@@ -12,7 +12,7 @@ export default function Home() {
       <div className="relative mt-5 flex justify-between items-center">
         {/* Left Image */}
         <Image 
-          src="/images/FrenchTip2.jpeg" 
+          src="/Images/FrenchTip2.jpeg" 
           alt="Cover" 
           width={400}
           height={400}
@@ -22,7 +22,7 @@ export default function Home() {
         {/* Center Image */}
         <div className="relative w-full md:w-2/4">
           <Image 
-            src="/images/HomePage1.jpeg" 
+            src="/Images/HomePage1.jpeg" 
             alt="Cover" 
             width={600}
             height={400}
@@ -35,7 +35,7 @@ export default function Home() {
 
         {/* Right Image */}
         <Image 
-          src="/images/HomePage3.jpeg" 
+          src="/Images/HomePage3.jpeg" 
           alt="Cover" 
           width={400}
           height={400}

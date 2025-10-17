@@ -48,7 +48,7 @@ export default function Footer() {
 
       {/* Logo in Center */}
       <Image 
-        src="/images/actualLogo.jpeg" 
+        src="/Images/actualLogo.jpeg" 
         alt="Logo"
         width={112}
         height={112}
