@@ -1,66 +1,161 @@
+import Image from 'next/image';
+
 export default function Services() {
+  const mainServices = [
+    {
+      name: "Gel X Set",
+      price: "$35",
+      description: "Full set with gel extensions for long-lasting, beautiful nails"
+    },
+    {
+      name: "Gel Manicure",
+      price: "$20",
+      description: "Classic gel manicure for natural nail enhancement"
+    },
+    {
+      name: "Fill W/ Builder Gel",
+      price: "$30",
+      description: "Maintenance service with builder gel for strength"
+    },
+    {
+      name: "Tip Replacement",
+      price: "$2",
+      description: "Quick tip repair for damaged extensions"
+    },
+    {
+      name: "Soak Off",
+      price: "$7",
+      description: "Gentle removal of gel polish and extensions"
+    }
+  ];
+
+  const addOns = [
+    {
+      name: "French Tip",
+      price: "$5",
+      description: "Classic white tip design"
+    },
+    {
+      name: "Chrome",
+      price: "$5",
+      description: "Metallic chrome finish"
+    },
+    {
+      name: "Design",
+      price: "$5-$15",
+      description: "Custom nail art and designs"
+    },
+    {
+      name: "Gems",
+      price: "$2-$15",
+      description: "Beautiful gemstone accents"
+    },
+    {
+      name: "3D",
+      price: "$5-$10",
+      description: "Three-dimensional nail art"
+    }
+  ];
+
   return (
     <>
+      {/* Header Section */}
       <div className="flex justify-center flex-grow">
         <div className="text-center">
-          <p className='text-[#FFB6C1] font-arima font-semibold text-7xl mt-14 mb-4'> Price List </p>
+          <p className='text-[#A56C82] font-arima font-semibold text-5xl md:text-7xl mt-14 mb-4'>Our Services</p>
           <div className="flex items-center justify-center gap-3 mb-8">
-            <span className="text-[#FFB6C1] text-2xl">—————</span>
-            <span className="text-[#FFB6C1] font-arima">@nailxlauren</span>
-            <span className="text-[#FFB6C1] text-2xl">—————</span>
+            <span className="text-[#A56C82] text-2xl">—————</span>
+            <span className="text-[#A56C82] font-arima">@nailxlauren</span>
+            <span className="text-[#A56C82] text-2xl">—————</span>
           </div>
         </div>
       </div>
 
-      {/* Price List Section */}
-      <div className="max-w-2xl mx-auto px-4">
-        {/* Main Services */}
-        <div className="mb-8">
-          <div className="flex justify-between items-center py-2 border-b border-pink-200">
-            <span className="font-arima text-lg">Gel X Set</span>
-            <span className="font-arima text-lg">$35</span>
-          </div>
-          <div className="flex justify-between items-center py-2 border-b border-pink-200">
-            <span className="font-arima text-lg">Gel Manicure</span>
-            <span className="font-arima text-lg">$20</span>
-          </div>
-          <div className="flex justify-between items-center py-2 border-b border-pink-200">
-            <span className="font-arima text-lg">Fill W/ Builder Gel</span>
-            <span className="font-arima text-lg">$30</span>
-          </div>
-          <div className="flex justify-between items-center py-2 border-b border-pink-200">
-            <span className="font-arima text-lg">Tip Replacement</span>
-            <span className="font-arima text-lg">$2</span>
-          </div>
-          <div className="flex justify-between items-center py-2 border-b border-pink-200">
-            <span className="font-arima text-lg">Soak Off</span>
-            <span className="font-arima text-lg">$7</span>
-          </div>
+      {/* Main Services Grid */}
+      <div className="max-w-7xl mx-auto px-4 mb-16">
+        <h2 className="text-[#A56C82] text-3xl font-arima text-center mb-8">Main Services</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {mainServices.map((service, index) => (
+            <div key={index} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
+              <div className="relative h-48">
+                <Image
+                  src="/Images/laurenphoto.jpeg"
+                  alt={service.name}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <h3 className="text-white text-xl font-semibold mb-1" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+                    {service.name}
+                  </h3>
+                  <p className="text-[#D8A5B4] text-lg font-bold">
+                    {service.price}
+                  </p>
+                </div>
+              </div>
+              <div className="p-6">
+                <p className="text-[#2C2C2C] text-sm leading-relaxed" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+                  {service.description}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
+      </div>
 
-        {/* Add Ons Section */}
-        <div className="mt-12 mb-8">
-          <h2 className="text-[#FFB6C1] text-2xl font-arima mb-4">Add Ons (Prices May Vary)</h2>
-          <div className="flex justify-between items-center py-2 border-b border-pink-200">
-            <span className="font-arima text-lg">French Tip</span>
-            <span className="font-arima text-lg">$5</span>
-          </div>
-          <div className="flex justify-between items-center py-2 border-b border-pink-200">
-            <span className="font-arima text-lg">Chrome</span>
-            <span className="font-arima text-lg">$5</span>
-          </div>
-          <div className="flex justify-between items-center py-2 border-b border-pink-200">
-            <span className="font-arima text-lg">Design</span>
-            <span className="font-arima text-lg">$5-$15</span>
-          </div>
-          <div className="flex justify-between items-center py-2 border-b border-pink-200">
-            <span className="font-arima text-lg">Gems</span>
-            <span className="font-arima text-lg">$2-$15</span>
-          </div>
-          <div className="flex justify-between items-center py-2 border-b border-pink-200">
-            <span className="font-arima text-lg">3D</span>
-            <span className="font-arima text-lg">$5-$10</span>
-          </div>
+      {/* Add Ons Section */}
+      <div className="max-w-7xl mx-auto px-4 mb-16">
+        <h2 className="text-[#A56C82] text-3xl font-arima text-center mb-8">Add Ons</h2>
+        <p className="text-[#A56C82] text-center mb-8 font-medium" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+          Prices may vary based on complexity
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {addOns.map((service, index) => (
+            <div key={index} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
+              <div className="relative h-48">
+                <Image
+                  src="/Images/laurenphoto.jpeg"
+                  alt={service.name}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <h3 className="text-white text-xl font-semibold mb-1" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+                    {service.name}
+                  </h3>
+                  <p className="text-[#D8A5B4] text-lg font-bold">
+                    {service.price}
+                  </p>
+                </div>
+              </div>
+              <div className="p-6">
+                <p className="text-[#2C2C2C] text-sm leading-relaxed" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+                  {service.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Call to Action */}
+      <div className="max-w-4xl mx-auto px-4 mb-16 text-center">
+        <div className="bg-gradient-to-r from-[#D8A5B4] to-[#A56C82] rounded-2xl p-8 text-white">
+          <h3 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+            Ready to Book Your Perfect Nails?
+          </h3>
+          <p className="text-lg mb-6 opacity-90" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+            Contact us to schedule your appointment and get the nails of your dreams!
+          </p>
+          <a 
+            href="/booknow"
+            className="inline-block bg-white text-[#A56C82] px-8 py-3 rounded-full font-semibold hover:bg-[#F5F0ED] transition-colors duration-200"
+            style={{ fontFamily: 'Work Sans, sans-serif' }}
+          >
+            Book Now
+          </a>
         </div>
       </div>
     </>

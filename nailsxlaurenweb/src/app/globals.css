@@ -15,6 +15,11 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Prevent tiny right-scroll on mobile from any off-canvas UI */
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   background: #ffffff;
   color: #171717;
