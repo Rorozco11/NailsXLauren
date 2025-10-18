@@ -1,83 +1,113 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <div className="flex justify-between items-center mb-[3rem] mt-[4rem]">
-      {/* Social Media Icons on Left */}
-      <div className="flex ml-[2rem] gap-5">
-        {/* Instagram Button */}
-        <div className="instagram">
-          <a 
-            href="https://www.instagram.com/nailxlauren?igsh=OTcxOXZ2Mmg4ZWFs" 
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button className="flex items-center justify-center relative overflow-hidden cursor-pointer rounded-full h-11 w-11 transition-all duration-400 bg-gradient-to-r from-[#f09433] via-[#e6683c] via-[#dc2743] via-[#cc2366] to-[#bc1888] hover:w-28 hover:rounded-3xl">
-              <svg className="transition-opacity duration-300 h-6" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
-                <path fill="white" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
-              </svg>
-              <span className="absolute black font-semibold opacity-0 transition-opacity duration-400 hover:opacity-100"></span>
-            </button>
-          </a>
+    <footer className="bg-[#FAF4F2] border-t border-[#E7E2E0] mt-16">
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+          
+          {/* Logo Section */}
+          <div className="flex justify-center lg:justify-start">
+            <Link href="/" className="flex-shrink-0">
+              <Image 
+                src="/Images/actualLogo.jpeg" 
+                alt="Nails X Lauren"
+                width={80}
+                height={80}
+                className="w-16 h-16 lg:w-20 lg:h-20 rounded-full object-cover shadow-sm hover:shadow-md transition-shadow duration-300"
+              />
+            </Link>
+          </div>
+
+          {/* Contact Information */}
+          <div className="text-center lg:text-left">
+            <h3 className="text-lg font-normal text-[#2C2C2C] mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Get In Touch</h3>
+            <div className="space-y-3">
+              <div className="flex items-center justify-center lg:justify-start gap-3">
+                <div className="w-8 h-8 bg-[#D8A5B4] rounded-full flex items-center justify-center">
+                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                  </svg>
+                </div>
+                <a 
+                  href="tel:203-213-9575" 
+                  className="text-[#2C2C2C] hover:text-[#A56C82] transition-colors duration-200"
+                  style={{ fontFamily: 'Work Sans, sans-serif' }}
+                >
+                  203-213-9575
+                </a>
+              </div>
+              <div className="flex items-center justify-center lg:justify-start gap-3">
+                <div className="w-8 h-8 bg-[#D8A5B4] rounded-full flex items-center justify-center">
+                  <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                  </svg>
+                </div>
+                <a 
+                  href="mailto:lorozco@gmail.com" 
+                  className="text-[#2C2C2C] hover:text-[#A56C82] transition-colors duration-200"
+                  style={{ fontFamily: 'Work Sans, sans-serif' }}
+                >
+                  lorozco@gmail.com
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Social Media & Quick Links */}
+          <div className="text-center lg:text-right">
+            <h3 className="text-lg font-normal text-[#2C2C2C] mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Follow Us</h3>
+            <div className="flex justify-center lg:justify-end gap-4 mb-4">
+              <a 
+                href="https://www.instagram.com/nailxlauren?igsh=OTcxOXZ2Mmg4ZWFs" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-[#D8A5B4] rounded-full flex items-center justify-center hover:bg-[#A56C82] transition-colors duration-200 group"
+              >
+                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323c-.875.807-2.026 1.297-3.323 1.297zm7.83-9.281H7.721c-.49 0-.875.385-.875.875s.385.875.875.875h8.558c.49 0 .875-.385.875-.875s-.385-.875-.875-.875z"/>
+                </svg>
+              </a>
+              <Link 
+                href="/booknow"
+                className="w-10 h-10 bg-[#A56C82] rounded-full flex items-center justify-center hover:bg-[#D8A5B4] transition-colors duration-200 group"
+              >
+                <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                </svg>
+              </Link>
+            </div>
+            <Link 
+              href="/booknow"
+              className="inline-flex items-center px-6 py-2 bg-[#D8A5B4] text-white font-medium rounded-full hover:bg-[#A56C82] transition-colors duration-200 text-sm"
+              style={{ fontFamily: 'Work Sans, sans-serif' }}
+            >
+              Book Appointment
+            </Link>
+          </div>
         </div>
-        
-        {/* Phone Button */}
-        <div className="phone">
-          <a href="tel:203-213-9575">
-            <button className="flex items-center justify-center relative overflow-hidden cursor-pointer rounded-full h-11 w-11 transition-all duration-400 bg-[#25D366] hover:w-28 hover:rounded-3xl">
-              <svg className="transition-opacity duration-300 h-6 rotate-90" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                <path fill="white" d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 49.6c-36 76.7-98.9 140.5-177.2 177.2l-49.6-60.6c-6.8-8.3-18.2-11.1-28-6.9l-112 48C3.9 366.5-2 378.1.6 389.4l24 104C27.1 504.2 36.7 512 48 512c256.1 0 464-207.5 464-464 0-11.2-7.7-20.9-18.6-23.4z" />
-              </svg>
-              <span className="absolute black font-semibold opacity-0 transition-opacity duration-400 hover:opacity-100"></span>
-            </button>
-          </a>
-        </div>
-        
-        {/* Email Button */}
-        <div className="email">
-          <a href="mailto:lorozco@gmail.com">
-            <button className="flex items-center justify-center relative overflow-hidden cursor-pointer rounded-full h-11 w-11 transition-all duration-400 bg-[#EA4335] hover:w-28 hover:rounded-3xl">
-              <svg className="transition-opacity duration-300 h-6" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                <path fill="white" d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z" />
-              </svg>
-              <span className="absolute black font-semibold opacity-0 transition-opacity duration-400 hover:opacity-100"></span>
-            </button>
-          </a>
+
+        {/* Bottom Border */}
+        <div className="mt-8 pt-6 border-t border-[#E7E2E0]">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-[#2C2C2C] text-sm" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+              © 2024 Nails X Lauren. All rights reserved.
+            </p>
+            <div className="flex gap-6 text-sm">
+              <Link href="/services" className="text-[#2C2C2C] hover:text-[#A56C82] transition-colors duration-200" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+                Services
+              </Link>
+              <Link href="/gallery" className="text-[#2C2C2C] hover:text-[#A56C82] transition-colors duration-200" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+                Gallery
+              </Link>
+              <Link href="/about" className="text-[#2C2C2C] hover:text-[#A56C82] transition-colors duration-200" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+                About
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Logo in Center */}
-      <Image 
-        src="/Images/actualLogo.jpeg" 
-        alt="Logo"
-        width={112}
-        height={112}
-        className="w-28 rounded-full object-cover aspect-square mr-[2rem] lg:mr-0"
-      />
-
-      {/* Contact Info on Right */}
-      <div className="hidden md:flex md:flex-col mr-[2rem] gap-2">
-        <div className="w-5 h-5 black font-bold mb-2">Contact</div>
-        <div className="flex items-center gap-2">
-          <svg className="w-5 h-5 rotate-90" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-            <path fill="black" d="M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 49.6c-36 76.7-98.9 140.5-177.2 177.2l-49.6-60.6c-6.8-8.3-18.2-11.1-28-6.9l-112 48C3.9 366.5-2 378.1.6 389.4l24 104C27.1 504.2 36.7 512 48 512c256.1 0 464-207.5 464-464 0-11.2-7.7-20.9-18.6-23.4z" />
-          </svg>
-          <span className="black">203-213-9575</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M22 6L12 13L2 6" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          <span className="black">lorozco@gmail.com</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <svg className="w-5 h-5" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
-            <path fill="black" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
-          </svg>
-          <span className="black">nailsxlauren</span>
-        </div>
-      </div>
-    </div>
+    </footer>
   );
 }

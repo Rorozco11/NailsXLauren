@@ -12,66 +12,139 @@ export default function Header() {
   };
 
   return (
-    <div className="flex justify-between m-[1rem] items-center">
-      <Image 
-        src="/Images/actualLogo.jpeg" 
-        alt="Logo"
-        width={112}
-        height={112}
-        className="md:w-28 w-[3.5rem] rounded-full object-cover aspect-square"
-      />
-      
-      <div className="hidden md:flex gap-8 absolute md:left-1/2 md:transform md:-translate-x-1/2">
-        <Link href="/" className="hover:text-pink-600 hover:underline">Home</Link>
-        <Link href="/services" className="hover:text-pink-600 hover:underline">Services</Link>
-        <Link href="/about" className="hover:text-pink-600 hover:underline">About</Link>
-      </div>
-      
-      <div className="md:hidden">
-        <input 
-          type="checkbox" 
-          id="menu-toggle" 
-          className="hidden"
-          checked={isMenuOpen}
-          onChange={toggleMenu}
-        />
-        <label 
-          htmlFor="menu-toggle" 
-          className="flex flex-col gap-2 cursor-pointer w-10 h-10"
-        >
-          <div 
-            className={`w-full h-1 bg-black rounded transition-all duration-300 ${
-              isMenuOpen ? 'rotate-45 translate-y-2' : ''
-            }`}
-          />
-          <div 
-            className={`w-full h-1 bg-black rounded transition-all duration-300 ${
-              isMenuOpen ? 'opacity-0' : ''
-            }`}
-          />
-          <div 
-            className={`w-full h-1 bg-black rounded transition-all duration-300 ${
-              isMenuOpen ? '-rotate-45 -translate-y-2' : ''
-            }`}
-          />
-        </label>
+    <header className="bg-[#FAF4F2]/95 backdrop-blur-sm border-b border-[#E7E2E0] sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="flex justify-between items-center">
+          {/* Logo */}
+          <Link href="/" className="flex-shrink-0">
+            <Image 
+              src="/Images/actualLogo.jpeg" 
+              alt="Nails X Lauren"
+              width={80}
+              height={80}
+              className="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover shadow-sm hover:shadow-md transition-shadow duration-300"
+            />
+          </Link>
+          
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-8">
+            <Link 
+              href="/" 
+              className="text-[#2C2C2C] hover:text-[#A56C82] font-medium transition-colors duration-200 relative group"
+              style={{ fontFamily: 'Work Sans, sans-serif' }}
+            >
+              Home
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#A56C82] transition-all duration-200 group-hover:w-full"></span>
+            </Link>
+            <Link 
+              href="/services" 
+              className="text-[#2C2C2C] hover:text-[#A56C82] font-medium transition-colors duration-200 relative group"
+              style={{ fontFamily: 'Work Sans, sans-serif' }}
+            >
+              Services
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#A56C82] transition-all duration-200 group-hover:w-full"></span>
+            </Link>
+            <Link 
+              href="/gallery" 
+              className="text-[#2C2C2C] hover:text-[#A56C82] font-medium transition-colors duration-200 relative group"
+              style={{ fontFamily: 'Work Sans, sans-serif' }}
+            >
+              Gallery
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#A56C82] transition-all duration-200 group-hover:w-full"></span>
+            </Link>
+            <Link 
+              href="/about" 
+              className="text-[#2C2C2C] hover:text-[#A56C82] font-medium transition-colors duration-200 relative group"
+              style={{ fontFamily: 'Work Sans, sans-serif' }}
+            >
+              About
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#A56C82] transition-all duration-200 group-hover:w-full"></span>
+            </Link>
+          </nav>
+          
+          {/* Desktop CTA Button */}
+          <Link 
+            href="/booknow" 
+            className="hidden lg:block bg-[#D8A5B4] text-white px-6 py-3 rounded-full font-medium hover:bg-[#A56C82] transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            style={{ fontFamily: 'Work Sans, sans-serif' }}
+          >
+            Book Now
+          </Link>
+          
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMenu}
+            className="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 group"
+            aria-label="Toggle menu"
+          >
+            <span 
+              className={`w-6 h-0.5 bg-[#2C2C2C] transition-all duration-300 ${
+                isMenuOpen ? 'rotate-45 translate-y-2' : ''
+              }`}
+            />
+            <span 
+              className={`w-6 h-0.5 bg-[#2C2C2C] transition-all duration-300 ${
+                isMenuOpen ? 'opacity-0' : ''
+              }`}
+            />
+            <span 
+              className={`w-6 h-0.5 bg-[#2C2C2C] transition-all duration-300 ${
+                isMenuOpen ? '-rotate-45 -translate-y-2' : ''
+              }`}
+            />
+          </button>
+        </div>
         
-        {/* Mobile Menu */}
+        {/* Mobile Menu Overlay */}
         <div 
-          className={`fixed top-0 left-0 w-full bg-white overflow-hidden transition-all duration-300 z-50 ${
-            isMenuOpen ? 'h-screen' : 'h-0'
+          className={`lg:hidden fixed inset-0 bg-[#FAF4F2] z-40 transition-all duration-300 ${
+            isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
           }`}
         >
-          <div className="flex flex-col items-center gap-8 pt-20">
-            <Link href="/" className="text-xl hover:text-gray-600" onClick={toggleMenu}>Home</Link>
-            <Link href="/services" className="text-xl hover:text-gray-600" onClick={toggleMenu}>Services</Link>
-            <Link href="/about" className="text-xl hover:text-gray-600" onClick={toggleMenu}>About</Link>
-            <Link href="/booknow" className="btn-bookNow" onClick={toggleMenu}>BOOK NOW</Link>
+          <div className="flex flex-col items-center justify-center h-full space-y-8">
+            <Link 
+              href="/" 
+              className="text-2xl font-medium text-[#2C2C2C] hover:text-[#A56C82] transition-colors duration-200"
+              style={{ fontFamily: 'Work Sans, sans-serif' }}
+              onClick={toggleMenu}
+            >
+              Home
+            </Link>
+            <Link 
+              href="/services" 
+              className="text-2xl font-medium text-[#2C2C2C] hover:text-[#A56C82] transition-colors duration-200"
+              style={{ fontFamily: 'Work Sans, sans-serif' }}
+              onClick={toggleMenu}
+            >
+              Services
+            </Link>
+            <Link 
+              href="/gallery" 
+              className="text-2xl font-medium text-[#2C2C2C] hover:text-[#A56C82] transition-colors duration-200"
+              style={{ fontFamily: 'Work Sans, sans-serif' }}
+              onClick={toggleMenu}
+            >
+              Gallery
+            </Link>
+            <Link 
+              href="/about" 
+              className="text-2xl font-medium text-[#2C2C2C] hover:text-[#A56C82] transition-colors duration-200"
+              style={{ fontFamily: 'Work Sans, sans-serif' }}
+              onClick={toggleMenu}
+            >
+              About
+            </Link>
+            <Link 
+              href="/booknow" 
+              className="bg-[#D8A5B4] text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-[#A56C82] transition-all duration-200 shadow-lg"
+              style={{ fontFamily: 'Work Sans, sans-serif' }}
+              onClick={toggleMenu}
+            >
+              Book Now
+            </Link>
           </div>
         </div>
       </div>
-      
-      <Link href="/booknow" className="btn-bookNow hidden md:block">BOOK NOW</Link>
-    </div>
+    </header>
   );
 }

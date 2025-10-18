@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
     const { fullName, phoneNumber, email, message } = body;
 
     // Validate required fields
-    if (!fullName || !phoneNumber || !email) {
+    if (!fullName || !phoneNumber) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
             <h3 style="color: #333; margin-top: 0;">Customer Information:</h3>
             <p><strong>Name:</strong> ${fullName}</p>
             <p><strong>Phone:</strong> ${phoneNumber}</p>
-            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Email:</strong> ${email || 'Not provided'}</p>
             ${message ? `<p><strong>Message:</strong> ${message}</p>` : ''}
           </div>
           
