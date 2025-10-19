@@ -3,20 +3,22 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#FAF4F2] border-t border-[#E7E2E0] mt-16">
+    <footer className="bg-[#FAF4F2] border-t border-[#E7E2E0]">
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
           
           {/* Logo Section */}
           <div className="flex justify-center lg:justify-start">
             <Link href="/" className="flex-shrink-0">
-              <Image 
-                src="/Images/actualLogo.jpeg" 
-                alt="Nails X Lauren"
-                width={80}
-                height={80}
-                className="w-16 h-16 lg:w-20 lg:h-20 rounded-full object-cover shadow-sm hover:shadow-md transition-shadow duration-300"
-              />
+              <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-[#AA538A] overflow-hidden">
+                <Image 
+                  src="/Images/nailxlaurenlogo.png" 
+                  alt="Nails X Lauren"
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105"
+                />
+              </div>
             </Link>
           </div>
 
@@ -57,7 +59,7 @@ export default function Footer() {
 
           {/* Social Media & Quick Links */}
           <div className="text-center lg:text-right">
-            <h3 className="text-lg font-normal text-[#2C2C2C] mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Follow Us</h3>
+            <h3 className="text-lg font-normal text-[#2C2C2C] mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Follow Me</h3>
             <div className="flex justify-center lg:justify-end gap-4 mb-4">
               <a 
                 href="https://www.instagram.com/nailxlauren?igsh=OTcxOXZ2Mmg4ZWFs" 

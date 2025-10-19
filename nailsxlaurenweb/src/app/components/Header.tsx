@@ -19,13 +19,15 @@ export default function Header() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <Image 
-              src="/Images/actualLogo.jpeg" 
-              alt="Nails X Lauren"
-              width={80}
-              height={80}
-              className="w-12 h-12 sm:w-16 sm:h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 rounded-full object-cover shadow-sm hover:shadow-md transition-shadow duration-300"
-            />
+            <div className="w-20 h-20 sm:w-16 sm:h-16 md:w-18 md:h-18 lg:w-24 lg:h-24 rounded-full bg-[#AA538A] overflow-hidden">
+              <Image 
+                src="/Images/nailxlaurenlogo.png" 
+                alt="Nails X Lauren"
+                width={80}
+                height={80}
+                className="w-full h-full object-cover shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105"
+              />
+            </div>
           </Link>
           
           {/* Desktop Navigation */}

@@ -62,18 +62,18 @@ export default function Services() {
       {/* Header Section */}
       <div className="flex justify-center flex-grow">
         <div className="text-center">
-          <p className='text-[#A56C82] font-arima font-semibold text-5xl md:text-7xl mt-14 mb-4'>Our Services</p>
+          <h1 className='text-[#2C2C2C] font-normal text-5xl md:text-7xl mt-14 mb-4' style={{ fontFamily: 'Cormorant Garamond, serif' }}>Our Services</h1>
           <div className="flex items-center justify-center gap-3 mb-8">
-            <span className="text-[#A56C82] text-2xl">—————</span>
-            <span className="text-[#A56C82] font-arima">@nailxlauren</span>
-            <span className="text-[#A56C82] text-2xl">—————</span>
+            <span className="text-[#D8A5B4] text-2xl">—————</span>
+            <span className="text-[#D8A5B4]" style={{ fontFamily: 'Work Sans, sans-serif' }}>@nailxlauren</span>
+            <span className="text-[#D8A5B4] text-2xl">—————</span>
           </div>
         </div>
       </div>
 
       {/* Main Services Grid */}
       <div className="max-w-7xl mx-auto px-4 mb-16">
-        <h2 className="text-[#A56C82] text-3xl font-arima text-center mb-8">Main Services</h2>
+        <h2 className="text-[#2C2C2C] text-3xl font-normal text-center mb-8" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Main Services</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {mainServices.map((service, index) => (
             <div key={index} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
@@ -86,10 +86,10 @@ export default function Services() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-white text-xl font-semibold mb-1" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+                  <h3 className="text-white text-xl font-medium mb-1" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                     {service.name}
                   </h3>
-                  <p className="text-[#D8A5B4] text-lg font-bold">
+                  <p className="text-[#D8A5B4] text-lg font-semibold" style={{ fontFamily: 'Work Sans, sans-serif' }}>
                     {service.price}
                   </p>
                 </div>
@@ -106,8 +106,8 @@ export default function Services() {
 
       {/* Add Ons Section */}
       <div className="max-w-7xl mx-auto px-4 mb-16">
-        <h2 className="text-[#A56C82] text-3xl font-arima text-center mb-8">Add Ons</h2>
-        <p className="text-[#A56C82] text-center mb-8 font-medium" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+        <h2 className="text-[#2C2C2C] text-3xl font-normal text-center mb-8" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Add Ons</h2>
+        <p className="text-[#2C2C2C] text-center mb-8 font-medium" style={{ fontFamily: 'Work Sans, sans-serif' }}>
           Prices may vary based on complexity
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -122,10 +122,10 @@ export default function Services() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-white text-xl font-semibold mb-1" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+                  <h3 className="text-white text-xl font-medium mb-1" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                     {service.name}
                   </h3>
-                  <p className="text-[#D8A5B4] text-lg font-bold">
+                  <p className="text-[#D8A5B4] text-lg font-semibold" style={{ fontFamily: 'Work Sans, sans-serif' }}>
                     {service.price}
                   </p>
                 </div>
@@ -140,24 +140,6 @@ export default function Services() {
         </div>
       </div>
 
-      {/* Call to Action */}
-      <div className="max-w-4xl mx-auto px-4 mb-16 text-center">
-        <div className="bg-gradient-to-r from-[#D8A5B4] to-[#A56C82] rounded-2xl p-8 text-white">
-          <h3 className="text-2xl font-semibold mb-4" style={{ fontFamily: 'Work Sans, sans-serif' }}>
-            Ready to Book Your Perfect Nails?
-          </h3>
-          <p className="text-lg mb-6 opacity-90" style={{ fontFamily: 'Work Sans, sans-serif' }}>
-            Contact us to schedule your appointment and get the nails of your dreams!
-          </p>
-          <a 
-            href="/booknow"
-            className="inline-block bg-white text-[#A56C82] px-8 py-3 rounded-full font-semibold hover:bg-[#F5F0ED] transition-colors duration-200"
-            style={{ fontFamily: 'Work Sans, sans-serif' }}
-          >
-            Book Now
-          </a>
-        </div>
-      </div>
     </>
   );
 }

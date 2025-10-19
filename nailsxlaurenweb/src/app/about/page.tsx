@@ -16,7 +16,7 @@ export default function About() {
           {/* Main Content */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Lauren's Photo */}
-            <div className="order-2 lg:order-1">
+            <div className="order-1 lg:order-1">
               <div className="relative">
                 <div className="w-80 h-80 mx-auto rounded-2xl overflow-hidden shadow-2xl">
                   <Image 
@@ -34,7 +34,7 @@ export default function About() {
             </div>
 
             {/* About Text */}
-            <div className="order-1 lg:order-2 space-y-6">
+            <div className="order-2 lg:order-2 space-y-6">
               <div className="space-y-4">
                 <h2 className="text-3xl font-normal text-[#2C2C2C] mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                   Passionate Nail Artist
@@ -52,41 +52,6 @@ export default function About() {
                 </p>
               </div>
 
-              {/* Specialties */}
-              <div className="pt-6">
-                <h3 className="text-xl font-normal text-[#2C2C2C] mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                  My Specialties
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-[#D8A5B4] rounded-full"></div>
-                    <span className="text-[#2C2C2C]" style={{ fontFamily: 'Work Sans, sans-serif' }}>Gel X Extensions</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-[#D8A5B4] rounded-full"></div>
-                    <span className="text-[#2C2C2C]" style={{ fontFamily: 'Work Sans, sans-serif' }}>Custom Nail Art</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-[#D8A5B4] rounded-full"></div>
-                    <span className="text-[#2C2C2C]" style={{ fontFamily: 'Work Sans, sans-serif' }}>French Tips</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-2 h-2 bg-[#D8A5B4] rounded-full"></div>
-                    <span className="text-[#2C2C2C]" style={{ fontFamily: 'Work Sans, sans-serif' }}>Chrome & 3D Designs</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Call to Action */}
-              <div className="pt-8">
-                <a 
-                  href="/booknow"
-                  className="inline-flex items-center px-8 py-4 bg-[#D8A5B4] text-white font-medium rounded-full hover:bg-[#A56C82] transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                  style={{ fontFamily: 'Work Sans, sans-serif' }}
-                >
-                  Book Your Appointment
-                </a>
-              </div>
             </div>
           </div>
         </div>
