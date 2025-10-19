@@ -25,7 +25,7 @@ export default function Header() {
                 alt="Nails X Lauren"
                 width={80}
                 height={80}
-                className="w-full h-full object-cover shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105"
+                className="w-full h-full object-cover shadow-sm hover:shadow-lg transition-all duration-300 scale-110"
               />
             </div>
           </Link>

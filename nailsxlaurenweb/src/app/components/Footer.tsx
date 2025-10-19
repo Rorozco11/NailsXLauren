@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import AdminButton from './AdminButton';
 
 export default function Footer() {
   return (
@@ -16,7 +17,7 @@ export default function Footer() {
                   alt="Nails X Lauren"
                   width={80}
                   height={80}
-                  className="w-full h-full object-cover shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105"
+                  className="w-full h-full object-cover shadow-sm hover:shadow-lg transition-all duration-300 scale-110 hover:scale-105"
                 />
               </div>
             </Link>
@@ -92,6 +93,7 @@ export default function Footer() {
                 About
               </Link>
             </div>
+            <AdminButton />
           </div>
         </div>
       </div>

@@ -335,7 +335,7 @@ export default function BookNow() {
                     className="px-8 py-3 bg-[#D8A5B4] text-white font-medium rounded-full hover:bg-[#A56C82] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                     style={{ fontFamily: 'Work Sans, sans-serif' }}
                   >
-                    Next: Your Details
+                    Next
                   </button>
                 </div>
               </div>
@@ -452,7 +452,7 @@ export default function BookNow() {
                     className="px-8 py-3 bg-[#D8A5B4] text-white font-medium rounded-full hover:bg-[#A56C82] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                     style={{ fontFamily: 'Work Sans, sans-serif' }}
                   >
-                    Review & Book
+                    Next
                   </button>
                 </div>
             </div>
