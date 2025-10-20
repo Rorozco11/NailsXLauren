@@ -146,7 +146,6 @@ export default function Header() {
                   style={{ fontFamily: 'Work Sans, sans-serif' }}
                   onClick={toggleMenu}
                 >
-                  <span className="text-lg">🏠</span>
                   <span className="font-medium">Home</span>
                 </Link>
                 <Link 
@@ -159,7 +158,6 @@ export default function Header() {
                   style={{ fontFamily: 'Work Sans, sans-serif' }}
                   onClick={toggleMenu}
                 >
-                  <span className="text-lg">💅</span>
                   <span className="font-medium">Services</span>
                 </Link>
                 <Link 
@@ -172,7 +170,6 @@ export default function Header() {
                   style={{ fontFamily: 'Work Sans, sans-serif' }}
                   onClick={toggleMenu}
                 >
-                  <span className="text-lg">✨</span>
                   <span className="font-medium">Gallery</span>
                 </Link>
                 <Link 
@@ -185,7 +182,6 @@ export default function Header() {
                   style={{ fontFamily: 'Work Sans, sans-serif' }}
                   onClick={toggleMenu}
                 >
-                  <span className="text-lg">👋</span>
                   <span className="font-medium">About</span>
                 </Link>
               </div>
@@ -195,11 +191,11 @@ export default function Header() {
             <div className="p-6 border-t border-[#E7E2E0]/20 bg-white">
               <Link 
                 href="/booknow" 
-                className="block w-full bg-gradient-to-r from-[#D8A5B4] to-[#A56C82] text-white text-center py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-[#A56C82]/25 transition-all duration-200 transform hover:scale-[1.02]"
+                className="block w-full bg-white border-2 border-[#A56C82] text-[#A56C82] text-center py-4 rounded-xl font-semibold hover:bg-[#A56C82] hover:text-white transition-all duration-200 transform hover:scale-[1.02]"
                 style={{ fontFamily: 'Work Sans, sans-serif' }}
                 onClick={toggleMenu}
               >
-                📅 Book Now
+                Book Now
               </Link>
             </div>
           </div>

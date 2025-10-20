@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-
+import Image from 'next/image';
 interface GalleryImage {
   id: string;
   src: string;
@@ -171,7 +171,7 @@ export default function NailArtGallery({
             onClick={() => setSelectedImage(image)}
           >
             <div className="aspect-square overflow-hidden">
-              <img
+              <Image
                 src={image.src}
                 alt={image.alt}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
@@ -210,7 +210,7 @@ export default function NailArtGallery({
             >
               ×
             </button>
-            <img
+            <Image
               src={selectedImage.src}
               alt={selectedImage.alt}
               className="max-w-full max-h-full object-contain rounded-lg"

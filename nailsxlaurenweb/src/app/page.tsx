@@ -69,7 +69,7 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
             <div className="aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
               <Image
-                src="/Images/posts/18026630468409675.jpg"
+                src="/Images/posts/202511/17867825208229173.jpg"
                 alt="Nail art design"
                 width={200}
                 height={200}
@@ -78,7 +78,7 @@ export default function Home() {
             </div>
             <div className="aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
               <Image
-                src="/Images/posts/18037103918184064.jpg"
+                src="/Images/posts/202511/18037103918184064.jpg"
                 alt="Nail art design"
                 width={200}
                 height={200}
@@ -87,7 +87,7 @@ export default function Home() {
             </div>
             <div className="aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
               <Image
-                src="/Images/posts/17867825208229173.jpg"
+                src="/Images/posts/202511/17901097451983396.jpg"
                 alt="Nail art design"
                 width={200}
                 height={200}
@@ -96,7 +96,7 @@ export default function Home() {
             </div>
             <div className="aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
               <Image
-                src="/Images/posts/17901097451983396.jpg"
+                src="/Images/posts/202511/17918189954901783.jpg"
                 alt="Nail art design"
                 width={200}
                 height={200}
@@ -105,7 +105,7 @@ export default function Home() {
             </div>
             <div className="aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
               <Image
-                src="/Images/posts/17918189954901783.jpg"
+                src="/Images/posts/202511/17946028022857400.jpg"
                 alt="Nail art design"
                 width={200}
                 height={200}
@@ -114,7 +114,7 @@ export default function Home() {
             </div>
             <div className="aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
         <Image 
-                src="/Images/posts/17946028022857400.jpg"
+                src="/Images/posts/202511/17984819468751793.jpg"
                 alt="Nail art design"
                 width={200}
                 height={200}

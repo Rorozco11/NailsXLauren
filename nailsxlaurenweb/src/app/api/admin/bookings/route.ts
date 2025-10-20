@@ -4,21 +4,38 @@ import type { NextRequest } from 'next/server';
 import jwt from 'jsonwebtoken';
 import { createClient } from '@supabase/supabase-js';
 
-const JWT_SECRET = process.env.JWT_SECRET!;
-const SUPABASE_URL = process.env.SUPABASE_URL!;
-const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY!;
+const JWT_SECRET = process.env.JWT_SECRET;
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY, {
-  auth: { persistSession: false },
-});
+// Check for required environment variables
+if (!JWT_SECRET || !SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
+  console.error('Missing required environment variables:', {
+    JWT_SECRET: !!JWT_SECRET,
+    SUPABASE_URL: !!SUPABASE_URL,
+    SUPABASE_SERVICE_KEY: !!SUPABASE_SERVICE_KEY
+  });
+}
+
+// Only create Supabase client if environment variables are available
+const supabase = SUPABASE_URL && SUPABASE_SERVICE_KEY 
+  ? createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY, {
+      auth: { persistSession: false },
+    })
+  : null;
 
 export async function GET(req: NextRequest) {
+  // Check if Supabase is configured
+  if (!supabase) {
+    return NextResponse.json({ error: 'Database not configured' }, { status: 500 });
+  }
+
   // Auth: validate nxla_admin cookie
   const token = req.cookies.get('nxla_admin')?.value;
   if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   try {
-    jwt.verify(token, JWT_SECRET);
+    jwt.verify(token, JWT_SECRET!);
   } catch {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
