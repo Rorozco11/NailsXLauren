@@ -14,6 +14,8 @@
     "@behold/widget": "^0.5.116",
     "@supabase/supabase-js": "^2.75.1",
     "@types/nodemailer": "^7.0.2",
+    "ag-grid-community": "^34.2.0",
+    "ag-grid-react": "^34.2.0",
     "cookie": "^1.0.2",
     "jsonwebtoken": "^9.0.2",
     "next": "15.5.6",

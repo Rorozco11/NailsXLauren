@@ -1,6 +1,10 @@
 // app/admin/BookingsGrid.tsx
 'use client';
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
+import { AgGridReact } from 'ag-grid-react';
+import { ColDef, GridReadyEvent, GridApi } from 'ag-grid-community';
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
 
 type Booking = {
   id: string;
@@ -16,69 +20,150 @@ type Booking = {
 
 export default function BookingsGrid() {
   const [q, setQ] = useState('');
-  const [page, setPage] = useState(1);
-  const [rows, setRows] = useState<Booking[]>([]);
-  const [totalPages, setTotalPages] = useState(0);
+  const [rows] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(false);
-  const [limit] = useState(20);
+  const [gridApi, setGridApi] = useState<GridApi | null>(null);
   const debounceRef = useRef<number | null>(null);
 
-  const fetchData = useCallback(async (search: string, pageNum: number) => {
+  const fetchData = useCallback(async (search: string, startRow: number) => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/admin/bookings?search=${encodeURIComponent(search)}&page=${pageNum}&limit=${limit}`);
+      const page = Math.floor(startRow / 20) + 1;
+      const res = await fetch(`/api/admin/bookings?search=${encodeURIComponent(search)}&page=${page}&limit=20`);
       if (!res.ok) throw new Error('Fetch failed');
       const json = await res.json();
-      setRows(json.data || []);
-      setTotalPages(json.totalPages || 0);
+      
+      if (gridApi) {
+        gridApi.setGridOption('rowData', json.data || []);
+        // Note: rowCount is handled by server-side row model in AG Grid
+      }
     } catch (err) {
       console.error(err);
+      if (gridApi) {
+        gridApi.setGridOption('rowData', []);
+      }
     } finally {
       setLoading(false);
     }
-  }, [limit]);
+  }, [gridApi]);
 
-  // initial load
-  useEffect(() => {
-    fetchData('', 1);
-  }, [fetchData]);
+  // Column definitions for AG Grid
+  const columnDefs = useMemo<ColDef[]>(() => [
+    { 
+      field: 'full_name', 
+      headerName: 'Full Name', 
+      sortable: true, 
+      filter: true,
+      width: 150,
+      pinned: 'left'
+    },
+    { 
+      field: 'phone_number', 
+      headerName: 'Phone', 
+      sortable: true, 
+      filter: true,
+      width: 130
+    },
+    { 
+      field: 'email', 
+      headerName: 'Email', 
+      sortable: true, 
+      filter: true,
+      width: 200
+    },
+    { 
+      field: 'preferred_date', 
+      headerName: 'Preferred Date', 
+      sortable: true, 
+      filter: 'agDateColumnFilter',
+      width: 130
+    },
+    { 
+      field: 'preferred_time', 
+      headerName: 'Preferred Time', 
+      sortable: true, 
+      filter: true,
+      width: 130
+    },
+    { 
+      field: 'message', 
+      headerName: 'Message', 
+      sortable: true, 
+      filter: true,
+      width: 200,
+      cellRenderer: (params: { value: string }) => {
+        return params.value ? (params.value.length > 50 ? params.value.substring(0, 50) + '...' : params.value) : '';
+      }
+    },
+    { 
+      field: 'created_on', 
+      headerName: 'Created On', 
+      sortable: true, 
+      filter: 'agDateColumnFilter',
+      width: 150,
+      valueFormatter: (params: { value: string }) => {
+        return params.value ? new Date(params.value).toLocaleString() : '';
+      }
+    },
+    { 
+      field: 'init_price', 
+      headerName: 'Price', 
+      sortable: true, 
+      filter: 'agNumberColumnFilter',
+      width: 100,
+      valueFormatter: (params: { value: number }) => {
+        return params.value ? `$${params.value}` : '';
+      }
+    }
+  ], []);
+
+  // Grid options
+  const gridOptions = useMemo(() => ({
+    columnDefs,
+    rowData: rows,
+    rowCount: undefined,
+    pagination: true,
+    paginationPageSize: 20,
+    paginationPageSizeSelector: [10, 20, 50, 100],
+    suppressPaginationPanel: false,
+    animateRows: true,
+    rowSelection: 'multiple' as const,
+    suppressRowClickSelection: true,
+    onGridReady: (params: GridReadyEvent) => {
+      setGridApi(params.api);
+      fetchData('', 0);
+    },
+    onPaginationChanged: () => {
+      if (gridApi) {
+        const currentPage = gridApi.paginationGetCurrentPage();
+        const pageSize = gridApi.paginationGetPageSize();
+        const startRow = currentPage * pageSize;
+        fetchData(q, startRow);
+      }
+    }
+  }), [columnDefs, rows, gridApi, q, fetchData]);
 
   // debounce search
   useEffect(() => {
     if (debounceRef.current) window.clearTimeout(debounceRef.current);
     debounceRef.current = window.setTimeout(() => {
-      setPage(1); // reset page on new search
-      fetchData(q, 1);
+      if (gridApi) {
+        gridApi.paginationGoToFirstPage();
+        fetchData(q, 0);
+      }
     }, 350);
     return () => {
       if (debounceRef.current) window.clearTimeout(debounceRef.current);
     };
-  }, [q, fetchData]);
-
-  // pagination
-  useEffect(() => {
-    fetchData(q, page);
-  }, [page, q, fetchData]);
+  }, [q, gridApi, fetchData]);
 
   function exportCSV() {
-    const header = ['Full Name','Phone Number','Email','Preferred Date','Preferred Time','Message','Created On','Init Price'];
-    const lines = [header.join(',')].concat(rows.map(r => [
-      `"${r.full_name?.replace(/"/g,'""') ?? ''}"`,
-      `"${r.phone_number ?? ''}"`,
-      `"${r.email ?? ''}"`,
-      `"${r.preferred_date ?? ''}"`,
-      `"${r.preferred_time ?? ''}"`,
-      `"${(r.message ?? '').replace(/"/g,'""')}"`,
-      `"${r.created_on}"`,
-      `"${r.init_price ?? ''}"`
-    ].join(',')));
-    const blob = new Blob([lines.join('\n')], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `bookings-page${page}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
+    if (gridApi) {
+      gridApi.exportDataAsCsv({
+        fileName: `bookings-${new Date().toISOString().split('T')[0]}.csv`,
+        columnKeys: ['full_name', 'phone_number', 'email', 'preferred_date', 'preferred_time', 'message', 'created_on', 'init_price']
+      });
+    }
   }
 
   return (
@@ -88,58 +173,57 @@ export default function BookingsGrid() {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Search name, phone, email, message, date..."
-          style={{ padding: '8px 12px', borderRadius: 8, border: '1px solid #ddd', minWidth: 320 }}
+          style={{ 
+            padding: '8px 12px', 
+            borderRadius: 8, 
+            border: '1px solid #ddd', 
+            minWidth: 320,
+            fontFamily: 'Work Sans, sans-serif'
+          }}
         />
-        <button onClick={() => fetchData(q, 1)} className="btn">Search</button>
-        <button onClick={exportCSV} className="btn">Export CSV</button>
-        <div style={{ marginLeft: 'auto' }}>{loading ? 'Loading…' : `${rows.length} results`}</div>
+        <button 
+          onClick={() => gridApi && fetchData(q, 0)} 
+          className="btn"
+          style={{ 
+            background: '#A56C82', 
+            color: 'white', 
+            padding: '8px 12px', 
+            borderRadius: '8px', 
+            border: 'none',
+            fontFamily: 'Work Sans, sans-serif',
+            cursor: 'pointer'
+          }}
+        >
+          Search
+        </button>
+        <button 
+          onClick={exportCSV} 
+          className="btn"
+          style={{ 
+            background: '#A56C82', 
+            color: 'white', 
+            padding: '8px 12px', 
+            borderRadius: '8px', 
+            border: 'none',
+            fontFamily: 'Work Sans, sans-serif',
+            cursor: 'pointer'
+          }}
+        >
+          Export CSV
+        </button>
+        <div style={{ marginLeft: 'auto', fontFamily: 'Work Sans, sans-serif' }}>
+          {loading ? 'Loading…' : `${rows.length} bookings`}
+        </div>
       </div>
 
-      <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr>
-              <th style={th}>Full Name</th>
-              <th style={th}>Phone</th>
-              <th style={th}>Email</th>
-              <th style={th}>Preferred Date</th>
-              <th style={th}>Preferred Time</th>
-              <th style={th}>Message</th>
-              <th style={th}>Created On</th>
-              <th style={th}>Init Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map(row => (
-              <tr key={row.id} style={{ borderBottom: '1px solid #eee' }}>
-                <td style={td}>{row.full_name}</td>
-                <td style={td}>{row.phone_number}</td>
-                <td style={td}>{row.email}</td>
-                <td style={td}>{row.preferred_date ?? ''}</td>
-                <td style={td}>{row.preferred_time ?? ''}</td>
-                <td style={td}>{row.message ?? ''}</td>
-                <td style={td}>{new Date(row.created_on).toLocaleString()}</td>
-                <td style={td}>{row.init_price ?? ''}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="ag-theme-alpine" style={{ height: '600px', width: '100%' }}>
+        <AgGridReact
+          {...gridOptions}
+          columnDefs={columnDefs}
+          rowData={rows}
+          loading={loading}
+        />
       </div>
-
-      <div style={{ display: 'flex', gap: 8, marginTop: 12, alignItems: 'center' }}>
-        <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}>Prev</button>
-        <div>Page {page} / {totalPages || 1}</div>
-        <button onClick={() => setPage(p => (p < (totalPages || 1) ? p + 1 : p))} disabled={page >= (totalPages || 1)}>Next</button>
-      </div>
-
-      <style jsx>{`
-        th { text-align:left; padding: 12px 8px; color: #555; font-weight: 600; }
-        td { padding: 12px 8px; color: #222; }
-        .btn { background:#A56C82;color:white;padding:8px 12px;border-radius:8px;border:none; }
-      `}</style>
     </div>
   );
 }
-
-const th = { padding: '12px 8px', textAlign: 'left' } as const;
-const td = { padding: '12px 8px' } as const;
