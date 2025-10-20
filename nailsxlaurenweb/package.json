@@ -13,6 +13,7 @@
   "dependencies": {
     "@behold/widget": "^0.5.116",
     "@supabase/supabase-js": "^2.75.1",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/nodemailer": "^7.0.2",
     "ag-grid-community": "^34.2.0",
     "ag-grid-react": "^34.2.0",
@@ -27,7 +28,6 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

@@ -6,6 +6,8 @@
 @import 'ag-grid-community/styles/ag-theme-alpine.css';
 
 :root {
+  --font-cormorant-garamond: 'Cormorant Garamond', serif;
+  --font-work-sans: 'Work Sans', sans-serif;
   --background: #ffffff;
   --foreground: #171717;
 }

@@ -1,7 +1,21 @@
 import type { Metadata } from "next";
+import { Cormorant_Garamond, Work_Sans } from 'next/font/google';
 import "./globals.css";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
+
+const cormorantGaramond = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '600'],
+  style: ['normal', 'italic'],
+  variable: '--font-cormorant-garamond',
+});
+
+const workSans = Work_Sans({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-work-sans',
+});
 
 export const metadata: Metadata = {
   title: "Nails X Lauren - Professional Nail Services",
@@ -14,10 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="en" className={`${cormorantGaramond.variable} ${workSans.variable}`}>
       <body className="antialiased">
         <Header />
         <main>{children}</main>
