@@ -3,8 +3,7 @@
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { ColDef, GridReadyEvent, GridApi } from 'ag-grid-community';
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-alpine.css';
+// AG Grid styles are imported via CSS imports
 
 type Booking = {
   id: string;
