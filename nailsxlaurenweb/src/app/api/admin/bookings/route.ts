@@ -6,20 +6,20 @@ import { createClient } from '@supabase/supabase-js';
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 // Check for required environment variables
-if (!JWT_SECRET || !SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
+if (!JWT_SECRET || !SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
   console.error('Missing required environment variables:', {
     JWT_SECRET: !!JWT_SECRET,
     SUPABASE_URL: !!SUPABASE_URL,
-    SUPABASE_SERVICE_KEY: !!SUPABASE_SERVICE_KEY
+    SUPABASE_SERVICE_ROLE_KEY: !!SUPABASE_SERVICE_ROLE_KEY
   });
 }
 
 // Only create Supabase client if environment variables are available
-const supabase = SUPABASE_URL && SUPABASE_SERVICE_KEY 
-  ? createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY, {
+const supabase = SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY 
+  ? createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
       auth: { persistSession: false },
     })
   : null;
