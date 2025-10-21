@@ -47,7 +47,7 @@ export default function BookingsGrid() {
     } finally {
       setLoading(false);
     }
-  }, [gridApi]);
+  }, []);
 
   // Column definitions for AG Grid
   const columnDefs = useMemo<ColDef[]>(() => [
@@ -133,17 +133,31 @@ export default function BookingsGrid() {
     suppressRowClickSelection: true,
     onGridReady: (params: GridReadyEvent) => {
       setGridApi(params.api);
+      // Initial data fetch
       fetchData('', 0);
     },
     onPaginationChanged: () => {
-      if (gridApi) {
-        const currentPage = gridApi.paginationGetCurrentPage();
-        const pageSize = gridApi.paginationGetPageSize();
-        const startRow = currentPage * pageSize;
-        fetchData(q, startRow);
-      }
+      // This will be handled by the gridApi reference
     }
-  }), [columnDefs, rows, gridApi, q, fetchData]);
+  }), [columnDefs, rows, fetchData]);
+
+  // Handle pagination changes
+  useEffect(() => {
+    if (!gridApi) return;
+    
+    const handlePaginationChanged = () => {
+      const currentPage = gridApi.paginationGetCurrentPage();
+      const pageSize = gridApi.paginationGetPageSize();
+      const startRow = currentPage * pageSize;
+      fetchData(q, startRow);
+    };
+
+    gridApi.addEventListener('paginationChanged', handlePaginationChanged);
+    
+    return () => {
+      gridApi.removeEventListener('paginationChanged', handlePaginationChanged);
+    };
+  }, [gridApi, q, fetchData]);
 
   // debounce search
   useEffect(() => {
