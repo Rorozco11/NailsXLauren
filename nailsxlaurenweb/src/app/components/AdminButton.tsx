@@ -22,7 +22,10 @@ export default function AdminButton() {
         setErr(data?.message || 'Login failed');
         return;
       }
-      // successful — router.refresh or redirect to /admin
+      // successful — clear popup and redirect to /admin
+      setOpen(false);
+      setPass('');
+      setErr('');
       router.push('/adminpage');
     } catch {
       setErr('Network error');

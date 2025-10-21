@@ -24,12 +24,6 @@ const services: Service[] = [
       description: 'Long-lasting gel polish with UV curing'
     },
   {
-    id: 'fillwbuildergel',
-    name: 'Fill W/ Builder Gel',
-    price: '$30',
-    description: 'Fill with builder gel for strength and durability'
-  },
-  {
     id: 'tip-replacement',
     name: 'Tip Replacement',
     price: '$2',
@@ -92,6 +86,7 @@ export default function BookNow() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
   const statusMessageRef = useRef<HTMLDivElement>(null);
+  const formContainerRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll to status message when it appears
   useEffect(() => {
@@ -157,12 +152,45 @@ export default function BookNow() {
     }
   };
 
+  const scrollToFormTop = () => {
+    if (formContainerRef.current) {
+      const elementTop = formContainerRef.current.offsetTop;
+      // Dynamic header height based on screen size
+      const headerHeight = window.innerWidth < 768 ? 100 : 120;
+      const scrollPosition = elementTop - headerHeight;
+      
+      // Check if smooth scrolling is supported
+      const supportsSmoothScroll = 'scrollBehavior' in document.documentElement.style;
+      
+      if (supportsSmoothScroll) {
+        // Use requestAnimationFrame for better performance
+        requestAnimationFrame(() => {
+          window.scrollTo({
+            top: Math.max(0, scrollPosition),
+            behavior: 'smooth'
+          });
+        });
+      } else {
+        // Fallback for older browsers
+        window.scrollTo(0, Math.max(0, scrollPosition));
+      }
+    }
+  };
+
   const nextStep = () => {
-    if (currentStep < 3) setCurrentStep(currentStep + 1);
+    if (currentStep < 3) {
+      setCurrentStep(currentStep + 1);
+      // Scroll to top of form container with delay to ensure DOM update
+      setTimeout(scrollToFormTop, 150);
+    }
   };
 
   const prevStep = () => {
-    if (currentStep > 1) setCurrentStep(currentStep - 1);
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+      // Scroll to top of form container with delay to ensure DOM update
+      setTimeout(scrollToFormTop, 150);
+    }
   };
 
   const totalPrice = formData.selectedServices.reduce((total, serviceId) => {
@@ -244,7 +272,7 @@ export default function BookNow() {
       )}
 
       {/* Form Container */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <div ref={formContainerRef} className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           <form onSubmit={handleSubmit}>
             {/* Step 1: Service Selection */}
@@ -436,11 +464,11 @@ export default function BookNow() {
             />
           </div>
                 </div>
-                <div className="flex justify-between mt-8">
+                <div className="flex flex-col sm:flex-row justify-between gap-4 mt-8">
                   <button
                     type="button"
                     onClick={prevStep}
-                    className="px-8 py-3 border-2 border-[#E7E2E0] text-[#2C2C2C] font-medium rounded-full hover:border-[#A56C82] transition-all duration-200"
+                    className="w-full sm:w-auto px-6 sm:px-8 py-3 border-2 border-[#E7E2E0] text-[#2C2C2C] font-medium rounded-full hover:border-[#A56C82] transition-all duration-200 text-sm sm:text-base"
                     style={{ fontFamily: 'Work Sans, sans-serif' }}
                   >
                     Back to Services
@@ -449,7 +477,7 @@ export default function BookNow() {
                     type="button"
                     onClick={nextStep}
                     disabled={!formData.fullName || !formData.phoneNumber}
-                    className="px-8 py-3 bg-[#D8A5B4] text-white font-medium rounded-full hover:bg-[#A56C82] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                    className="w-full sm:w-auto px-6 sm:px-8 py-3 bg-[#D8A5B4] text-white font-medium rounded-full hover:bg-[#A56C82] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg text-sm sm:text-base"
                     style={{ fontFamily: 'Work Sans, sans-serif' }}
                   >
                     Next
@@ -482,7 +510,7 @@ export default function BookNow() {
                   })}
                   <div className="flex justify-between items-center pt-4 mt-4 border-t-2 border-[#E7E2E0]">
                     <span className="text-xl font-bold text-[#2C2C2C]">Total</span>
-                    <span className="text-2xl font-bold text-[#A56C82]">${totalPrice}+</span>
+                    <span className="text-2xl font-bold text-[#A56C82]">${totalPrice}</span>
                   </div>
                 </div>
 
@@ -520,23 +548,25 @@ export default function BookNow() {
                   )}
           </div>
 
-                <div className="flex justify-between">
+                <div className="flex flex-col sm:flex-row justify-between gap-4">
                   <button
                     type="button"
                     onClick={prevStep}
-                    className="px-8 py-3 border-2 border-[#E7E2E0] text-[#2C2C2C] font-medium rounded-full hover:border-[#A56C82] transition-all duration-200"
+                    className="w-full sm:w-auto px-6 sm:px-8 py-3 border-2 border-[#E7E2E0] text-[#2C2C2C] font-medium rounded-full hover:border-[#A56C82] transition-all duration-200 text-sm sm:text-base"
+                    style={{ fontFamily: 'Work Sans, sans-serif' }}
                   >
                     Back to Details
                   </button>
           <button 
             type="submit" 
             disabled={isSubmitting}
-                    className="px-12 py-4 bg-[#D8A5B4] text-white font-bold text-lg rounded-full hover:bg-[#A56C82] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                    className="w-full sm:w-auto px-8 sm:px-12 py-3 sm:py-4 bg-[#D8A5B4] text-white font-bold text-base sm:text-lg rounded-full hover:bg-[#A56C82] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                    style={{ fontFamily: 'Work Sans, sans-serif' }}
                   >
                     {isSubmitting ? (
-                      <div className="flex items-center">
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                        Sending Request...
+                      <div className="flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-4 w-4 sm:h-5 sm:w-5 border-b-2 border-white mr-2"></div>
+                        <span className="text-sm sm:text-base">Sending Request...</span>
                       </div>
                     ) : (
                       'Book My Appointment'

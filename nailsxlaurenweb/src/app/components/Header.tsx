@@ -191,7 +191,11 @@ export default function Header() {
             <div className="p-6 border-t border-[#E7E2E0]/20 bg-white">
               <Link 
                 href="/booknow" 
-                className="block w-full bg-white border-2 border-[#A56C82] text-[#A56C82] text-center py-4 rounded-xl font-semibold hover:bg-[#A56C82] hover:text-white transition-all duration-200 transform hover:scale-[1.02]"
+                className={`block w-full text-center py-4 rounded-xl font-semibold transition-all duration-200 transform hover:scale-[1.02] ${
+                  pathname === '/booknow'
+                    ? 'bg-[#A56C82] text-white border-2 border-[#A56C82]'
+                    : 'bg-white border-2 border-[#A56C82] text-[#A56C82] hover:bg-[#A56C82] hover:text-white'
+                }`}
                 style={{ fontFamily: 'Work Sans, sans-serif' }}
                 onClick={toggleMenu}
               >

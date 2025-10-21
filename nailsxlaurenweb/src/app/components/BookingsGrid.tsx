@@ -2,8 +2,11 @@
 'use client';
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import { ColDef, GridReadyEvent, GridApi } from 'ag-grid-community';
+import { ColDef, GridReadyEvent, GridApi, ModuleRegistry, AllCommunityModule } from 'ag-grid-community';
 // AG Grid styles are imported via CSS imports
+
+// Register AG Grid modules
+ModuleRegistry.registerModules([AllCommunityModule]);
 
 type Booking = {
   id: string;

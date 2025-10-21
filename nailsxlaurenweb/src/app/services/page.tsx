@@ -13,11 +13,6 @@ export default function Services() {
       description: "Classic gel manicure for natural nail enhancement"
     },
     {
-      name: "Fill W/ Builder Gel",
-      price: "$30",
-      description: "Maintenance service with builder gel for strength"
-    },
-    {
       name: "Tip Replacement",
       price: "$2",
       description: "Quick tip repair for damaged extensions"
