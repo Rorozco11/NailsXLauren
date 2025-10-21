@@ -4,12 +4,12 @@ export default function Services() {
   const mainServices = [
     {
       name: "Gel X Set",
-      price: "$35",
+      price: "$40",
       description: "Full set with gel extensions for long-lasting, beautiful nails"
     },
     {
       name: "Gel Manicure",
-      price: "$20",
+      price: "$25",
       description: "Classic gel manicure for natural nail enhancement"
     },
     {
@@ -19,7 +19,7 @@ export default function Services() {
     },
     {
       name: "Soak Off",
-      price: "$7",
+      price: "$5",
       description: "Gentle removal of gel polish and extensions"
     }
   ];
@@ -32,7 +32,7 @@ export default function Services() {
     },
     {
       name: "Chrome",
-      price: "$5",
+      price: "$3",
       description: "Metallic chrome finish"
     },
     {
@@ -42,7 +42,7 @@ export default function Services() {
     },
     {
       name: "Gems",
-      price: "$2-$15",
+      price: "$2-$10",
       description: "Beautiful gemstone accents"
     },
     {
@@ -86,6 +86,9 @@ export default function Services() {
                   </h3>
                   <p className="text-[#D8A5B4] text-lg font-semibold" style={{ fontFamily: 'Work Sans, sans-serif' }}>
                     {service.price}
+                    {service.price.includes('-') && (
+                      <span className="text-xs text-[#D8A5B4] opacity-75 ml-1">(varies)</span>
+                    )}
                   </p>
                 </div>
               </div>
@@ -122,6 +125,9 @@ export default function Services() {
                   </h3>
                   <p className="text-[#D8A5B4] text-lg font-semibold" style={{ fontFamily: 'Work Sans, sans-serif' }}>
                     {service.price}
+                    {service.price.includes('-') && (
+                      <span className="text-xs text-[#D8A5B4] opacity-75 ml-1">(varies)</span>
+                    )}
                   </p>
                 </div>
               </div>

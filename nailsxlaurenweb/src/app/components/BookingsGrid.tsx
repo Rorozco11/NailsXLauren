@@ -117,6 +117,26 @@ export default function BookingsGrid() {
       valueFormatter: (params: { value: number }) => {
         return params.value ? `$${params.value}` : '';
       }
+    },
+    { 
+      field: 'price_range_min', 
+      headerName: 'Price Min', 
+      sortable: true, 
+      filter: 'agNumberColumnFilter',
+      width: 100,
+      valueFormatter: (params: { value: number }) => {
+        return params.value ? `$${params.value}` : '';
+      }
+    },
+    { 
+      field: 'price_range_max', 
+      headerName: 'Price Max', 
+      sortable: true, 
+      filter: 'agNumberColumnFilter',
+      width: 100,
+      valueFormatter: (params: { value: number }) => {
+        return params.value ? `$${params.value}` : '';
+      }
     }
   ], []);
 

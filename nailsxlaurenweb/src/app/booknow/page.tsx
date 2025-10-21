@@ -6,6 +6,8 @@ interface Service {
   id: string;
   name: string;
   price: string;
+  minPrice: number;
+  maxPrice: number;
   description: string;
   category?: string;
 }
@@ -14,59 +16,77 @@ const services: Service[] = [
     {
       id: 'gelxset',
       name: 'Gel X Set',
-      price: '$35',
+      price: '$40',
+      minPrice: 40,
+      maxPrice: 40,
       description: 'Full set with Gel X extensions'
     },
     {
       id: 'gel-manicure',
       name: 'Gel Manicure',
-      price: '$20',
+      price: '$25',
+      minPrice: 25,
+      maxPrice: 25,
       description: 'Long-lasting gel polish with UV curing'
     },
   {
     id: 'tip-replacement',
     name: 'Tip Replacement',
     price: '$2',
+    minPrice: 2,
+    maxPrice: 2,
     description: 'Replace broken or damaged nail tips'
   },
   {
     id: 'soak-off',
     name: 'Soak Off',
-    price: '$7',
+    price: '$5',
+    minPrice: 5,
+    maxPrice: 5,
     description: 'Remove existing gel polish safely'
   },
   {
     id: 'french-tip',
     name: 'French Tip',
     price: '$5',
+    minPrice: 5,
+    maxPrice: 5,
     description: 'Classic French tip design',
     category: 'addon'
   },
   {
     id: 'chrome',
     name: 'Chrome',
-    price: '$5',
+    price: '$3',
+    minPrice: 3,
+    maxPrice: 3,
     description: 'Metallic chrome finish',
     category: 'addon'
   },
   {
     id: 'design',
     name: 'Design',
-    price: '$15',
+    price: '$5-$15',
+    minPrice: 5,
+    maxPrice: 15,
     description: 'Custom nail art designs ',
     category: 'addon'
   },
   {
     id: 'gems',
     name: 'Gems',
-    price: '$15',
+    price: '$2-$10',
+    minPrice: 2,
+    maxPrice: 10,
     description: 'Decorative gems and stones ',
     category: 'addon'
   },
   {
     id: '3d',
     name: '3D',
-    price: '$10',
+    price: '$5-$10',
+    minPrice: 5,
+    maxPrice: 10,
     description: '3D nail art elements ',
     category: 'addon'
   }
@@ -193,14 +213,19 @@ export default function BookNow() {
     }
   };
 
-  const totalPrice = formData.selectedServices.reduce((total, serviceId) => {
+  const priceRange = formData.selectedServices.reduce((range, serviceId) => {
     const service = services.find(s => s.id === serviceId);
     if (service) {
-      const price = parseInt(service.price.replace(/[^0-9]/g, ''));
-      return total + price;
+      return {
+        min: range.min + service.minPrice,
+        max: range.max + service.maxPrice
+      };
     }
-    return total;
-  }, 0);
+    return range;
+  }, {min: 0, max: 0});
+
+  const hasRange = priceRange.min !== priceRange.max;
+  const totalPrice = hasRange ? `$${priceRange.min}-$${priceRange.max}` : `$${priceRange.min}`;
 
   return (
     <div className="min-h-screen bg-[#FAF4F2]">
@@ -298,6 +323,11 @@ export default function BookNow() {
                           <h3 className="text-xl font-medium text-[#2C2C2C]" style={{ fontFamily: 'Work Sans, sans-serif' }}>{service.name}</h3>
                           <div className="text-right">
                             <div className="text-2xl font-medium text-[#A56C82]" style={{ fontFamily: 'Work Sans, sans-serif' }}>{service.price}</div>
+                            {service.minPrice !== service.maxPrice && (
+                              <div className="text-xs text-[#A56C82] opacity-75" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+                                Price varies
+                              </div>
+                            )}
                           </div>
                         </div>
                         <p className="text-[#2C2C2C]" style={{ fontFamily: 'Work Sans, sans-serif' }}>{service.description}</p>
@@ -336,6 +366,11 @@ export default function BookNow() {
                           <h3 className="text-lg font-medium text-[#2C2C2C]" style={{ fontFamily: 'Work Sans, sans-serif' }}>{service.name}</h3>
                           <div className="text-right">
                             <div className="text-lg font-medium text-[#A56C82]" style={{ fontFamily: 'Work Sans, sans-serif' }}>{service.price}</div>
+                            {service.minPrice !== service.maxPrice && (
+                              <div className="text-xs text-[#A56C82] opacity-75" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+                                Price varies
+                              </div>
+                            )}
                           </div>
                         </div>
                         <p className="text-sm text-[#2C2C2C] mb-3" style={{ fontFamily: 'Work Sans, sans-serif' }}>{service.description}</p>
@@ -510,7 +545,7 @@ export default function BookNow() {
                   })}
                   <div className="flex justify-between items-center pt-4 mt-4 border-t-2 border-[#E7E2E0]">
                     <span className="text-xl font-bold text-[#2C2C2C]">Total</span>
-                    <span className="text-2xl font-bold text-[#A56C82]">${totalPrice}</span>
+                    <span className="text-2xl font-bold text-[#A56C82]">{totalPrice}</span>
                   </div>
                 </div>
 
