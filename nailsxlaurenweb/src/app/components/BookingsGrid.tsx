@@ -25,7 +25,22 @@ export default function BookingsGrid() {
   const [rows, setRows] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(false);
   const [gridApi, setGridApi] = useState<GridApi | null>(null);
+  const [showColumnMenu, setShowColumnMenu] = useState(false);
+  const [columnVisibility, setColumnVisibility] = useState<Record<string, boolean>>({});
+  const [isMobile, setIsMobile] = useState(false);
   const debounceRef = useRef<number | null>(null);
+
+  // Handle window resize for responsive design
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    handleResize(); // Set initial value
+    window.addEventListener('resize', handleResize);
+    
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const fetchData = useCallback(async (search: string, startRow: number) => {
     setLoading(true);
@@ -192,42 +207,295 @@ export default function BookingsGrid() {
     }
   }
 
+  // Initialize column visibility state
+  useEffect(() => {
+    if (gridApi && Object.keys(columnVisibility).length === 0) {
+      const initialVisibility: Record<string, boolean> = {};
+      columnDefs.forEach(col => {
+        if (col.field) {
+          const column = gridApi.getColumn(col.field);
+          initialVisibility[col.field] = column ? column.isVisible() : true;
+        }
+      });
+      setColumnVisibility(initialVisibility);
+    }
+  }, [gridApi, columnDefs, columnVisibility]);
+
+  // Column visibility functions
+  const toggleColumnVisibility = (field: string) => {
+    if (gridApi) {
+      const column = gridApi.getColumn(field);
+      if (column) {
+        const newVisibility = !column.isVisible();
+        gridApi.setColumnsVisible([field], newVisibility);
+        setColumnVisibility(prev => ({
+          ...prev,
+          [field]: newVisibility
+        }));
+      }
+    }
+  };
+
+  const isColumnVisible = (field: string) => {
+    return columnVisibility[field] ?? true;
+  };
+
+  const showAllColumns = () => {
+    if (gridApi) {
+      const fields = columnDefs.map(col => col.field).filter(Boolean) as string[];
+      gridApi.setColumnsVisible(fields, true);
+      const newVisibility: Record<string, boolean> = {};
+      fields.forEach(field => {
+        newVisibility[field] = true;
+      });
+      setColumnVisibility(newVisibility);
+    }
+  };
+
+  const hideAllColumns = () => {
+    if (gridApi) {
+      const fields = columnDefs.map(col => col.field).filter(Boolean) as string[];
+      gridApi.setColumnsVisible(fields, false);
+      const newVisibility: Record<string, boolean> = {};
+      fields.forEach(field => {
+        newVisibility[field] = false;
+      });
+      setColumnVisibility(newVisibility);
+    }
+  };
+
+  // Close column menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (showColumnMenu) {
+        const target = event.target as Element;
+        if (!target.closest('[data-column-menu]') && !target.closest('[data-column-button]')) {
+          setShowColumnMenu(false);
+        }
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showColumnMenu]);
+
   return (
-    <div style={{ padding: 24 }}>
-      <div style={{ display: 'flex', gap: 12, marginBottom: 12, alignItems: 'center' }}>
-        <input
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          placeholder="Type to search all fields (name, phone, email, message, date)..."
-          style={{ 
-            padding: '8px 12px', 
-            borderRadius: 8, 
-            border: '1px solid #ddd', 
-            minWidth: 400,
-            fontFamily: 'Work Sans, sans-serif'
-          }}
-        />
-        <button 
-          onClick={exportCSV} 
-          className="btn"
-          style={{ 
-            background: '#A56C82', 
-            color: 'white', 
-            padding: '8px 12px', 
-            borderRadius: '8px', 
-            border: 'none',
+    <div style={{ padding: '16px', width: '100%', boxSizing: 'border-box' }}>
+      {/* Responsive top controls */}
+      <div style={{ 
+        display: 'flex', 
+        flexDirection: isMobile ? 'column' : 'row',
+        justifyContent: isMobile ? 'stretch' : 'flex-end', 
+        alignItems: isMobile ? 'stretch' : 'center', 
+        gap: 12, 
+        marginBottom: 16,
+        flexWrap: 'wrap'
+      }}>
+        {/* Search and menu container */}
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: 8,
+          background: 'white',
+          border: '1px solid #ddd',
+          borderRadius: 8,
+          padding: '4px 8px',
+          minWidth: isMobile ? '100%' : 'auto',
+          flex: isMobile ? '1' : '0 0 auto'
+        }}>
+          <input
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            placeholder="Search bookings..."
+            style={{ 
+              padding: '6px 8px', 
+              border: 'none', 
+              outline: 'none',
+              fontFamily: 'Work Sans, sans-serif',
+              fontSize: '14px',
+              minWidth: isMobile ? '150px' : '200px',
+              flex: '1'
+            }}
+          />
+          <button 
+            onClick={() => setShowColumnMenu(!showColumnMenu)}
+            data-column-button
+            style={{ 
+              background: 'none', 
+              border: 'none',
+              cursor: 'pointer',
+              padding: '4px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
+            }}
+            title="Show/Hide Columns"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        
+        {/* Action buttons container */}
+        <div style={{
+          display: 'flex',
+          gap: 8,
+          alignItems: 'center',
+          flexWrap: 'wrap'
+        }}>
+          <button 
+            onClick={exportCSV} 
+            className="btn"
+            style={{ 
+              background: '#A56C82', 
+              color: 'white', 
+              padding: '8px 12px', 
+              borderRadius: '8px', 
+              border: 'none',
+              fontFamily: 'Work Sans, sans-serif',
+              cursor: 'pointer',
+              fontSize: '14px',
+              whiteSpace: 'nowrap'
+            }}
+          >
+            Export CSV
+          </button>
+          
+          <div style={{ 
             fontFamily: 'Work Sans, sans-serif',
-            cursor: 'pointer'
-          }}
-        >
-          Export CSV
-        </button>
-        <div style={{ marginLeft: 'auto', fontFamily: 'Work Sans, sans-serif' }}>
-          {loading ? 'Loading…' : `${rows.length} bookings`}
+            fontSize: '14px',
+            color: '#666',
+            whiteSpace: 'nowrap'
+          }}>
+            {loading ? 'Loading…' : `${rows.length} bookings`}
+          </div>
         </div>
       </div>
 
-      <div className="ag-theme-alpine" style={{ height: '600px', width: '100%' }}>
+      {/* Column Visibility Menu */}
+      {showColumnMenu && (
+        <div 
+          data-column-menu
+          style={{
+            position: 'absolute',
+            top: isMobile ? '140px' : '100px',
+            right: isMobile ? '16px' : '24px',
+            left: isMobile ? '16px' : 'auto',
+            background: 'white',
+            border: '1px solid #ddd',
+            borderRadius: '8px',
+            padding: '16px',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+            zIndex: 1000,
+            minWidth: isMobile ? 'auto' : '250px',
+            maxWidth: isMobile ? 'calc(100vw - 32px)' : '400px'
+          }}>
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center', 
+            marginBottom: '12px',
+            borderBottom: '1px solid #eee',
+            paddingBottom: '8px'
+          }}>
+            <h4 style={{ 
+              margin: 0, 
+              fontFamily: 'Work Sans, sans-serif',
+              color: '#2C2C2C'
+            }}>
+              Show/Hide Columns
+            </h4>
+            <button
+              onClick={() => setShowColumnMenu(false)}
+              style={{
+                background: 'none',
+                border: 'none',
+                fontSize: '18px',
+                cursor: 'pointer',
+                color: '#666'
+              }}
+            >
+              ×
+            </button>
+          </div>
+          
+          <div style={{ marginBottom: '12px' }}>
+            <button
+              onClick={showAllColumns}
+              style={{
+                background: '#A56C82',
+                color: 'white',
+                border: 'none',
+                padding: '6px 12px',
+                borderRadius: '4px',
+                marginRight: '8px',
+                cursor: 'pointer',
+                fontSize: '12px',
+                fontFamily: 'Work Sans, sans-serif'
+              }}
+            >
+              Show All
+            </button>
+            <button
+              onClick={hideAllColumns}
+              style={{
+                background: '#666',
+                color: 'white',
+                border: 'none',
+                padding: '6px 12px',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                fontSize: '12px',
+                fontFamily: 'Work Sans, sans-serif'
+              }}
+            >
+              Hide All
+            </button>
+          </div>
+
+          <div style={{ maxHeight: '300px', overflowY: 'auto' }}>
+            {columnDefs.map((col) => (
+              <div key={col.field} style={{
+                display: 'flex',
+                alignItems: 'center',
+                padding: '6px 0',
+                borderBottom: '1px solid #f0f0f0'
+              }}>
+                <input
+                  type="checkbox"
+                  checked={isColumnVisible(col.field || '')}
+                  onChange={() => toggleColumnVisibility(col.field || '')}
+                  style={{ marginRight: '8px' }}
+                />
+                <label style={{
+                  fontFamily: 'Work Sans, sans-serif',
+                  fontSize: '14px',
+                  color: '#2C2C2C',
+                  cursor: 'pointer',
+                  flex: 1
+                }}>
+                  {col.headerName}
+                </label>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div 
+        className="ag-theme-alpine" 
+        style={{ 
+          height: isMobile ? '400px' : '600px', 
+          width: '100%',
+          minHeight: '300px'
+        }}
+      >
         <AgGridReact
           {...gridOptions}
           loading={loading}
