@@ -25,26 +25,26 @@ const supabase = SUPABASE_URL && SUPABASE_SERVICE_KEY
   : null;
 
 export async function GET(req: NextRequest) {
-  console.log('🚀 API GET /api/admin/bookings called at:', new Date().toISOString());
+  console.log(' API GET /api/admin/bookings called at:', new Date().toISOString());
   
   // Check if Supabase is configured
   if (!supabase) {
-    console.log('❌ Database not configured');
+    console.log(' Database not configured');
     return NextResponse.json({ error: 'Database not configured' }, { status: 500 });
   }
 
   // Auth: validate nxla_admin cookie
   const token = req.cookies.get('nxla_admin')?.value;
   if (!token) {
-    console.log('❌ No auth token');
+    console.log(' No auth token');
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   try {
     jwt.verify(token, JWT_SECRET!);
-    console.log('✅ Auth token valid');
+    console.log(' Auth token valid');
   } catch {
-    console.log('❌ Invalid auth token');
+    console.log(' Invalid auth token');
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
@@ -54,7 +54,7 @@ export async function GET(req: NextRequest) {
   const limit = Math.min(Math.max(parseInt(url.searchParams.get('limit') || '20'), 1), 200);
   const offset = (page - 1) * limit;
   
-  console.log('📊 Query params:', { search, page, limit, offset });
+  console.log('Query params:', { search, page, limit, offset });
 
   // Build search filter across multiple columns (case-insensitive)
   // We'll use Postgres ilike via Supabase RPC style filters with .ilike
@@ -91,11 +91,11 @@ export async function GET(req: NextRequest) {
     const { data, count, error } = await query;
 
     if (error) {
-      console.error('❌ Supabase error', error);
+      console.error(' Supabase error', error);
       return NextResponse.json({ error: 'DB error' }, { status: 500 });
     }
 
-    console.log('✅ Database query successful:', { dataLength: data?.length, count, page, limit });
+    console.log(' Database query successful:', { dataLength: data?.length, count, page, limit });
     
     const response = {
       data,
@@ -108,7 +108,7 @@ export async function GET(req: NextRequest) {
     console.log('📤 Sending response:', { totalPages: response.totalPages });
     return NextResponse.json(response);
   } catch (err) {
-    console.error('❌ Server error:', err);
+    console.error(' Server error:', err);
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }

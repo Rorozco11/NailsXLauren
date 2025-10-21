@@ -11,7 +11,7 @@ export async function POST() {
     maxAge: -1,
   });
 
-  const res = NextResponse.json({ ok: true });
+  const res = NextResponse.redirect(new URL('/', process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'));
   res.headers.set('Set-Cookie', cookie);
   return res;
 }

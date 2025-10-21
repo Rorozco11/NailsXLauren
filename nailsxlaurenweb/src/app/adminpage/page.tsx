@@ -22,7 +22,7 @@ export default function AdminPage() {
             <form method="post" action="/api/admin/logout" className="w-full sm:w-auto">
               <button 
                 type="submit" 
-                className="w-full sm:w-auto px-6 py-3 bg-[#A56C82] text-white font-medium rounded-full hover:bg-[#8B5A6B] transition-all duration-200 shadow-lg text-sm sm:text-base"
+                className="w-full sm:w-auto px-6 py-3 bg-red-500 text-white font-medium rounded-full hover:bg-[#8B5A6B] transition-all duration-200 shadow-lg text-sm sm:text-base"
                 style={{ fontFamily: 'Work Sans, sans-serif' }}
               >
                 Logout

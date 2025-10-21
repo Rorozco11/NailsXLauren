@@ -22,7 +22,7 @@ type Booking = {
 
 export default function BookingsGrid() {
   const [q, setQ] = useState('');
-  const [rows] = useState<Booking[]>([]);
+  const [rows, setRows] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(false);
   const [gridApi, setGridApi] = useState<GridApi | null>(null);
   const debounceRef = useRef<number | null>(null);
@@ -35,19 +35,20 @@ export default function BookingsGrid() {
       if (!res.ok) throw new Error('Fetch failed');
       const json = await res.json();
       
+      setRows(json.data || []);
       if (gridApi) {
         gridApi.setGridOption('rowData', json.data || []);
-        // Note: rowCount is handled by server-side row model in AG Grid
       }
     } catch (err) {
       console.error(err);
+      setRows([]);
       if (gridApi) {
         gridApi.setGridOption('rowData', []);
       }
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [gridApi]);
 
   // Column definitions for AG Grid
   const columnDefs = useMemo<ColDef[]>(() => [
@@ -121,6 +122,7 @@ export default function BookingsGrid() {
 
   // Grid options
   const gridOptions = useMemo(() => ({
+    theme: 'legacy' as const,
     columnDefs,
     rowData: rows,
     rowCount: undefined,
@@ -130,36 +132,24 @@ export default function BookingsGrid() {
     suppressPaginationPanel: false,
     animateRows: true,
     rowSelection: 'multiple' as const,
-    suppressRowClickSelection: true,
+    enableClickSelection: true,
     onGridReady: (params: GridReadyEvent) => {
       setGridApi(params.api);
-      // Initial data fetch
-      fetchData('', 0);
+      // No initial data fetch - wait for search button click
     },
     onPaginationChanged: () => {
       // This will be handled by the gridApi reference
     }
-  }), [columnDefs, rows, fetchData]);
+  }), [columnDefs, rows]);
 
-  // Handle pagination changes
+  // Load initial data on mount
   useEffect(() => {
-    if (!gridApi) return;
-    
-    const handlePaginationChanged = () => {
-      const currentPage = gridApi.paginationGetCurrentPage();
-      const pageSize = gridApi.paginationGetPageSize();
-      const startRow = currentPage * pageSize;
-      fetchData(q, startRow);
-    };
+    if (gridApi) {
+      fetchData('', 0);
+    }
+  }, [gridApi, fetchData]);
 
-    gridApi.addEventListener('paginationChanged', handlePaginationChanged);
-    
-    return () => {
-      gridApi.removeEventListener('paginationChanged', handlePaginationChanged);
-    };
-  }, [gridApi, q, fetchData]);
-
-  // debounce search
+  // Type-ahead search with debouncing
   useEffect(() => {
     if (debounceRef.current) window.clearTimeout(debounceRef.current);
     debounceRef.current = window.setTimeout(() => {
@@ -167,7 +157,7 @@ export default function BookingsGrid() {
         gridApi.paginationGoToFirstPage();
         fetchData(q, 0);
       }
-    }, 350);
+    }, 300);
     return () => {
       if (debounceRef.current) window.clearTimeout(debounceRef.current);
     };
@@ -188,30 +178,15 @@ export default function BookingsGrid() {
         <input
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="Search name, phone, email, message, date..."
+          placeholder="Type to search all fields (name, phone, email, message, date)..."
           style={{ 
             padding: '8px 12px', 
             borderRadius: 8, 
             border: '1px solid #ddd', 
-            minWidth: 320,
+            minWidth: 400,
             fontFamily: 'Work Sans, sans-serif'
           }}
         />
-        <button 
-          onClick={() => gridApi && fetchData(q, 0)} 
-          className="btn"
-          style={{ 
-            background: '#A56C82', 
-            color: 'white', 
-            padding: '8px 12px', 
-            borderRadius: '8px', 
-            border: 'none',
-            fontFamily: 'Work Sans, sans-serif',
-            cursor: 'pointer'
-          }}
-        >
-          Search
-        </button>
         <button 
           onClick={exportCSV} 
           className="btn"
@@ -235,8 +210,6 @@ export default function BookingsGrid() {
       <div className="ag-theme-alpine" style={{ height: '600px', width: '100%' }}>
         <AgGridReact
           {...gridOptions}
-          columnDefs={columnDefs}
-          rowData={rows}
           loading={loading}
         />
       </div>
