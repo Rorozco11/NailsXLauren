@@ -48,11 +48,11 @@ export default function Footer() {
                   </svg>
                 </div>
                 <a 
-                  href="mailto:lorozco@gmail.com" 
+                  href="mailto:laurenorozco0@gmail.com" 
                   className="text-[#2C2C2C] hover:text-[#A56C82] transition-colors duration-200"
                   style={{ fontFamily: 'Work Sans, sans-serif' }}
                 >
-                  lorozco@gmail.com
+                  laurenorozco0@gmail.com
                 </a>
               </div>
             </div>
