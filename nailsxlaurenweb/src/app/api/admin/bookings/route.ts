@@ -1,23 +1,20 @@
 // app/api/admin/bookings/route.ts
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import jwt from 'jsonwebtoken';
 import { createClient } from '@supabase/supabase-js';
 
-const JWT_SECRET = process.env.JWT_SECRET;
-const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 // Check for required environment variables
-if (!JWT_SECRET || !SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
   console.error('Missing required environment variables:', {
-    JWT_SECRET: !!JWT_SECRET,
     SUPABASE_URL: !!SUPABASE_URL,
     SUPABASE_SERVICE_ROLE_KEY: !!SUPABASE_SERVICE_ROLE_KEY
   });
 }
 
-// Only create Supabase client if environment variables are available
+// Create Supabase client with service role for admin operations
 const supabase = SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY 
   ? createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, {
       auth: { persistSession: false },
@@ -33,20 +30,15 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Database not configured' }, { status: 500 });
   }
 
-  // Auth: validate nxla_admin cookie
-  const token = req.cookies.get('nxla_admin')?.value;
-  if (!token) {
-    console.log(' No auth token');
+  // Auth: Check custom session
+  const adminSession = req.cookies.get('admin_session')?.value;
+  
+  if (!adminSession) {
+    console.log(' No admin session');
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-
-  try {
-    jwt.verify(token, JWT_SECRET!);
-    console.log(' Auth token valid');
-  } catch {
-    console.log(' Invalid auth token');
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+  
+  console.log(' Admin session valid');
 
   const url = new URL(req.url);
   const search = url.searchParams.get('search') ?? '';
