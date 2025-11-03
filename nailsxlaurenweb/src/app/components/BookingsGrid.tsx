@@ -28,6 +28,7 @@ export default function BookingsGrid() {
   const [showColumnMenu, setShowColumnMenu] = useState(false);
   const [columnVisibility, setColumnVisibility] = useState<Record<string, boolean>>({});
   const [isMobile, setIsMobile] = useState(false);
+  const [selectedRow, setSelectedRow] = useState<Booking | null>(null);
   const debounceRef = useRef<number | null>(null);
 
   // Handle window resize for responsive design
@@ -101,7 +102,24 @@ export default function BookingsGrid() {
       headerName: 'Preferred Time', 
       sortable: true, 
       filter: true,
-      width: 130
+      width: 130,
+      valueFormatter: (params: { value: string }) => {
+        if (!params.value) return '';
+        // Convert 24-hour time to 12-hour format with AM/PM
+        try {
+          const [hours, minutes] = params.value.split(':');
+          const hour24 = parseInt(hours, 10);
+          if (isNaN(hour24)) return params.value; // Return original if parsing fails
+          
+          const hour12 = hour24 === 0 ? 12 : hour24 > 12 ? hour24 - 12 : hour24;
+          const ampm = hour24 < 12 ? 'AM' : 'PM';
+          const mins = minutes || '00';
+          
+          return `${hour12}:${mins} ${ampm}`;
+        } catch {
+          return params.value; // Return original if conversion fails
+        }
+      }
     },
     { 
       field: 'message', 
@@ -139,6 +157,7 @@ export default function BookingsGrid() {
       sortable: true, 
       filter: 'agNumberColumnFilter',
       width: 100,
+      hide: true,
       valueFormatter: (params: { value: number }) => {
         return params.value ? `$${params.value}` : '';
       }
@@ -149,11 +168,44 @@ export default function BookingsGrid() {
       sortable: true, 
       filter: 'agNumberColumnFilter',
       width: 100,
+      hide: true,
       valueFormatter: (params: { value: number }) => {
         return params.value ? `$${params.value}` : '';
       }
     }
   ], []);
+
+  // Format time helper
+  const formatTime = (time: string | null): string => {
+    if (!time) return 'Not specified';
+    try {
+      const [hours, minutes] = time.split(':');
+      const hour24 = parseInt(hours, 10);
+      if (isNaN(hour24)) return time;
+      
+      const hour12 = hour24 === 0 ? 12 : hour24 > 12 ? hour24 - 12 : hour24;
+      const ampm = hour24 < 12 ? 'AM' : 'PM';
+      const mins = minutes || '00';
+      
+      return `${hour12}:${mins} ${ampm}`;
+    } catch {
+      return time;
+    }
+  };
+
+  // Format date helper
+  const formatDate = (date: string | null): string => {
+    if (!date) return 'Not specified';
+    try {
+      return new Date(date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    } catch {
+      return date;
+    }
+  };
 
   // Grid options
   const gridOptions = useMemo(() => ({
@@ -168,6 +220,17 @@ export default function BookingsGrid() {
     animateRows: true,
     rowSelection: 'multiple' as const,
     enableClickSelection: true,
+    getRowStyle: (params: { data?: Booking }) => {
+      if (selectedRow && params.data && params.data.id === selectedRow.id) {
+        return { backgroundColor: '#f0e6f0', borderLeft: '4px solid #A56C82' };
+      }
+      return undefined;
+    },
+    onRowClicked: (params: { data?: Booking }) => {
+      if (params.data) {
+        setSelectedRow(params.data);
+      }
+    },
     onGridReady: (params: GridReadyEvent) => {
       setGridApi(params.api);
       // No initial data fetch - wait for search button click
@@ -175,7 +238,7 @@ export default function BookingsGrid() {
     onPaginationChanged: () => {
       // This will be handled by the gridApi reference
     }
-  }), [columnDefs, rows]);
+  }), [columnDefs, rows, selectedRow]);
 
   // Load initial data on mount
   useEffect(() => {
@@ -488,18 +551,195 @@ export default function BookingsGrid() {
         </div>
       )}
 
-      <div 
-        className="ag-theme-alpine" 
-        style={{ 
-          height: isMobile ? '400px' : '600px', 
-          width: '100%',
-          minHeight: '300px'
-        }}
-      >
-        <AgGridReact
-          {...gridOptions}
-          loading={loading}
-        />
+      <div style={{ display: 'flex', gap: '16px', flexDirection: isMobile ? 'column' : 'row' }}>
+        <div 
+          className="ag-theme-alpine" 
+          style={{ 
+            height: isMobile ? '400px' : '600px', 
+            width: isMobile ? '100%' : selectedRow ? '60%' : '100%',
+            minHeight: '300px',
+            transition: 'width 0.3s ease'
+          }}
+        >
+          <AgGridReact
+            {...gridOptions}
+            loading={loading}
+          />
+        </div>
+
+        {/* Mobile Backdrop */}
+        {selectedRow && isMobile && (
+          <div
+            onClick={() => setSelectedRow(null)}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'rgba(0, 0, 0, 0.5)',
+              zIndex: 999,
+              animation: 'fadeIn 0.3s ease'
+            }}
+          />
+        )}
+
+        {/* Detail Panel/Drawer */}
+        {selectedRow && (
+          <div style={{
+            width: isMobile ? '100%' : '40%',
+            background: 'white',
+            borderRadius: isMobile ? '16px 16px 0 0' : '12px',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+            padding: '20px',
+            maxHeight: isMobile ? '80vh' : '600px',
+            overflowY: 'auto',
+            position: isMobile ? 'fixed' : 'relative',
+            top: isMobile ? '20%' : 'auto',
+            left: isMobile ? 0 : 'auto',
+            right: isMobile ? 0 : 'auto',
+            bottom: isMobile ? 0 : 'auto',
+            zIndex: isMobile ? 1000 : 'auto',
+            animation: isMobile ? 'slideUp 0.3s ease' : 'slideIn 0.3s ease'
+          }}>
+            {/* Header */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '20px',
+              paddingBottom: '16px',
+              borderBottom: '2px solid #f0f0f0'
+            }}>
+              <h2 style={{
+                margin: 0,
+                fontFamily: 'Cormorant Garamond, serif',
+                fontSize: '24px',
+                color: '#2C2C2C',
+                fontWeight: 'normal'
+              }}>
+                Booking Details
+              </h2>
+              <button
+                onClick={() => setSelectedRow(null)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '24px',
+                  cursor: 'pointer',
+                  color: '#666',
+                  padding: '4px 8px',
+                  borderRadius: '4px',
+                  transition: 'background-color 0.2s'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f5f5f5'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+              >
+                ×
+              </button>
+            </div>
+
+            {/* Detail Fields */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <DetailField label="Full Name" value={selectedRow.full_name} />
+              <DetailField label="Phone" value={selectedRow.phone_number || 'Not provided'} />
+              <DetailField label="Email" value={selectedRow.email || 'Not provided'} />
+              <DetailField label="Preferred Date" value={formatDate(selectedRow.preferred_date)} />
+              <DetailField label="Preferred Time" value={formatTime(selectedRow.preferred_time)} />
+              <DetailField label="Price" value={selectedRow.init_price ? `$${selectedRow.init_price}` : 'Not specified'} />
+              <DetailField label="Created On" value={new Date(selectedRow.created_on).toLocaleString()} />
+              {selectedRow.message && (
+                <div>
+                  <label style={{
+                    display: 'block',
+                    fontFamily: 'Work Sans, sans-serif',
+                    fontSize: '12px',
+                    fontWeight: '600',
+                    color: '#666',
+                    marginBottom: '6px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.5px'
+                  }}>
+                    Message
+                  </label>
+                  <div style={{
+                    fontFamily: 'Work Sans, sans-serif',
+                    fontSize: '14px',
+                    color: '#2C2C2C',
+                    padding: '12px',
+                    background: '#FAF4F2',
+                    borderRadius: '8px',
+                    lineHeight: '1.6',
+                    whiteSpace: 'pre-wrap'
+                  }}>
+                    {selectedRow.message}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <style jsx>{`
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateX(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(100%);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+// Detail Field Component
+function DetailField({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <label style={{
+        display: 'block',
+        fontFamily: 'Work Sans, sans-serif',
+        fontSize: '12px',
+        fontWeight: '600',
+        color: '#666',
+        marginBottom: '6px',
+        textTransform: 'uppercase',
+        letterSpacing: '0.5px'
+      }}>
+        {label}
+      </label>
+      <div style={{
+        fontFamily: 'Work Sans, sans-serif',
+        fontSize: '16px',
+        color: '#2C2C2C',
+        padding: '10px 12px',
+        background: '#FAF4F2',
+        borderRadius: '6px'
+      }}>
+        {value}
       </div>
     </div>
   );

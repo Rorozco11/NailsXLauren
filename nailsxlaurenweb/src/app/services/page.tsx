@@ -5,22 +5,26 @@ export default function Services() {
     {
       name: "Gel X Set",
       price: "$40",
-      description: "Full set with gel extensions for long-lasting, beautiful nails"
+      description: "Full set with gel extensions for long-lasting, beautiful nails",
+      image: "/Images/gelxset.jpg"
     },
     {
       name: "Gel Manicure",
       price: "$25",
-      description: "Classic gel manicure for natural nail enhancement"
+      description: "Classic gel manicure for natural nail enhancement",
+      image: "/Images/reg.jpg"
     },
     {
       name: "Tip Replacement",
       price: "$2",
-      description: "Quick tip repair for damaged extensions"
+      description: "Quick tip repair for damaged extensions",
+      image: "/Images/laurenphoto.jpeg"
     },
     {
       name: "Soak Off",
       price: "$5",
-      description: "Gentle removal of gel polish and extensions"
+      description: "Gentle removal of gel polish and extensions",
+      image: "/Images/soakoff.jpg"
     }
   ];
 
@@ -74,7 +78,7 @@ export default function Services() {
             <div key={index} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
               <div className="relative h-48">
                 <Image
-                  src="/Images/laurenphoto.jpeg"
+                  src={service.image || "/Images/laurenphoto.jpeg"}
                   alt={service.name}
                   fill
                   className="object-cover"
