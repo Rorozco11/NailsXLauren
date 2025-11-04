@@ -1,6 +1,6 @@
 TODO:
-Change Home screen pic
 Redisplay Logo
+Services Photos
 Accomodate for mobile view
 Fix Search capability on admin page
 change Admin page layout
