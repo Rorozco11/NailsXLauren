@@ -29,3 +29,13 @@ body {
   color: #171717;
   font-family: 'Abeezee', Arial, Helvetica, sans-serif;
 }
+
+.hero-image-responsive {
+  object-position: center 80% !important;
+}
+
+@media (min-width: 768px) {
+  .hero-image-responsive {
+    object-position: center 15% !important;
+  }
+}

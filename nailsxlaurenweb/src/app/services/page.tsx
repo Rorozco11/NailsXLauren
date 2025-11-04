@@ -15,14 +15,8 @@ export default function Services() {
       image: "/Images/reg.jpg"
     },
     {
-      name: "Tip Replacement",
-      price: "$2",
-      description: "Quick tip repair for damaged extensions",
-      image: "/Images/laurenphoto.jpeg"
-    },
-    {
       name: "Soak Off",
-      price: "$5",
+      price: "$5-$8",
       description: "Gentle removal of gel polish and extensions",
       image: "/Images/soakoff.jpg"
     }

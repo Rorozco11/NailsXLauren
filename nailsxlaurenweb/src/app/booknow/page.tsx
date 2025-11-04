@@ -30,19 +30,11 @@ const services: Service[] = [
       description: 'Long-lasting gel polish with UV curing'
     },
   {
-    id: 'tip-replacement',
-    name: 'Tip Replacement',
-    price: '$2',
-    minPrice: 2,
-    maxPrice: 2,
-    description: 'Replace broken or damaged nail tips'
-  },
-  {
     id: 'soak-off',
     name: 'Soak Off',
-    price: '$5',
+    price: '$5-$8',
     minPrice: 5,
-    maxPrice: 5,
+    maxPrice: 8,
     description: 'Remove existing gel polish safely'
   },
   {

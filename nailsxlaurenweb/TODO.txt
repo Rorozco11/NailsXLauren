@@ -1,8 +1,7 @@
 TODO:
+Change Home screen pic
 Redisplay Logo
-✅Fix ability to direct straight to admin page with no password
 Accomodate for mobile view
-✅Add hide option to grid
 Fix Search capability on admin page
 change Admin page layout
 Add Last 1 month, Last 3 months filters to admin page

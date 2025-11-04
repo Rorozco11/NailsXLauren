@@ -16,8 +16,7 @@ const supabase = SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY
 const services = [
   { id: 'gelxset', name: 'Gel X Set', price: '$40', minPrice: 40, maxPrice: 40 },
   { id: 'gel-manicure', name: 'Gel Manicure', price: '$25', minPrice: 25, maxPrice: 25 },
-  { id: 'tip-replacement', name: 'Tip Replacement', price: '$2', minPrice: 2, maxPrice: 2 },
-  { id: 'soak-off', name: 'Soak Off', price: '$5', minPrice: 5, maxPrice: 5 },
+  { id: 'soak-off', name: 'Soak Off', price: '$5-$8', minPrice: 5, maxPrice: 8 },
   { id: 'french-tip', name: 'French Tip', price: '$5', minPrice: 5, maxPrice: 5 },
   { id: 'chrome', name: 'Chrome', price: '$3', minPrice: 3, maxPrice: 3 },
   { id: 'design', name: 'Design', price: '$5-$15', minPrice: 5, maxPrice: 15 },
