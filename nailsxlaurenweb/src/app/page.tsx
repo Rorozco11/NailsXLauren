@@ -66,7 +66,7 @@ export default function Home() {
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
                   <div className="aspect-[4/5] relative">
                     <Image
-                      src="/Images/IMG_9845.jpg"
+                      src="/Images/posts/202510/theOne.jpg"
                       alt="Beautiful manicured hands with elegant nail art"
                       fill
                       className="object-cover"

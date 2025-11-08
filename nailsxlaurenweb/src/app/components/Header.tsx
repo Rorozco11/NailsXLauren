@@ -34,35 +34,59 @@ export default function Header() {
           <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
             <Link 
               href="/" 
-              className="text-[#2C2C2C] hover:text-[#A56C82] font-medium transition-colors duration-200 relative group"
+              className={`font-medium transition-colors duration-200 relative ${
+                pathname === '/' 
+                  ? 'text-[#A56C82]' 
+                  : 'text-[#2C2C2C] hover:text-[#A56C82]'
+              }`}
               style={{ fontFamily: 'Work Sans, sans-serif' }}
             >
               Home
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#A56C82] transition-all duration-200 group-hover:w-full"></span>
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#A56C82] transition-all duration-200 ${
+                pathname === '/' ? 'w-full' : 'w-0'
+              }`}></span>
             </Link>
             <Link 
               href="/services" 
-              className="text-[#2C2C2C] hover:text-[#A56C82] font-medium transition-colors duration-200 relative group"
+              className={`font-medium transition-colors duration-200 relative ${
+                pathname === '/services' 
+                  ? 'text-[#A56C82]' 
+                  : 'text-[#2C2C2C] hover:text-[#A56C82]'
+              }`}
               style={{ fontFamily: 'Work Sans, sans-serif' }}
             >
               Services
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#A56C82] transition-all duration-200 group-hover:w-full"></span>
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#A56C82] transition-all duration-200 ${
+                pathname === '/services' ? 'w-full' : 'w-0'
+              }`}></span>
             </Link>
             <Link 
               href="/gallery" 
-              className="text-[#2C2C2C] hover:text-[#A56C82] font-medium transition-colors duration-200 relative group"
+              className={`font-medium transition-colors duration-200 relative ${
+                pathname === '/gallery' 
+                  ? 'text-[#A56C82]' 
+                  : 'text-[#2C2C2C] hover:text-[#A56C82]'
+              }`}
               style={{ fontFamily: 'Work Sans, sans-serif' }}
             >
               Gallery
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#A56C82] transition-all duration-200 group-hover:w-full"></span>
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#A56C82] transition-all duration-200 ${
+                pathname === '/gallery' ? 'w-full' : 'w-0'
+              }`}></span>
             </Link>
             <Link 
               href="/about" 
-              className="text-[#2C2C2C] hover:text-[#A56C82] font-medium transition-colors duration-200 relative group"
+              className={`font-medium transition-colors duration-200 relative ${
+                pathname === '/about' 
+                  ? 'text-[#A56C82]' 
+                  : 'text-[#2C2C2C] hover:text-[#A56C82]'
+              }`}
               style={{ fontFamily: 'Work Sans, sans-serif' }}
             >
               About
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#A56C82] transition-all duration-200 group-hover:w-full"></span>
+              <span className={`absolute -bottom-1 left-0 h-0.5 bg-[#A56C82] transition-all duration-200 ${
+                pathname === '/about' ? 'w-full' : 'w-0'
+              }`}></span>
             </Link>
           </nav>
           

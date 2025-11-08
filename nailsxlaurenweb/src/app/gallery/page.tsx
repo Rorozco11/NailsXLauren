@@ -20,54 +20,81 @@ export default function Gallery() {
   // Define the images to include in the gallery with categories
   const galleryImages = [
   
-    // Numeric named images from main Images folder
-    { src: '/Images/posts/202511/17867825208229173.jpg', alt: 'Nail art design', category: 'gelxset' },
-    { src: '/Images/posts/202511/17901097451983396.jpg', alt: 'Nail art design', category: 'gelmanicure' },
-    { src: '/Images/posts/202511/17918189954901783.jpg', alt: 'Nail art design', category: 'gelxset' },
-    { src: '/Images/posts/202511/17946028022857400.jpg', alt: 'Nail art design', category: 'gelmanicure' },
-    { src: '/Images/posts/202511/17984819468751793.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202511/18007664174653730.jpg', alt: 'Nail art design', category: 'gelxset' },
-    { src: '/Images/posts/202511/18014346647341952.jpg', alt: 'Nail art design', category: 'gelmanicure' },
-    { src: '/Images/posts/202511/18021722780615238.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202511/18023136296606585.jpg', alt: 'Nail art design', category: 'gelxset' },
-    { src: '/Images/posts/202511/18026630468409675.jpg', alt: 'Nail art design', category: 'gelmanicure' },
-    { src: '/Images/posts/202511/18027183209170423.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202511/18035363216198219.jpg', alt: 'Nail art design', category: 'gelxset' },
-    { src: '/Images/posts/202511/18037103918184064.jpg', alt: 'Nail art design', category: 'gelmanicure' },
-    { src: '/Images/posts/202511/18040325042170257.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202511/18044508656072565.jpg', alt: 'Nail art design', category: 'gelxset' },
-    { src: '/Images/posts/202511/18047536117999165.mp4', alt: 'Nail art video', isVideo: true, category: 'gelxset' },
-    { src: '/Images/posts/202511/18047937166952645.mp4', alt: 'Nail art video', isVideo: true, category: 'gelmanicure' },
-    { src: '/Images/posts/202511/18061799296741579.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202511/18061986211704654.jpg', alt: 'Nail art design', category: 'gelxset' },
-    { src: '/Images/posts/202511/18103359877452188.jpg', alt: 'Nail art design', category: 'gelmanicure' },
-
-    // Homepic images
-    { src: '/Images/homepic1.jpeg', alt: 'Beautiful nail art design', category: 'gelxset' },
-    { src: '/Images/homepic2.jpeg', alt: 'Elegant nail design', category: 'gelmanicure' },
-    { src: '/Images/homepic4.jpg', alt: 'Stunning nail art', category: 'gelxset' },
-    { src: '/Images/homeVid.mp4', alt: 'Nail art video', isVideo: true, category: 'gelxset' },
     
     
-    // Images from 202510 folder
-    { src: '/Images/posts/202510/17844379524573540.jpg', alt: 'Nail art design', category: 'seasonal' },
-    { src: '/Images/posts/202510/17951169053896221.jpg', alt: 'Nail art design', category: 'gelxset' },
-    { src: '/Images/posts/202510/17973235436940247.jpg', alt: 'Nail art design', category: 'seasonal' },
-    { src: '/Images/posts/202510/18053918615269469.jpg', alt: 'Nail art design', category: 'gelmanicure' },
-    { src: '/Images/posts/202510/18057115424239301.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202510/18068919215034606.jpg', alt: 'Nail art design', category: 'gelxset' },
-    { src: '/Images/posts/202510/18072558836336231.jpg', alt: 'Nail art design', category: 'seasonal' },
-    { src: '/Images/posts/202510/18072758804464754.jpg', alt: 'Nail art design', category: 'seasonal' },
-    { src: '/Images/posts/202510/18082065737487060.jpg', alt: 'Nail art design', category: 'seasonal' },
-    { src: '/Images/posts/202510/18086017540918599.jpg', alt: 'Nail art design', category: 'seasonal' },
-    { src: '/Images/posts/202510/18104864257620902.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202510/18115494823546661.jpg', alt: 'Nail art design', category: 'seasonal' },
-    { src: '/Images/posts/202510/18117206320534349.jpg', alt: 'Nail art design', category: 'seasonal' },
-    { src: '/Images/posts/202510/18145219633421934.jpg', alt: 'Nail art design', category: 'seasonal' },
-    { src: '/Images/posts/202510/18188998117336415.jpg', alt: 'Nail art design', category: 'seasonal' },
-    { src: '/Images/posts/202510/18208200073309380.jpg', alt: 'Nail art design', category: 'seasonal' },
-    { src: '/Images/posts/202510/18389892007131604.jpg', alt: 'Nail art design', category: 'seasonal' },
-    { src: '/Images/posts/202510/18508420240066856.jpg', alt: 'Nail art design', category: 'seasonal' },
+    
+    // Images from 202505 folder
+    { src: '/Images/posts/202505/17853247764395667.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/17861287320400486.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/17875655463331100.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/17898299370090187.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/17900586834194459.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/17963469815775659.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18028381808459584.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18045188060395936.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18046752632590024.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18053379122349937.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18058124797975445.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18060335087164214.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18062807275881075.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18063148259038478.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18069222589772497.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18069992104756661.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18079356157801788.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18087307858720515.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18088776868720170.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18094403728603852.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18097392091553301.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18100991389539682.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18125728705438058.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18134778304407432.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18139237723394644.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18165729718343876.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18280517077250797.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202505/18386234098188020.jpg', alt: 'Nail art design', category: 'solid' },
+    
+    
+    // Images from 202506 folder
+    { src: '/Images/posts/202506/17862027561352352.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202506/17870478129286694.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202506/17887157499272970.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202506/17890697385141606.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202506/17966092865779203.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202506/17971392779883767.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202506/18015541316724906.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202506/18048309056404026.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202506/18051131903609110.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202506/18066118052026047.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202506/18068365540839620.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202506/18075105946936731.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202506/18086062189671923.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202506/18188193739314785.jpg', alt: 'Nail art design', category: 'solid' },
+    
+    
+    
+    // Images from 202507 folder
+    { src: '/Images/posts/202507/17864645964356091.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202507/17865186090419813.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202507/17974480307748525.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202507/17992298405669093.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202507/18068512904028346.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202507/18075305716755193.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202507/18090991669655424.jpg', alt: 'Nail art design', category: 'solid' },
+    
+    // Images from 202508 folder
+    { src: '/Images/posts/202508/17855218548455857.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202508/17857293753493320.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202508/18061963214057584.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202508/18081068879309981.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202508/18102246127596355.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202508/18142076455419143.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202508/17913844395055480.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202508/18051531725552472.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202508/18068879885126745.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202508/18077845990983114.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202508/18099514330551927.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202508/18126322723419756.jpg', alt: 'Nail art design', category: 'solid' },
+    
     
     // Images from 202509 folder
     { src: '/Images/posts/202509/17842430916586863.jpg', alt: 'Nail art design', category: 'seasonal' },
@@ -120,81 +147,64 @@ export default function Gallery() {
     { src: '/Images/posts/202509/18327502624236853.jpg', alt: 'Nail art design', category: 'solid' },
     { src: '/Images/posts/202509/18342403009166328.jpg', alt: 'Nail art design', category: 'solid' },
     
-    // Images from 202508 folder
-    { src: '/Images/posts/202508/17855218548455857.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202508/17857293753493320.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202508/18061963214057584.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202508/18081068879309981.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202508/18102246127596355.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202508/18142076455419143.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202508/17913844395055480.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202508/18051531725552472.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202508/18068879885126745.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202508/18077845990983114.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202508/18099514330551927.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202508/18126322723419756.jpg', alt: 'Nail art design', category: 'solid' },
     
-    // Images from 202507 folder
-    { src: '/Images/posts/202507/17864645964356091.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202507/17865186090419813.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202507/17974480307748525.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202507/17992298405669093.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202507/18068512904028346.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202507/18075305716755193.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202507/18090991669655424.jpg', alt: 'Nail art design', category: 'solid' },
     
-    // Images from 202506 folder
-    { src: '/Images/posts/202506/17862027561352352.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202506/17870478129286694.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202506/17887157499272970.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202506/17890697385141606.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202506/17966092865779203.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202506/17971392779883767.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202506/18015541316724906.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202506/18048309056404026.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202506/18051131903609110.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202506/18066118052026047.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202506/18068365540839620.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202506/18075105946936731.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202506/18086062189671923.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202506/18188193739314785.jpg', alt: 'Nail art design', category: 'solid' },
+    // Images from 202510 folder
+    { src: '/Images/posts/202510/17844379524573540.jpg', alt: 'Nail art design', category: 'seasonal' },
+    { src: '/Images/posts/202510/17951169053896221.jpg', alt: 'Nail art design', category: 'gelxset' },
+    { src: '/Images/posts/202510/17973235436940247.jpg', alt: 'Nail art design', category: 'seasonal' },
+    { src: '/Images/posts/202510/18053918615269469.jpg', alt: 'Nail art design', category: 'gelmanicure' },
+    { src: '/Images/posts/202510/18057115424239301.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202510/18068919215034606.jpg', alt: 'Nail art design', category: 'gelxset' },
+    { src: '/Images/posts/202510/18072558836336231.jpg', alt: 'Nail art design', category: 'seasonal' },
+    { src: '/Images/posts/202510/18072758804464754.jpg', alt: 'Nail art design', category: 'seasonal' },
+    { src: '/Images/posts/202510/18082065737487060.jpg', alt: 'Nail art design', category: 'seasonal' },
+    { src: '/Images/posts/202510/18086017540918599.jpg', alt: 'Nail art design', category: 'seasonal' },
+    { src: '/Images/posts/202510/18104864257620902.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202510/18115494823546661.jpg', alt: 'Nail art design', category: 'seasonal' },
+    { src: '/Images/posts/202510/18117206320534349.jpg', alt: 'Nail art design', category: 'seasonal' },
+    { src: '/Images/posts/202510/18145219633421934.jpg', alt: 'Nail art design', category: 'seasonal' },
+    { src: '/Images/posts/202510/18188998117336415.jpg', alt: 'Nail art design', category: 'seasonal' },
+    { src: '/Images/posts/202510/18208200073309380.jpg', alt: 'Nail art design', category: 'seasonal' },
+    { src: '/Images/posts/202510/18389892007131604.jpg', alt: 'Nail art design', category: 'seasonal' },
+    { src: '/Images/posts/202510/18508420240066856.jpg', alt: 'Nail art design', category: 'seasonal' },
     
-    // Images from 202505 folder
-    { src: '/Images/posts/202505/17853247764395667.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/17861287320400486.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/17875655463331100.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/17898299370090187.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/17900586834194459.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/17963469815775659.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18028381808459584.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18045188060395936.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18046752632590024.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18053379122349937.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18058124797975445.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18060335087164214.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18062807275881075.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18063148259038478.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18069222589772497.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18069992104756661.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18079356157801788.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18087307858720515.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18088776868720170.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18094403728603852.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18097392091553301.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18100991389539682.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18125728705438058.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18134778304407432.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18139237723394644.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18165729718343876.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18280517077250797.jpg', alt: 'Nail art design', category: 'solid' },
-    { src: '/Images/posts/202505/18386234098188020.jpg', alt: 'Nail art design', category: 'solid' },
+    
+    
+    { src: '/Images/posts/202511/17867825208229173.jpg', alt: 'Nail art design', category: 'gelxset' },
+    { src: '/Images/posts/202511/17901097451983396.jpg', alt: 'Nail art design', category: 'gelmanicure' },
+    { src: '/Images/posts/202511/17918189954901783.jpg', alt: 'Nail art design', category: 'gelxset' },
+    { src: '/Images/posts/202511/17946028022857400.jpg', alt: 'Nail art design', category: 'gelmanicure' },
+    { src: '/Images/posts/202511/17984819468751793.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202511/18007664174653730.jpg', alt: 'Nail art design', category: 'gelxset' },
+    { src: '/Images/posts/202511/18014346647341952.jpg', alt: 'Nail art design', category: 'gelmanicure' },
+    { src: '/Images/posts/202511/18021722780615238.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202511/18023136296606585.jpg', alt: 'Nail art design', category: 'gelxset' },
+    { src: '/Images/posts/202511/18026630468409675.jpg', alt: 'Nail art design', category: 'gelmanicure' },
+    { src: '/Images/posts/202511/18027183209170423.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202511/18035363216198219.jpg', alt: 'Nail art design', category: 'gelxset' },
+    { src: '/Images/posts/202511/18037103918184064.jpg', alt: 'Nail art design', category: 'gelmanicure' },
+    { src: '/Images/posts/202511/18040325042170257.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202511/18044508656072565.jpg', alt: 'Nail art design', category: 'gelxset' },
+    { src: '/Images/posts/202511/18047536117999165.mp4', alt: 'Nail art video', isVideo: true, category: 'gelxset' },
+    { src: '/Images/posts/202511/18047937166952645.mp4', alt: 'Nail art video', isVideo: true, category: 'gelmanicure' },
+    { src: '/Images/posts/202511/18061799296741579.jpg', alt: 'Nail art design', category: 'solid' },
+    { src: '/Images/posts/202511/18061986211704654.jpg', alt: 'Nail art design', category: 'gelxset' },
+    { src: '/Images/posts/202511/18103359877452188.jpg', alt: 'Nail art design', category: 'gelmanicure' },
+    
+    // Homepic images
+    { src: '/Images/homepic1.jpeg', alt: 'Beautiful nail art design', category: 'gelxset' },
+    { src: '/Images/homepic2.jpeg', alt: 'Elegant nail design', category: 'gelmanicure' },
+    { src: '/Images/homepic4.jpg', alt: 'Stunning nail art', category: 'gelxset' },
+    { src: '/Images/homeVid.mp4', alt: 'Nail art video', isVideo: true, category: 'gelxset' },
   ];
-
+  // Numeric named images from main Images folder
+  
   // Filter logic
   const filteredImages = activeFilter === 'all' 
-    ? galleryImages 
-    : galleryImages.filter(image => image.category === activeFilter);
-
+  ? galleryImages 
+  : galleryImages.filter(image => image.category === activeFilter);
+  
   const filters = [
     { id: 'all', label: 'All Designs' },
     { id: 'solid', label: 'Solid' },
@@ -227,7 +237,6 @@ export default function Gallery() {
                 <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-                <span className="text-[9px] text-white font-medium" style={{ fontFamily: 'Work Sans, sans-serif' }}>→</span>
               </div>
             </div>
           )}
