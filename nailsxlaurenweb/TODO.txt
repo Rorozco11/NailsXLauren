@@ -1,6 +1,4 @@
 TODO:
-✅Redisplay Logo
-✅Fix errors in console log
 Services Photos
 Accomodate for mobile view
 Fix Search capability on admin page

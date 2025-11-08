@@ -2,10 +2,20 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Gallery() {
   const [activeFilter, setActiveFilter] = useState('all');
+  const [showSlideIndicator, setShowSlideIndicator] = useState(true);
+
+  useEffect(() => {
+    // Hide the indicator after 3 seconds
+    const timer = setTimeout(() => {
+      setShowSlideIndicator(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   // Define the images to include in the gallery with categories
   const galleryImages = [
@@ -208,14 +218,25 @@ export default function Gallery() {
       </div>
 
       {/* Filter Buttons */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-        <div className="flex justify-center">
-          <div className="flex flex-wrap gap-3 bg-white/80 backdrop-blur-sm rounded-full p-2 shadow-lg">
+      <div className="max-w-7xl mx-auto px-2 md:px-4 sm:px-6 lg:px-8 mb-8">
+        <div className="flex justify-center relative">
+          {/* Slide Indicator - Only visible on screens ≤420px, flashes for 3 seconds */}
+          {showSlideIndicator && (
+            <div className="max-[420px]:flex hidden items-center absolute -right-1 top-1/2 -translate-y-1/2 z-10 pointer-events-none transition-opacity duration-500">
+              <div className="flex items-center gap-0.5 bg-[#D8A5B4]/70 backdrop-blur-sm rounded-full px-1.5 py-0.5 shadow-sm">
+                <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+                <span className="text-[9px] text-white font-medium" style={{ fontFamily: 'Work Sans, sans-serif' }}>→</span>
+              </div>
+            </div>
+          )}
+          <div className="flex gap-1.5 sm:gap-2 md:gap-3 bg-white/80 backdrop-blur-sm rounded-full p-1 sm:p-1.5 md:p-2 shadow-lg overflow-x-auto">
             {filters.map((filter) => (
               <button
                 key={filter.id}
                 onClick={() => setActiveFilter(filter.id)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-200 ${
+                className={`px-2.5 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-3 rounded-full text-xs sm:text-sm md:text-base font-medium transition-all duration-200 whitespace-nowrap ${
                   activeFilter === filter.id
                     ? 'bg-[#D8A5B4] text-white shadow-md'
                     : 'text-[#2C2C2C] hover:bg-[#FAF4F2] hover:text-[#A56C82]'
