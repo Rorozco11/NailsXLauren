@@ -466,6 +466,8 @@ export default function BookNow() {
                       className="w-full px-4 py-3 border border-[#E7E2E0] rounded-lg focus:ring-2 focus:ring-[#A56C82] focus:border-transparent transition-all duration-200"
                     >
                       <option value="">Select a time</option>
+                      <option value="7:00 AM">7:00 AM</option>
+                      <option value="8:00 AM">8:00 AM</option>
                       <option value="9:00 AM">9:00 AM</option>
                       <option value="10:00 AM">10:00 AM</option>
                       <option value="11:00 AM">11:00 AM</option>
@@ -475,6 +477,11 @@ export default function BookNow() {
                       <option value="3:00 PM">3:00 PM</option>
                       <option value="4:00 PM">4:00 PM</option>
                       <option value="5:00 PM">5:00 PM</option>
+                      <option value="6:00 PM">6:00 PM</option>
+                      <option value="7:00 PM">7:00 PM</option>
+                      <option value="8:00 PM">8:00 PM</option>
+                      <option value="9:00 PM">9:00 PM</option>
+                      <option value="10:00 PM">10:00 PM</option>
                     </select>
                   </div>
                   <div className="md:col-span-2">
