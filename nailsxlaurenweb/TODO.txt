@@ -1,7 +1,5 @@
 TODO:
 Services Photos
-✅Accomodate for mobile view
-✅Fix Search capability on admin page
-✅change Admin page layout
-✅Add Last 1 month, Last 3 months filters to admin page
+Investigate Gallery Pictures blank on live... (Lazy Load)
+Add CMS ability
 Biometrics for admin page

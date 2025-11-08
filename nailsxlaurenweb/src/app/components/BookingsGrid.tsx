@@ -662,9 +662,9 @@ export default function BookingsGrid() {
         flexDirection: 'row',
         justifyContent: 'flex-end', 
         alignItems: 'center', 
-        gap: 12, 
+        gap: isMobile ? 8 : 12, 
         marginBottom: 16,
-        flexWrap: 'wrap'
+        flexWrap: 'nowrap'
       }}>
         {/* Search and menu container */}
         <div style={{ 
@@ -687,9 +687,9 @@ export default function BookingsGrid() {
               border: 'none', 
               outline: 'none',
               fontFamily: 'Work Sans, sans-serif',
-              fontSize: '14px',
-              width: isMobile ? '150px' : '200px',
-              minWidth: isMobile ? '150px' : '200px'
+              fontSize: isMobile ? '12px' : '14px',
+              width: isMobile ? '120px' : '200px',
+              minWidth: isMobile ? '120px' : '200px'
             }}
           />
           <button 
@@ -720,8 +720,9 @@ export default function BookingsGrid() {
           display: 'flex',
           gap: 8,
           alignItems: 'center',
-          flexWrap: 'wrap',
-          position: 'relative'
+          flexWrap: 'nowrap',
+          position: 'relative',
+          flexShrink: 0
         }}>
           {/* Export Dropdown Button */}
           <div style={{ position: 'relative' }}>
