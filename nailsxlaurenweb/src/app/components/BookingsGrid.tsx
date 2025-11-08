@@ -57,7 +57,7 @@ export default function BookingsGrid() {
     if (filter === 'all') return data;
     
     const now = new Date();
-    let cutoffDate = new Date();
+    const cutoffDate = new Date();
     
     switch (filter) {
       case '3months':
@@ -346,8 +346,7 @@ export default function BookingsGrid() {
   function exportXLSX() {
     if (!gridApi || rows.length === 0) return;
     
-    // Get column definitions
-    const columns = ['full_name', 'phone_number', 'email', 'preferred_date', 'preferred_time', 'message', 'created_on', 'init_price'];
+    // Get column headers
     const headers = ['Full Name', 'Phone', 'Email', 'Preferred Date', 'Preferred Time', 'Message', 'Created On', 'Price'];
     
     // Prepare data
