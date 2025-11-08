@@ -100,7 +100,7 @@ export default function Services() {
         </div>
       </div>
 
-      {/* Add Ons Section */}
+      {/*  Section */}
       <div className="max-w-7xl mx-auto px-4 mb-16">
         <h2 className="text-[#2C2C2C] text-3xl font-normal text-center mb-8" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Add Ons</h2>
         <p className="text-[#2C2C2C] text-center mb-8 font-medium" style={{ fontFamily: 'Work Sans, sans-serif' }}>
@@ -109,27 +109,16 @@ export default function Services() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {addOns.map((service, index) => (
             <div key={index} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
-              <div className="relative h-48">
-                <Image
-                  src="/Images/laurenphoto.jpeg"
-                  alt={service.name}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <h3 className="text-white text-xl font-medium mb-1" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                    {service.name}
-                  </h3>
-                  <p className="text-[#D8A5B4] text-lg font-semibold" style={{ fontFamily: 'Work Sans, sans-serif' }}>
-                    {service.price}
-                    {service.price.includes('-') && (
-                      <span className="text-xs text-[#D8A5B4] opacity-75 ml-1">(varies)</span>
-                    )}
-                  </p>
-                </div>
-              </div>
               <div className="p-6">
+                <h3 className="text-[#2C2C2C] text-xl font-medium mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                  {service.name}
+                </h3>
+                <p className="text-[#D8A5B4] text-lg font-semibold mb-3" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+                  {service.price}
+                  {service.price.includes('-') && (
+                    <span className="text-xs text-[#D8A5B4] opacity-75 ml-1">(varies)</span>
+                  )}
+                </p>
                 <p className="text-[#2C2C2C] text-sm leading-relaxed" style={{ fontFamily: 'Work Sans, sans-serif' }}>
                   {service.description}
                 </p>

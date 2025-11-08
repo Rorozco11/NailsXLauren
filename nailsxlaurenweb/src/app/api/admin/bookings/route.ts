@@ -59,17 +59,17 @@ export async function GET(req: NextRequest) {
       .range(offset, offset + limit - 1);
 
     if (search.trim()) {
-      const s = `%${search.trim().toLowerCase()}%`;
-      // Use filter chaining with or() - Supabase supports .or()
-      // fields: full_name, phone_number, email, message, preferred_date::text, preferred_time::text
+      const searchTerm = search.trim().toLowerCase();
+      const searchPattern = `%${encodeURIComponent(searchTerm)}%`;
+      
+      // PostgREST filter syntax requires proper encoding for special characters
+      // URL encode the search term to handle spaces and special characters
+      // The format is: column.operator.value where value is URL encoded
       const orFilter = [
-        `full_name.ilike.${s}`,
-        `phone_number.ilike.${s}`,
-        `email.ilike.${s}`,
-        `message.ilike.${s}`,
-        // cast date/time to text to search by partial date/time if desired
-        `preferred_date::text.ilike.${s}`,
-        `preferred_time::text.ilike.${s}`
+        `full_name.ilike.${searchPattern}`,
+        `phone_number.ilike.${searchPattern}`,
+        `email.ilike.${searchPattern}`,
+        `message.ilike.${searchPattern}`
       ].join(',');
 
       query = supabase
