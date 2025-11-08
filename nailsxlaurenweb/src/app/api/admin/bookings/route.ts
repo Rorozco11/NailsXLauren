@@ -104,3 +104,50 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }
+
+export async function DELETE(req: NextRequest) {
+  console.log('🗑️ API DELETE /api/admin/bookings called at:', new Date().toISOString());
+  
+  // Check if Supabase is configured
+  if (!supabase) {
+    console.log(' Database not configured');
+    return NextResponse.json({ error: 'Database not configured' }, { status: 500 });
+  }
+
+  // Auth: Check custom session
+  const adminSession = req.cookies.get('admin_session')?.value;
+  
+  if (!adminSession) {
+    console.log(' No admin session');
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+  
+  console.log(' Admin session valid');
+
+  try {
+    const body = await req.json();
+    const { id } = body;
+
+    if (!id) {
+      return NextResponse.json({ error: 'Booking ID is required' }, { status: 400 });
+    }
+
+    console.log(' Deleting booking with ID:', id);
+
+    const { error } = await supabase
+      .from('bookings')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      console.error(' Supabase delete error', error);
+      return NextResponse.json({ error: 'Failed to delete booking' }, { status: 500 });
+    }
+
+    console.log('✅ Booking deleted successfully');
+    return NextResponse.json({ success: true, message: 'Booking deleted successfully' });
+  } catch (err) {
+    console.error(' Server error:', err);
+    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+  }
+}

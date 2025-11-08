@@ -128,6 +128,46 @@ export default function BookingsGrid() {
     return filtered.reduce((sum, booking) => sum + (booking.init_price || 0), 0);
   }, [allBookings, applyDateFilter]);
 
+  // Delete booking function
+  const handleDeleteBooking = useCallback(async () => {
+    if (!selectedRow) return;
+    
+    if (!window.confirm(`Are you sure you want to delete the booking for "${selectedRow.full_name}"? This action cannot be undone.`)) {
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/admin/bookings', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: selectedRow.id }),
+      });
+
+      if (!res.ok) {
+        const error = await res.json();
+        throw new Error(error.error || 'Failed to delete booking');
+      }
+
+      // Clear selection
+      setSelectedRow(null);
+      if (gridApi) {
+        gridApi.deselectAll();
+      }
+
+      // Refresh the grid data
+      await fetchData(q, 0);
+      await fetchAllBookings();
+      
+      // Show success message
+      alert('Booking deleted successfully');
+    } catch (err) {
+      console.error('Error deleting booking:', err);
+      alert(`Failed to delete booking: ${err instanceof Error ? err.message : 'Unknown error'}`);
+    }
+  }, [selectedRow, q, fetchData, fetchAllBookings, gridApi]);
+
 
   // Column definitions for AG Grid
   const columnDefs = useMemo<ColDef[]>(() => [
@@ -281,13 +321,21 @@ export default function BookingsGrid() {
     paginationPageSizeSelector: [10, 20, 50, 100],
     suppressPaginationPanel: false,
     animateRows: true,
-    rowSelection: 'multiple' as const,
+    rowSelection: 'single' as const,
     enableClickSelection: true,
     getRowStyle: (params: { data?: Booking }) => {
       if (selectedRow && params.data && params.data.id === selectedRow.id) {
         return { backgroundColor: '#f0e6f0', borderLeft: '4px solid #A56C82' };
       }
       return undefined;
+    },
+    onSelectionChanged: (params: { api: GridApi }) => {
+      const selectedRows = params.api.getSelectedRows();
+      if (selectedRows.length > 0) {
+        setSelectedRow(selectedRows[0]);
+      } else {
+        setSelectedRow(null);
+      }
     },
     onRowClicked: (params: { data?: Booking }) => {
       if (params.data) {
@@ -1079,6 +1127,46 @@ export default function BookingsGrid() {
                   </div>
                 </div>
               )}
+            </div>
+
+            {/* Delete Button */}
+            <div style={{
+              marginTop: '24px',
+              paddingTop: '20px',
+              borderTop: '2px solid #f0f0f0'
+            }}>
+              <button
+                onClick={handleDeleteBooking}
+                style={{
+                  width: '100%',
+                  background: '#dc2626',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '8px',
+                  padding: '12px 16px',
+                  fontFamily: 'Work Sans, sans-serif',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  transition: 'background 0.2s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#b91c1c';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = '#dc2626';
+                }}
+                title="Delete this booking"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                Delete Booking
+              </button>
             </div>
           </div>
         )}
