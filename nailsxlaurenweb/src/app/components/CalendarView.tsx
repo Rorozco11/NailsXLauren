@@ -84,7 +84,7 @@ export default function CalendarView() {
     });
 
     // Sort events by time within each date
-    eventsMap.forEach((events, dateKey) => {
+    eventsMap.forEach((events) => {
       events.sort((a, b) => {
         if (!a.time || a.time === 'Not specified') return 1;
         if (!b.time || b.time === 'Not specified') return -1;
@@ -656,7 +656,7 @@ export default function CalendarView() {
                         borderRadius: '4px',
                         fontStyle: 'italic'
                       }}>
-                        "{event.booking.message}"
+                        &ldquo;{event.booking.message}&rdquo;
                       </div>
                     )}
                     <div style={{
