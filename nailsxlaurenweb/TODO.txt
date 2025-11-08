@@ -1,5 +1,6 @@
 TODO:
 Services Photos
 Investigate Gallery Pictures blank on live... (Lazy Load)
+Add nail icon for apple phones
 Add CMS ability
 Biometrics for admin page

@@ -162,7 +162,6 @@ export default function Gallery() {
     { src: '/Images/posts/202510/18086017540918599.jpg', alt: 'Nail art design', category: 'seasonal' },
     { src: '/Images/posts/202510/18104864257620902.jpg', alt: 'Nail art design', category: 'solid' },
     { src: '/Images/posts/202510/18115494823546661.jpg', alt: 'Nail art design', category: 'seasonal' },
-    { src: '/Images/posts/202510/18117206320534349.jpg', alt: 'Nail art design', category: 'seasonal' },
     { src: '/Images/posts/202510/18145219633421934.jpg', alt: 'Nail art design', category: 'seasonal' },
     { src: '/Images/posts/202510/18188998117336415.jpg', alt: 'Nail art design', category: 'seasonal' },
     { src: '/Images/posts/202510/18208200073309380.jpg', alt: 'Nail art design', category: 'seasonal' },
@@ -191,7 +190,7 @@ export default function Gallery() {
     { src: '/Images/posts/202511/18061799296741579.jpg', alt: 'Nail art design', category: 'solid' },
     { src: '/Images/posts/202511/18061986211704654.jpg', alt: 'Nail art design', category: 'gelxset' },
     { src: '/Images/posts/202511/18103359877452188.jpg', alt: 'Nail art design', category: 'gelmanicure' },
-    
+
     // Homepic images
     { src: '/Images/homepic1.jpeg', alt: 'Beautiful nail art design', category: 'gelxset' },
     { src: '/Images/homepic2.jpeg', alt: 'Elegant nail design', category: 'gelmanicure' },
