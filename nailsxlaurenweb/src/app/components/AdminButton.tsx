@@ -99,16 +99,21 @@ export default function AdminButton() {
 
       <style jsx>{`
         .btn-admin { 
-          padding: .5rem 1rem; 
-          border-radius: 8px; 
-          background: #A56C82; 
-          color: #fff; 
-          border: none;
+          padding: .25rem .5rem; 
+          border-radius: 6px; 
+          background: #ffffff; 
+          color: #9ca3af; 
+          border: 1px solid #e5e7eb;
           cursor: pointer;
-          transition: background-color 0.2s;
+          font-size: 0.75rem;
+          transition: all 0.2s;
+          opacity: 0.7;
         }
         .btn-admin:hover {
-          background: #8B5A6B;
+          opacity: 1;
+          color: #6b7280;
+          border-color: #d1d5db;
+          background: #f9fafb;
         }
         .modal-overlay { 
           position: fixed; 

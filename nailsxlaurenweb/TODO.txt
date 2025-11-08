@@ -1,9 +1,9 @@
 TODO:
-Redisplay Logo
+✅Redisplay Logo
+✅Fix errors in console log
 Services Photos
 Accomodate for mobile view
 Fix Search capability on admin page
 change Admin page layout
 Add Last 1 month, Last 3 months filters to admin page
 Biometrics for admin page
-Fix errors in console log
