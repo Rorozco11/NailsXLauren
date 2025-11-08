@@ -17,9 +17,15 @@ const workSans = Work_Sans({
   variable: '--font-work-sans',
 });
 
+
 export const metadata: Metadata = {
   title: "Nails X Lauren",
   description: "Nail services including Gel X, manicures, and custom designs. Book your appointment today!",
+  icons: {
+    icon: '/favIcon.ico',
+    shortcut: '/favIcon.ico',
+    apple: '/nailappleicon.png',
+  },
 };
 
 export default function RootLayout({

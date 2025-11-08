@@ -30,6 +30,19 @@ export default function CalendarView() {
   const [editingBooking, setEditingBooking] = useState<Booking | null>(null);
   const [editDate, setEditDate] = useState<string>('');
   const [editTime, setEditTime] = useState<string>('');
+  const [isVerySmallScreen, setIsVerySmallScreen] = useState(false);
+
+  // Handle window resize for small to medium screens
+  useEffect(() => {
+    const handleResize = () => {
+      setIsVerySmallScreen(window.innerWidth >= 300 && window.innerWidth <= 700);
+    };
+    
+    handleResize(); // Set initial value
+    window.addEventListener('resize', handleResize);
+    
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Update current time every minute
   useEffect(() => {
@@ -268,7 +281,7 @@ export default function CalendarView() {
 
   return (
     <div style={{ 
-      padding: '20px',
+      padding: isVerySmallScreen ? '8px' : '20px',
       background: 'white',
       borderRadius: '12px',
       boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
@@ -279,42 +292,44 @@ export default function CalendarView() {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: '24px',
+        marginBottom: isVerySmallScreen ? '12px' : '24px',
         flexWrap: 'wrap',
-        gap: '12px'
+        gap: isVerySmallScreen ? '6px' : '12px'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: isVerySmallScreen ? '6px' : '16px', flexWrap: 'wrap' }}>
           <h2 style={{
             margin: 0,
-            fontSize: '24px',
+            fontSize: isVerySmallScreen ? '16px' : '24px',
             fontWeight: '600',
             color: '#2C2C2C',
             fontFamily: 'Cormorant Garamond, serif'
           }}>
-            {monthNames[month]} {year}
+            {isVerySmallScreen ? `${monthNames[month].substring(0, 3)} ${year}` : `${monthNames[month]} ${year}`}
           </h2>
           <div style={{
-            fontSize: '14px',
+            fontSize: isVerySmallScreen ? '10px' : '14px',
             color: '#666',
-            padding: '6px 12px',
+            padding: isVerySmallScreen ? '4px 6px' : '6px 12px',
             background: '#FAF4F2',
-            borderRadius: '6px'
+            borderRadius: '6px',
+            whiteSpace: 'nowrap'
           }}>
             {currentTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
           </div>
         </div>
-        <div style={{ display: 'flex', gap: '8px' }}>
+        <div style={{ display: 'flex', gap: isVerySmallScreen ? '4px' : '8px', flexWrap: 'wrap' }}>
           <button
             onClick={goToPreviousMonth}
             style={{
-              padding: '8px 12px',
+              padding: isVerySmallScreen ? '4px 6px' : '8px 12px',
               background: 'white',
               border: '1px solid #ddd',
               borderRadius: '6px',
               cursor: 'pointer',
-              fontSize: '14px',
+              fontSize: isVerySmallScreen ? '10px' : '14px',
               color: '#2C2C2C',
-              transition: 'all 0.2s'
+              transition: 'all 0.2s',
+              whiteSpace: 'nowrap'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = '#FAF4F2';
@@ -325,19 +340,20 @@ export default function CalendarView() {
               e.currentTarget.style.borderColor = '#ddd';
             }}
           >
-            ← Prev
+            {isVerySmallScreen ? '←' : '← Prev'}
           </button>
           <button
             onClick={goToToday}
             style={{
-              padding: '8px 12px',
+              padding: isVerySmallScreen ? '4px 6px' : '8px 12px',
               background: '#A56C82',
               border: 'none',
               borderRadius: '6px',
               cursor: 'pointer',
-              fontSize: '14px',
+              fontSize: isVerySmallScreen ? '10px' : '14px',
               color: 'white',
-              transition: 'all 0.2s'
+              transition: 'all 0.2s',
+              whiteSpace: 'nowrap'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = '#8B5A6B';
@@ -351,14 +367,15 @@ export default function CalendarView() {
           <button
             onClick={goToNextMonth}
             style={{
-              padding: '8px 12px',
+              padding: isVerySmallScreen ? '4px 6px' : '8px 12px',
               background: 'white',
               border: '1px solid #ddd',
               borderRadius: '6px',
               cursor: 'pointer',
-              fontSize: '14px',
+              fontSize: isVerySmallScreen ? '10px' : '14px',
               color: '#2C2C2C',
-              transition: 'all 0.2s'
+              transition: 'all 0.2s',
+              whiteSpace: 'nowrap'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = '#FAF4F2';
@@ -369,7 +386,7 @@ export default function CalendarView() {
               e.currentTarget.style.borderColor = '#ddd';
             }}
           >
-            Next →
+            {isVerySmallScreen ? '→' : 'Next →'}
           </button>
         </div>
       </div>
@@ -378,31 +395,31 @@ export default function CalendarView() {
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(7, 1fr)',
-        gap: '8px',
-        marginBottom: '16px'
+        gap: isVerySmallScreen ? '2px' : '8px',
+        marginBottom: isVerySmallScreen ? '12px' : '16px'
       }}>
         {/* Day headers */}
         {dayNames.map(day => (
           <div
             key={day}
             style={{
-              padding: '12px',
+              padding: isVerySmallScreen ? '4px 2px' : '12px',
               textAlign: 'center',
               fontWeight: '600',
-              fontSize: '12px',
+              fontSize: isVerySmallScreen ? '8px' : '12px',
               color: '#666',
               textTransform: 'uppercase',
-              letterSpacing: '0.5px'
+              letterSpacing: isVerySmallScreen ? '0.2px' : '0.5px'
             }}
           >
-            {day}
+            {isVerySmallScreen ? day.substring(0, 1) : day}
           </div>
         ))}
 
         {/* Calendar days */}
         {days.map((date, index) => {
           if (!date) {
-            return <div key={`empty-${index}`} style={{ minHeight: '100px' }} />;
+            return <div key={`empty-${index}`} style={{ minHeight: isVerySmallScreen ? '80px' : '100px' }} />;
           }
 
           const dateKey = date.toISOString().split('T')[0];
@@ -419,77 +436,91 @@ export default function CalendarView() {
                 }
               }}
               style={{
-                minHeight: '100px',
-                padding: '8px',
+                minHeight: isVerySmallScreen ? '80px' : '100px',
+                padding: isVerySmallScreen ? '3px' : '8px',
                 border: isCurrentDay ? '2px solid #A56C82' : '1px solid #e5e7eb',
-                borderRadius: '8px',
+                borderRadius: isVerySmallScreen ? '4px' : '8px',
                 background: isCurrentDay ? '#FAF4F2' : 'white',
                 position: 'relative',
                 cursor: dayEvents.length > 0 ? 'pointer' : 'default',
                 transition: 'all 0.2s'
               }}
               onMouseEnter={(e) => {
-                if (dayEvents.length > 0) {
+                if (dayEvents.length > 0 && !isVerySmallScreen) {
                   e.currentTarget.style.transform = 'scale(1.02)';
                   e.currentTarget.style.boxShadow = '0 2px 8px rgba(165, 108, 130, 0.2)';
                 }
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-                e.currentTarget.style.boxShadow = 'none';
+                if (!isVerySmallScreen) {
+                  e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }
               }}
             >
               <div style={{
-                fontSize: '14px',
+                fontSize: isVerySmallScreen ? '10px' : '14px',
                 fontWeight: isCurrentDay ? '700' : '600',
                 color: isCurrentDay ? '#A56C82' : '#2C2C2C',
-                marginBottom: '4px'
+                marginBottom: isVerySmallScreen ? '2px' : '4px'
               }}>
                 {date.getDate()}
               </div>
               <div style={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '4px',
-                maxHeight: '70px',
+                gap: isVerySmallScreen ? '2px' : '4px',
+                maxHeight: isVerySmallScreen ? '55px' : '70px',
                 overflowY: 'auto'
               }}>
-                {dayEvents.slice(0, 3).map((event, idx) => (
+                {dayEvents.slice(0, isVerySmallScreen ? 2 : 3).map((event, idx) => (
                   <div
                     key={`${event.booking.id}-${idx}`}
                     style={{
-                      fontSize: '11px',
-                      padding: '4px 6px',
+                      fontSize: isVerySmallScreen ? '8px' : '11px',
+                      padding: isVerySmallScreen ? '2px 3px' : '4px 6px',
                       background: '#A56C82',
                       color: 'white',
-                      borderRadius: '4px',
+                      borderRadius: isVerySmallScreen ? '2px' : '4px',
                       cursor: 'pointer',
                       transition: 'opacity 0.2s'
                     }}
                     title={`${event.booking.full_name} - ${formatTime(event.time)}`}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.opacity = '0.8';
+                      if (!isVerySmallScreen) {
+                        e.currentTarget.style.opacity = '0.8';
+                      }
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.opacity = '1';
+                      if (!isVerySmallScreen) {
+                        e.currentTarget.style.opacity = '1';
+                      }
                     }}
                   >
-                    <div style={{ fontWeight: '600', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                      {event.booking.full_name}
+                    <div style={{ 
+                      fontWeight: '600', 
+                      whiteSpace: 'nowrap', 
+                      overflow: 'hidden', 
+                      textOverflow: 'ellipsis',
+                      fontSize: isVerySmallScreen ? '8px' : '11px'
+                    }}>
+                      {isVerySmallScreen ? event.booking.full_name.split(' ')[0] : event.booking.full_name}
                     </div>
-                    <div style={{ fontSize: '10px', opacity: 0.9 }}>
-                      {formatTime(event.time)}
-                    </div>
+                    {!isVerySmallScreen && (
+                      <div style={{ fontSize: '10px', opacity: 0.9 }}>
+                        {formatTime(event.time)}
+                      </div>
+                    )}
                   </div>
                 ))}
-                {dayEvents.length > 3 && (
+                {dayEvents.length > (isVerySmallScreen ? 2 : 3) && (
                   <div style={{
-                    fontSize: '11px',
+                    fontSize: isVerySmallScreen ? '8px' : '11px',
                     color: '#A56C82',
                     fontWeight: '600',
                     padding: '2px 4px'
                   }}>
-                    +{dayEvents.length - 3} more
+                    +{dayEvents.length - (isVerySmallScreen ? 2 : 3)} more
                   </div>
                 )}
               </div>
@@ -500,20 +531,20 @@ export default function CalendarView() {
 
       {/* Legend/Stats */}
       <div style={{
-        padding: '16px',
+        padding: isVerySmallScreen ? '8px' : '16px',
         background: '#FAF4F2',
         borderRadius: '8px',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
         flexWrap: 'wrap',
-        gap: '12px'
+        gap: isVerySmallScreen ? '6px' : '12px'
       }}>
-        <div style={{ fontSize: '14px', color: '#2C2C2C' }}>
-          <strong>{bookings.filter(b => b.preferred_date).length}</strong> bookings with dates
+        <div style={{ fontSize: isVerySmallScreen ? '10px' : '14px', color: '#2C2C2C' }}>
+          <strong>{bookings.filter(b => b.preferred_date).length}</strong> {isVerySmallScreen ? 'bookings' : 'bookings with dates'}
         </div>
-        <div style={{ fontSize: '12px', color: '#666' }}>
-          Last updated: {currentTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
+        <div style={{ fontSize: isVerySmallScreen ? '9px' : '12px', color: '#666' }}>
+          {isVerySmallScreen ? 'Updated: ' : 'Last updated: '}{currentTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
         </div>
       </div>
 
@@ -532,7 +563,7 @@ export default function CalendarView() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: '20px'
+              padding: isVerySmallScreen ? '8px' : '20px'
             }}
             onClick={() => {
               setSelectedDate(null);
@@ -543,8 +574,8 @@ export default function CalendarView() {
               style={{
                 background: 'white',
                 borderRadius: '12px',
-                padding: '24px',
-                maxWidth: '600px',
+                padding: isVerySmallScreen ? '12px' : '24px',
+                maxWidth: isVerySmallScreen ? '100%' : '600px',
                 width: '100%',
                 maxHeight: '80vh',
                 overflowY: 'auto',
@@ -556,21 +587,21 @@ export default function CalendarView() {
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                marginBottom: '20px',
+                marginBottom: isVerySmallScreen ? '12px' : '20px',
                 borderBottom: '2px solid #f0f0f0',
-                paddingBottom: '12px'
+                paddingBottom: isVerySmallScreen ? '8px' : '12px'
               }}>
                 <h3 style={{
                   margin: 0,
-                  fontSize: '20px',
+                  fontSize: isVerySmallScreen ? '14px' : '20px',
                   fontWeight: '600',
                   color: '#2C2C2C',
                   fontFamily: 'Cormorant Garamond, serif'
                 }}>
                   {new Date(selectedDate).toLocaleDateString('en-US', { 
-                    weekday: 'long', 
+                    weekday: isVerySmallScreen ? 'short' : 'long', 
                     year: 'numeric', 
-                    month: 'long', 
+                    month: isVerySmallScreen ? 'short' : 'long', 
                     day: 'numeric' 
                   })}
                 </h3>
@@ -596,12 +627,12 @@ export default function CalendarView() {
                 </button>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: isVerySmallScreen ? '8px' : '12px' }}>
                 {selectedDateEvents.map((event, idx) => (
                   <div
                     key={`${event.booking.id}-${idx}`}
                     style={{
-                      padding: '16px',
+                      padding: isVerySmallScreen ? '10px' : '16px',
                       background: '#FAF4F2',
                       borderRadius: '8px',
                       border: '1px solid #e5e7eb'
@@ -611,19 +642,19 @@ export default function CalendarView() {
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'flex-start',
-                      marginBottom: '8px'
+                      marginBottom: isVerySmallScreen ? '6px' : '8px'
                     }}>
                       <div>
                         <div style={{
-                          fontSize: '16px',
+                          fontSize: isVerySmallScreen ? '13px' : '16px',
                           fontWeight: '600',
                           color: '#2C2C2C',
-                          marginBottom: '4px'
+                          marginBottom: isVerySmallScreen ? '2px' : '4px'
                         }}>
                           {event.booking.full_name}
                         </div>
                         <div style={{
-                          fontSize: '14px',
+                          fontSize: isVerySmallScreen ? '11px' : '14px',
                           color: '#A56C82',
                           fontWeight: '600'
                         }}>
@@ -632,26 +663,26 @@ export default function CalendarView() {
                       </div>
                     </div>
                     {event.booking.phone_number && (
-                      <div style={{ fontSize: '13px', color: '#666', marginTop: '8px' }}>
+                      <div style={{ fontSize: isVerySmallScreen ? '11px' : '13px', color: '#666', marginTop: isVerySmallScreen ? '6px' : '8px' }}>
                         📞 {event.booking.phone_number}
                       </div>
                     )}
                     {event.booking.email && (
-                      <div style={{ fontSize: '13px', color: '#666', marginTop: '4px' }}>
+                      <div style={{ fontSize: isVerySmallScreen ? '11px' : '13px', color: '#666', marginTop: '4px' }}>
                         ✉️ {event.booking.email}
                       </div>
                     )}
                     {event.booking.init_price && (
-                      <div style={{ fontSize: '13px', color: '#666', marginTop: '4px', fontWeight: '600' }}>
+                      <div style={{ fontSize: isVerySmallScreen ? '11px' : '13px', color: '#666', marginTop: '4px', fontWeight: '600' }}>
                         💰 ${event.booking.init_price}
                       </div>
                     )}
                     {event.booking.message && (
                       <div style={{
-                        fontSize: '13px',
+                        fontSize: isVerySmallScreen ? '11px' : '13px',
                         color: '#666',
-                        marginTop: '8px',
-                        padding: '8px',
+                        marginTop: isVerySmallScreen ? '6px' : '8px',
+                        padding: isVerySmallScreen ? '6px' : '8px',
                         background: 'white',
                         borderRadius: '4px',
                         fontStyle: 'italic'
@@ -660,8 +691,8 @@ export default function CalendarView() {
                       </div>
                     )}
                     <div style={{
-                      marginTop: '16px',
-                      paddingTop: '12px',
+                      marginTop: isVerySmallScreen ? '10px' : '16px',
+                      paddingTop: isVerySmallScreen ? '8px' : '12px',
                       borderTop: '1px solid #e5e7eb',
                       display: 'flex',
                       gap: '8px'
@@ -672,13 +703,13 @@ export default function CalendarView() {
                           handleEditBooking(event.booking);
                         }}
                         style={{
-                          padding: '10px 20px',
+                          padding: isVerySmallScreen ? '8px 12px' : '10px 20px',
                           background: '#64748b',
                           color: 'white',
                           border: 'none',
                           borderRadius: '6px',
                           cursor: 'pointer',
-                          fontSize: '14px',
+                          fontSize: isVerySmallScreen ? '12px' : '14px',
                           fontWeight: '600',
                           transition: 'background 0.2s',
                           fontFamily: 'Work Sans, sans-serif',
@@ -720,7 +751,7 @@ export default function CalendarView() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: '20px'
+              padding: isVerySmallScreen ? '8px' : '20px'
             }}
             onClick={() => {
               setEditingBooking(null);
@@ -732,8 +763,8 @@ export default function CalendarView() {
               style={{
                 background: 'white',
                 borderRadius: '12px',
-                padding: '24px',
-                maxWidth: '500px',
+                padding: isVerySmallScreen ? '12px' : '24px',
+                maxWidth: isVerySmallScreen ? '100%' : '500px',
                 width: '100%',
                 boxShadow: '0 4px 20px rgba(0,0,0,0.3)'
               }}
@@ -743,18 +774,18 @@ export default function CalendarView() {
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                marginBottom: '20px',
+                marginBottom: isVerySmallScreen ? '12px' : '20px',
                 borderBottom: '2px solid #f0f0f0',
-                paddingBottom: '12px'
+                paddingBottom: isVerySmallScreen ? '8px' : '12px'
               }}>
                 <h3 style={{
                   margin: 0,
-                  fontSize: '20px',
+                  fontSize: isVerySmallScreen ? '14px' : '20px',
                   fontWeight: '600',
                   color: '#2C2C2C',
                   fontFamily: 'Cormorant Garamond, serif'
                 }}>
-                  Edit Booking - {editingBooking.full_name}
+                  {isVerySmallScreen ? 'Edit' : 'Edit Booking'} - {editingBooking.full_name}
                 </h3>
                 <button
                   onClick={() => {
@@ -779,14 +810,14 @@ export default function CalendarView() {
                 </button>
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: isVerySmallScreen ? '12px' : '16px' }}>
                 <div>
                   <label style={{
                     display: 'block',
-                    fontSize: '14px',
+                    fontSize: isVerySmallScreen ? '12px' : '14px',
                     fontWeight: '600',
                     color: '#2C2C2C',
-                    marginBottom: '8px',
+                    marginBottom: isVerySmallScreen ? '6px' : '8px',
                     fontFamily: 'Work Sans, sans-serif'
                   }}>
                     Preferred Date
@@ -797,10 +828,10 @@ export default function CalendarView() {
                     onChange={(e) => setEditDate(e.target.value)}
                     style={{
                       width: '100%',
-                      padding: '10px',
+                      padding: isVerySmallScreen ? '8px' : '10px',
                       border: '1px solid #ddd',
                       borderRadius: '6px',
-                      fontSize: '14px',
+                      fontSize: isVerySmallScreen ? '12px' : '14px',
                       fontFamily: 'Work Sans, sans-serif',
                       boxSizing: 'border-box'
                     }}
@@ -810,10 +841,10 @@ export default function CalendarView() {
                 <div>
                   <label style={{
                     display: 'block',
-                    fontSize: '14px',
+                    fontSize: isVerySmallScreen ? '12px' : '14px',
                     fontWeight: '600',
                     color: '#2C2C2C',
-                    marginBottom: '8px',
+                    marginBottom: isVerySmallScreen ? '6px' : '8px',
                     fontFamily: 'Work Sans, sans-serif'
                   }}>
                     Preferred Time
@@ -824,10 +855,10 @@ export default function CalendarView() {
                     onChange={(e) => setEditTime(e.target.value)}
                     style={{
                       width: '100%',
-                      padding: '10px',
+                      padding: isVerySmallScreen ? '8px' : '10px',
                       border: '1px solid #ddd',
                       borderRadius: '6px',
-                      fontSize: '14px',
+                      fontSize: isVerySmallScreen ? '12px' : '14px',
                       fontFamily: 'Work Sans, sans-serif',
                       boxSizing: 'border-box'
                     }}
@@ -836,20 +867,21 @@ export default function CalendarView() {
 
                 <div style={{
                   display: 'flex',
-                  gap: '12px',
+                  flexDirection: isVerySmallScreen ? 'column' : 'row',
+                  gap: isVerySmallScreen ? '8px' : '12px',
                   marginTop: '8px'
                 }}>
                   <button
                     onClick={handleSaveBooking}
                     style={{
                       flex: 1,
-                      padding: '12px',
+                      padding: isVerySmallScreen ? '10px' : '12px',
                       background: '#A56C82',
                       color: 'white',
                       border: 'none',
                       borderRadius: '6px',
                       cursor: 'pointer',
-                      fontSize: '14px',
+                      fontSize: isVerySmallScreen ? '12px' : '14px',
                       fontWeight: '600',
                       transition: 'background 0.2s',
                       fontFamily: 'Work Sans, sans-serif'
@@ -866,16 +898,17 @@ export default function CalendarView() {
                   <button
                     onClick={() => handleDeleteBooking(editingBooking.id, editingBooking.full_name)}
                     style={{
-                      padding: '12px 20px',
+                      padding: isVerySmallScreen ? '10px' : '12px 20px',
                       background: '#dc2626',
                       color: 'white',
                       border: 'none',
                       borderRadius: '6px',
                       cursor: 'pointer',
-                      fontSize: '14px',
+                      fontSize: isVerySmallScreen ? '12px' : '14px',
                       fontWeight: '600',
                       transition: 'background 0.2s',
-                      fontFamily: 'Work Sans, sans-serif'
+                      fontFamily: 'Work Sans, sans-serif',
+                      width: isVerySmallScreen ? '100%' : 'auto'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.background = '#b91c1c';
