@@ -19,13 +19,13 @@ export default function Header() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <div className="w-20 h-20 sm:w-16 sm:h-16 md:w-18 md:h-18 lg:w-24 lg:h-24 rounded-full bg-[#AA538A] overflow-hidden">
+            <div className="w-20 h-20 sm:w-16 sm:h-16 md:w-18 md:h-18 lg:w-24 lg:h-24 overflow-hidden bg-[#FAF4F2]">
               <Image 
                 src="/Images/nailxlaurenlogo.png" 
                 alt="Nails X Lauren"
                 width={80}
                 height={80}
-                className="w-full h-full object-cover shadow-sm hover:shadow-lg transition-all duration-300 scale-110"
+                className="w-full h-full object-cover"
               />
             </div>
           </Link>

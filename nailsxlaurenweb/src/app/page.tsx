@@ -7,42 +7,42 @@ export default function Home() {
       
 
       {/* Hero Section */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-[#FAF4F2] via-white to-[#F5E8E3]">
-        <div className="max-w-7xl mx-auto px-6 py-12 md:py-20">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh]">
+      <section className="relative min-h-[60vh] md:min-h-screen w-full overflow-hidden bg-gradient-to-br from-[#FAF4F2] via-white to-[#F5E8E3]">
+        <div className="max-w-7xl mx-auto px-6 pt-6 pb-8 md:py-20">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[50vh] md:min-h-[80vh]">
             
             {/* Left Side - Content */}
-            <div className="relative z-10 order-2 lg:order-1">
-              <div className="space-y-8">
+            <div className="relative z-10 order-2 md:order-1 text-center md:text-left">
+              <div className="space-y-4 md:space-y-8">
                 {/* Decorative Element */}
                 <div className="absolute -top-8 -left-8 w-32 h-32 bg-[#D8A5B4]/10 rounded-full blur-3xl"></div>
                 
                 {/* Heading */}
                 <div className="relative">
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-normal text-[#2C2C2C] mb-6 leading-tight" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                  <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-normal text-[#2C2C2C] mb-3 md:mb-6 leading-tight" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                     Modern, mindful
                     <span className="block text-[#D8A5B4]">nail care.</span>
                   </h1>
-                  <div className="w-24 h-1 bg-gradient-to-r from-[#D8A5B4] to-transparent mb-8"></div>
+                  <div className="w-24 h-1 bg-gradient-to-r from-[#D8A5B4] to-transparent mb-4 md:mb-8 mx-auto md:mx-0"></div>
                 </div>
                 
                 {/* Description */}
-                <p className="text-xl md:text-2xl text-[#5A5A5A] leading-relaxed max-w-xl" style={{ fontFamily: 'Inter, sans-serif' }}>
+                <p className="text-xl md:text-2xl text-[#5A5A5A] leading-relaxed max-w-xl mx-auto md:mx-0" style={{ fontFamily: 'Inter, sans-serif' }}>
                   Clean, long-lasting manicures and nail art that reflect your unique style.
                 </p>
                 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <div className="flex flex-row gap-3 sm:gap-4 pt-2 md:pt-4 justify-center md:justify-start">
                   <Link 
                     href="/booknow"
-                    className="inline-flex items-center justify-center px-8 py-4 bg-[#D8A5B4] text-white font-medium rounded-full hover:bg-[#A56C82] transition-all duration-300 text-lg shadow-lg hover:shadow-xl hover:scale-105 min-h-[56px]"
+                    className="inline-flex items-center justify-center px-4 py-2.5 sm:px-8 sm:py-4 bg-[#D8A5B4] text-white font-medium rounded-full hover:bg-[#A56C82] transition-all duration-300 text-sm sm:text-lg shadow-lg hover:shadow-xl hover:scale-105 min-h-[40px] sm:min-h-[56px]"
                     style={{ fontFamily: 'Inter, sans-serif' }}
                   >
                     Book Now
                   </Link>
                   <Link 
                     href="/services"
-                    className="inline-flex items-center justify-center px-8 py-4 border-2 border-[#D8A5B4] text-[#D8A5B4] font-medium rounded-full hover:bg-[#D8A5B4] hover:text-white transition-all duration-300 text-lg min-h-[56px] shadow-md hover:shadow-lg hover:scale-105"
+                    className="inline-flex items-center justify-center px-4 py-2.5 sm:px-8 sm:py-4 border-2 border-[#D8A5B4] text-[#D8A5B4] font-medium rounded-full hover:bg-[#D8A5B4] hover:text-white transition-all duration-300 text-sm sm:text-lg min-h-[40px] sm:min-h-[56px] shadow-md hover:shadow-lg hover:scale-105"
                     style={{ fontFamily: 'Inter, sans-serif' }}
                   >
                     View Services
@@ -51,8 +51,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Side - Featured Image */}
-            <div className="relative order-1 lg:order-2">
+            {/* Right Side - Featured Image - Hidden on mobile, shown on tablet and desktop */}
+            <div className="hidden md:block relative order-1 md:order-2">
               {/* Decorative Background Elements */}
               <div className="absolute -top-12 -right-12 w-64 h-64 bg-[#D8A5B4]/5 rounded-full blur-3xl"></div>
               <div className="absolute -bottom-8 -left-8 w-48 h-48 bg-[#D8A5B4]/10 rounded-full blur-2xl"></div>
@@ -76,10 +76,6 @@ export default function Home() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent"></div>
                   </div>
                   
-                  {/* Decorative corner accent */}
-                  <div className="absolute top-0 right-0 w-24 h-24">
-                    <div className="absolute top-4 right-4 w-16 h-16 border-2 border-[#D8A5B4]/30 rounded-lg transform rotate-12"></div>
-                  </div>
                 </div>
                 
                 {/* Floating accent element */}
@@ -95,7 +91,7 @@ export default function Home() {
 
 
       {/* Instagram Gallery Preview */}
-      <section className="bg-[#FAF4F2] py-16">
+      <section className="bg-[#FAF4F2] py-8 md:py-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-normal text-[#2C2C2C] mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Latest Work</h2>
@@ -107,7 +103,7 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
             <div className="aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
               <Image
-                src="/Images/posts/202511/17867825208229173.jpg"
+                src="/Images/IMG_3101.jpg"
                 alt="Nail art design"
                 width={200}
                 height={200}
@@ -116,7 +112,7 @@ export default function Home() {
             </div>
             <div className="aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
               <Image
-                src="/Images/posts/202511/18037103918184064.jpg"
+                src="/Images/IMG_3634.jpg"
                 alt="Nail art design"
                 width={200}
                 height={200}
@@ -125,7 +121,7 @@ export default function Home() {
             </div>
             <div className="aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
               <Image
-                src="/Images/posts/202511/17901097451983396.jpg"
+                src="/Images/IMG_6979.jpg"
                 alt="Nail art design"
                 width={200}
                 height={200}
@@ -134,7 +130,7 @@ export default function Home() {
             </div>
             <div className="aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
               <Image
-                src="/Images/posts/202511/17918189954901783.jpg"
+                src="/Images/IMG_7041.jpg"
                 alt="Nail art design"
                 width={200}
                 height={200}
@@ -143,7 +139,7 @@ export default function Home() {
             </div>
             <div className="aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
               <Image
-                src="/Images/posts/202511/17946028022857400.jpg"
+                src="/Images/IMG_8501.jpg"
                 alt="Nail art design"
                 width={200}
                 height={200}
@@ -152,7 +148,7 @@ export default function Home() {
             </div>
             <div className="aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
         <Image 
-                src="/Images/posts/202511/17984819468751793.jpg"
+                src="/Images/IMG_9845.jpg"
                 alt="Nail art design"
                 width={200}
                 height={200}

@@ -11,13 +11,13 @@ export default function Footer() {
           {/* Logo Section */}
           <div className="flex justify-center lg:justify-start">
             <Link href="/" className="flex-shrink-0">
-              <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-full bg-[#AA538A] overflow-hidden">
+              <div className="w-16 h-16 lg:w-20 lg:h-20 overflow-hidden">
                 <Image 
                   src="/Images/nailxlaurenlogo.png" 
                   alt="Nails X Lauren"
                   width={80}
                   height={80}
-                  className="w-full h-full object-cover shadow-sm hover:shadow-lg transition-all duration-300 scale-110 hover:scale-105"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </Link>
