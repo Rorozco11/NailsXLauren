@@ -3,6 +3,7 @@ import React, { Suspense } from 'react';
 import BookingsGrid from '../components/BookingsGrid';
 import AdminTabs from '../components/AdminTabs';
 import LogsView from '../components/LogsView';
+import CalendarView from '../components/CalendarView';
 import SuccessMessage from '../components/SuccessMessage';
 
 import { redirect } from 'next/navigation'
@@ -25,6 +26,11 @@ export default async function AdminPage() {
       id: 'home',
       label: 'Home',
       content: <BookingsGrid />
+    },
+    {
+      id: 'calendar',
+      label: 'Calendar',
+      content: <CalendarView />
     },
     {
       id: 'logs',

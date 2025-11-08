@@ -151,3 +151,58 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ error: 'Server error' }, { status: 500 });
   }
 }
+
+export async function PUT(req: NextRequest) {
+  console.log('✏️ API PUT /api/admin/bookings called at:', new Date().toISOString());
+  
+  // Check if Supabase is configured
+  if (!supabase) {
+    console.log(' Database not configured');
+    return NextResponse.json({ error: 'Database not configured' }, { status: 500 });
+  }
+
+  // Auth: Check custom session
+  const adminSession = req.cookies.get('admin_session')?.value;
+  
+  if (!adminSession) {
+    console.log(' No admin session');
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+  
+  console.log(' Admin session valid');
+
+  try {
+    const body = await req.json();
+    const { id, preferred_date, preferred_time } = body;
+
+    if (!id) {
+      return NextResponse.json({ error: 'Booking ID is required' }, { status: 400 });
+    }
+
+    console.log(' Updating booking with ID:', id, { preferred_date, preferred_time });
+
+    const updateData: { preferred_date?: string | null; preferred_time?: string | null } = {};
+    if (preferred_date !== undefined) {
+      updateData.preferred_date = preferred_date || null;
+    }
+    if (preferred_time !== undefined) {
+      updateData.preferred_time = preferred_time || null;
+    }
+
+    const { error } = await supabase
+      .from('bookings')
+      .update(updateData)
+      .eq('id', id);
+
+    if (error) {
+      console.error(' Supabase update error', error);
+      return NextResponse.json({ error: 'Failed to update booking' }, { status: 500 });
+    }
+
+    console.log('✅ Booking updated successfully');
+    return NextResponse.json({ success: true, message: 'Booking updated successfully' });
+  } catch (err) {
+    console.error(' Server error:', err);
+    return NextResponse.json({ error: 'Server error' }, { status: 500 });
+  }
+}
