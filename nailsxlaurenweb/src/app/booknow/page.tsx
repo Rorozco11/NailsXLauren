@@ -16,17 +16,17 @@ const services: Service[] = [
     {
       id: 'gelxset',
       name: 'Gel X Set',
-      price: '$40',
-      minPrice: 40,
-      maxPrice: 40,
+      price: '$45',
+      minPrice: 45,
+      maxPrice: 45,
       description: 'Full set with Gel X extensions'
     },
     {
       id: 'gel-manicure',
       name: 'Gel Manicure',
-      price: '$25',
-      minPrice: 25,
-      maxPrice: 25,
+      price: '$30',
+      minPrice: 30,
+      maxPrice: 30,
       description: 'Long-lasting gel polish with UV curing'
     },
   {

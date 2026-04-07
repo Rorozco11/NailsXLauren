@@ -4,13 +4,13 @@ export default function Services() {
   const mainServices = [
     {
       name: "Gel X Set",
-      price: "$40",
+      price: "$45",
       description: "Full set with gel extensions for long-lasting, beautiful nails",
       image: "/Images/gelxset.jpg"
     },
     {
       name: "Gel Manicure",
-      price: "$25",
+      price: "$30",
       description: "Classic gel manicure for natural nail enhancement",
       image: "/Images/reg.jpg"
     },
