@@ -12,7 +12,7 @@ const supabase = SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY
     })
   : null;
 
-// Services array to calculate pricing
+// Services array to calculate pricing test
 const services = [
   { id: 'gelxset', name: 'Gel X Set', price: '$45', minPrice: 45, maxPrice: 45 },
   { id: 'gel-manicure', name: 'Gel Manicure', price: '$30', minPrice: 30, maxPrice: 30 },
