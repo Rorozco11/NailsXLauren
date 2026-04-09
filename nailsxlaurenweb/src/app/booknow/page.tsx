@@ -32,9 +32,9 @@ const services: Service[] = [
   {
     id: 'soak-off',
     name: 'Soak Off',
-    price: '$5-$8',
+    price: '$5-$10',
     minPrice: 5,
-    maxPrice: 8,
+    maxPrice: 10,
     description: 'Remove existing gel polish safely'
   },
   {

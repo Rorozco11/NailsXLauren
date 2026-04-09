@@ -16,7 +16,7 @@ export default function Services() {
     },
     {
       name: "Soak Off",
-      price: "$5-$8",
+      price: "$5-$10",
       description: "Gentle removal of gel polish and extensions",
       image: "/Images/soakoff.jpg"
     }
