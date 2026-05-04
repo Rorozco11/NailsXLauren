@@ -1,5 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/utils/supabase/server';
+import { createClient } from '@supabase/supabase-js';
+
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+const supabase = SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY
+  ? createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
+  : null;
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,14 +20,16 @@ export async function POST(request: NextRequest) {
       formDataKeys: Array.from(formData.keys())
     });
 
+    if (!supabase) {
+      console.log('[Login Route] Database not configured');
+      return NextResponse.redirect(new URL('/?login=error&message=Database not configured', request.url));
+    }
+
     if (!username) {
       console.log('[Login Route] No username provided');
-      // Redirect to home with error parameter for form submissions
       return NextResponse.redirect(new URL('/?login=error&message=Username required', request.url));
     }
 
-    const supabase = await createClient();
-    
     console.log('[Login Route] Querying database for username:', username.trim());
     
     // Check if username exists in users table

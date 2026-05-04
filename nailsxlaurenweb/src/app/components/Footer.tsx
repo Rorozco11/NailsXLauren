@@ -65,9 +65,22 @@ export default function Footer() {
         {/* Bottom Border */}
         <div className="mt-8 pt-6 border-t border-[#E7E2E0]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-[#2C2C2C] text-sm" style={{ fontFamily: 'Work Sans, sans-serif' }}>
-              © 2025 Nails X Lauren. All rights reserved.
-            </p>
+            <div className="flex flex-col items-center md:items-start gap-1">
+              <p className="text-[#2C2C2C] text-sm" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+                © 2025 Nails X Lauren. All rights reserved.
+              </p>
+              <p className="text-[#8A8A8A] text-xs" style={{ fontFamily: 'Work Sans, sans-serif' }}>
+                Website Made by{' '}
+                <a
+                  href="https://ryanorozcoresume.netlify.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#A56C82] hover:text-[#D8A5B4] transition-colors duration-200"
+                >
+                  Ryan Orozco
+                </a>
+              </p>
+            </div>
             <div className="flex gap-6 text-sm">
               <Link href="/services" className="text-[#2C2C2C] hover:text-[#A56C82] transition-colors duration-200" style={{ fontFamily: 'Work Sans, sans-serif' }}>
                 Services
