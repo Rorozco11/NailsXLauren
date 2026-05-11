@@ -3,11 +3,18 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
+import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 
-import { createClient } from '@/utils/supabase/server'
+function createAdminClient() {
+  return createSupabaseClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    { auth: { persistSession: false } }
+  )
+}
 
 export async function login(formData: FormData) {
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const username = formData.get('username') as string
 
   console.log('username', username)
