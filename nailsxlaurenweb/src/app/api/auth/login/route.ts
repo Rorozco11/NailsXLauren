@@ -22,12 +22,12 @@ export async function POST(request: NextRequest) {
 
     if (!supabase) {
       console.log('[Login Route] Database not configured');
-      return NextResponse.redirect(new URL('/?login=error&message=Database not configured', request.url));
+      return NextResponse.redirect(new URL('/?login=error&message=Database not configured', request.url), { status: 303 });
     }
 
     if (!username) {
       console.log('[Login Route] No username provided');
-      return NextResponse.redirect(new URL('/?login=error&message=Username required', request.url));
+      return NextResponse.redirect(new URL('/?login=error&message=Username required', request.url), { status: 303 });
     }
 
     console.log('[Login Route] Querying database for username:', username.trim());
@@ -55,27 +55,27 @@ export async function POST(request: NextRequest) {
       console.log('[Login Route] Supabase error:', error);
       // Redirect to home with error for form submissions
       if (error.code === 'PGRST116') {
-        return NextResponse.redirect(new URL('/?login=error&message=Invalid username', request.url));
+        return NextResponse.redirect(new URL('/?login=error&message=Invalid username', request.url), { status: 303 });
       }
-      return NextResponse.redirect(new URL('/?login=error&message=Database error', request.url));
+      return NextResponse.redirect(new URL('/?login=error&message=Database error', request.url), { status: 303 });
     }
 
     if (!user) {
       console.log('[Login Route] No user found with username:', username);
-      return NextResponse.redirect(new URL('/?login=error&message=Invalid username', request.url));
+      return NextResponse.redirect(new URL('/?login=error&message=Invalid username', request.url), { status: 303 });
     }
 
     // Ensure user.id exists
     if (!user.id) {
       console.error('User ID is missing');
-      return NextResponse.redirect(new URL('/?login=error&message=User ID missing', request.url));
+      return NextResponse.redirect(new URL('/?login=error&message=User ID missing', request.url), { status: 303 });
     }
 
     // Create redirect URL
     const redirectUrl = new URL('/adminpage?login=success', request.url);
-    
-    // Create response with redirect (307 preserves POST method, but we want GET)
-    const response = NextResponse.redirect(redirectUrl, { status: 302 });
+
+    // 303 See Other → forces browser to GET the redirect target
+    const response = NextResponse.redirect(redirectUrl, { status: 303 });
     
     // Set cookie in the response headers
     const userId = String(user.id);
@@ -96,7 +96,7 @@ export async function POST(request: NextRequest) {
     return response;
   } catch (error) {
     console.error('[Login Route] Error:', error);
-    return NextResponse.redirect(new URL('/?login=error&message=Server error', request.url));
+    return NextResponse.redirect(new URL('/?login=error&message=Server error', request.url), { status: 303 });
   }
 }
 
