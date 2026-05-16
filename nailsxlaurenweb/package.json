@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev --turbopack\"",
-    "build": "tinacms build && next build --turbopack",
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
     "deploy": "vercel --prod",
@@ -27,13 +27,11 @@
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "sweetalert2": "^11.16.0",
-    "tinacms": "^3.7.3",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "@tinacms/cli": "^2.2.3",
     "@types/node": "^20.19.39",
     "@types/react": "^19",
     "@types/react-dom": "^19",
